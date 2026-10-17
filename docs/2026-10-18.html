@@ -1,0 +1,575 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Hegazy Brief: Sunday, 18 October 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;800;900&family=Newsreader:ital,opsz,wght@0,6..72,500;0,6..72,700;1,6..72,500&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  color-scheme: light;
+  --night: #0B1726; --night-2: #13243A; --dusk: #1E3550; --star: #F3EFE6; --star-2: #B9C5D2; --star-3: #7E91A6; --line-n: #22364D;
+  --amber: #F2A93B; --up-n: #4CC38A; --down-n: #FF7A59;
+  --bg: #F3F5F7; --paper: #FFFFFF; --ink: #0F1D2E; --ink-2: #2E3B4A; --muted: #4A5868; --line: #C9D2DB; --line-2: #DEE3E9;
+  --up: #1F7A4D; --down: #C2410C; --accent: #1F4E79; --kicker: #B4561B; --ph: #DDE3E9;
+  --display: "Big Shoulders Display", "Arial Narrow", "Segoe UI", sans-serif;
+  --serif: "Newsreader", Georgia, "Times New Roman", serif;
+  --sans: "IBM Plex Sans Arabic", "Segoe UI", Tahoma, Arial, sans-serif;
+  box-sizing: border-box;
+  padding-top: env(safe-area-inset-top, 0px);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --bg: #111C28; --paper: #172433; --ink: #E6ECF2; --ink-2: #C3CDD8; --muted: #9AA8B7; --line: #2C3B4C; --line-2: #243243;
+    --up: #4CC38A; --down: #FF8A66; --accent: #7DB7F5; --kicker: #F2A93B; --ph: #22324A;
+  }
+}
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: #111C28; --paper: #172433; --ink: #E6ECF2; --ink-2: #C3CDD8; --muted: #9AA8B7; --line: #2C3B4C; --line-2: #243243;
+  --up: #4CC38A; --down: #FF8A66; --accent: #7DB7F5; --kicker: #F2A93B; --ph: #22324A;
+}
+*, *::before, *::after { box-sizing: inherit; }
+html { background: var(--night); scroll-padding-top: calc(4.5rem + env(safe-area-inset-top, 0px)); }
+body { margin: 0; font-family: var(--sans); color: var(--ink); background: var(--bg); font-size: 17px; line-height: 1.6; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 30; background: var(--bg); }
+a { color: var(--accent); }
+:focus-visible { outline: 3px solid var(--amber); outline-offset: 2px; }
+.wrap { max-width: 1200px; margin: 0 auto; padding: 0 28px; }
+@media (max-width: 640px) { .wrap { padding: 0 18px; } }
+.num { font-variant-numeric: tabular-nums; }
+[data-lang="en"] .ar { display: none !important; }
+[data-lang="ar"] .en { display: none !important; }
+.ar { direction: rtl; text-align: right; }
+.hidden { display: none !important; }
+
+/* NIGHT */
+.night { background: var(--night); color: var(--star); }
+.top { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 12px 24px; padding-top: 22px; }
+.brand { font-family: var(--display); font-weight: 900; font-size: 28px; letter-spacing: 1.5px; }
+.date { font-size: 14px; color: var(--star-2); margin-inline-start: 14px; }
+.lang { display: flex; gap: 8px; }
+.lang button { font: inherit; font-size: 14px; font-weight: 600; min-height: 44px; padding: 0 16px; border-radius: 22px; border: 1px solid #3A4E66; background: transparent; color: var(--star); cursor: pointer; }
+.lang button[aria-pressed="true"] { background: var(--star); color: var(--night); border-color: var(--star); }
+.hero { padding: 64px 0 44px; }
+.hero .when { font-size: 15px; font-weight: 600; color: var(--amber); }
+.hero h1 { font-family: var(--display); font-weight: 900; font-size: 96px; font-size: clamp(56px, 10vw, 96px); line-height: .88; margin: 14px 0 0; letter-spacing: -1px; }
+.hero h1.ar { font-family: var(--sans); font-size: clamp(38px, 6vw, 60px); line-height: 1.3; }
+.promise { border-top: 1px solid var(--line-n); padding: 30px 0 34px; display: flex; flex-wrap: wrap; align-items: flex-end; gap: 26px 56px; }
+.promise .claim { flex: 3 1 520px; min-width: 0; }
+.promise .l1 { font-family: var(--display); font-weight: 900; font-size: 58px; font-size: clamp(38px, 6vw, 58px); line-height: .92; margin: 0; }
+.promise .l2 { font-family: var(--display); font-weight: 900; font-size: 96px; font-size: clamp(64px, 10vw, 96px); line-height: .88; margin: 4px 0 0; color: var(--amber); letter-spacing: -1px; }
+.promise .claim-ar { font-size: 34px; font-weight: 700; line-height: 1.5; margin: 10px 0 0; }
+.promise .claim-ar span { color: var(--amber); }
+.stats { flex: 2 1 300px; min-width: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px 28px; }
+.stats b { display: block; font-family: var(--display); font-weight: 900; font-size: 48px; line-height: .9; }
+.stats span { font-size: 14px; color: var(--star-2); }
+.stats .gold b { color: var(--amber); }
+.timeline { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 170px), 1fr)); border-top: 1px solid var(--line-n); }
+.stop { padding: 22px 18px 26px; display: flex; flex-direction: column; gap: 6px; border-left: 1px solid #1C2E43; }
+.stop:first-child { border-left: 0; padding-left: 0; }
+.stop .t { font-size: 12px; font-weight: 700; color: var(--star-3); letter-spacing: .8px; }
+.stop .p { font-size: 15px; font-weight: 600; }
+.stop .v { font-family: var(--display); font-weight: 800; font-size: 52px; line-height: .95; }
+.stop .v.up { color: var(--up-n); } .stop .v.down { color: var(--down-n); }
+.stop .d { font-size: 14px; line-height: 1.5; color: var(--star-2); }
+@media (max-width: 640px) { .stop { border-left: 0; padding-left: 0; border-top: 1px solid #1C2E43; } .stop:first-child { border-top: 0; } }
+
+/* DUSK */
+.dusk { background: var(--dusk); color: var(--star); }
+.dusk .wrap { padding-top: 44px; padding-bottom: 48px; }
+.dusk h2 { font-family: var(--display); font-weight: 900; font-size: 46px; line-height: 1; margin: 0; }
+.dusk .sub { font-size: 15px; color: var(--star-2); }
+.dusk .head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 8px 24px; margin-bottom: 22px; }
+.chain { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 12px; font-size: 18px; font-weight: 600; }
+.chain .last { color: var(--amber); font-weight: 700; }
+
+/* MORNING */
+.morning { background: var(--bg); color: var(--ink); }
+.hello { font-family: var(--serif); font-size: 30px; line-height: 1.3; margin: 0; padding-top: 52px; max-width: 820px; }
+.controls { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20; background: var(--bg); margin-top: 26px; border-top: 2px solid var(--ink); border-bottom: 1px solid var(--line); }
+.controls .wrap { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 18px; padding-top: 4px; padding-bottom: 4px; }
+.tabs { display: flex; gap: 2px; overflow-x: auto; flex: 1 1 520px; min-width: 0; }
+.tabs button { font: inherit; font-size: 15px; white-space: nowrap; min-height: 44px; padding: 0 11px; border: 0; border-bottom: 3px solid transparent; background: transparent; color: var(--muted); cursor: pointer; }
+.tabs button[aria-pressed="true"] { color: var(--ink); font-weight: 700; border-bottom-color: var(--ink); }
+.controls label { display: flex; align-items: center; gap: 8px; font-size: 15px; }
+.controls select { font: inherit; font-size: 15px; min-height: 40px; padding: 0 10px; border: 1px solid var(--line); border-radius: 6px; background: var(--paper); color: var(--ink); }
+.controls input[type="checkbox"] { width: 20px; height: 20px; accent-color: var(--ink); }
+.kick { font-size: 13px; font-weight: 700; color: var(--kicker); letter-spacing: .6px; text-transform: uppercase; }
+.kick.blue { color: var(--accent); }
+.lead { display: flex; flex-wrap: wrap; gap: 36px; padding: 40px 0 44px; border-bottom: 1px solid var(--line); }
+.lead .art { flex: 7 1 520px; min-width: 0; }
+.lead .art img, .lead .art svg { width: 100%; height: auto; display: block; border-radius: 2px; }
+.lead .art figcaption { font-size: 13px; color: var(--muted); margin-top: 8px; }
+.lead .txt { flex: 5 1 340px; min-width: 0; display: flex; flex-direction: column; gap: 12px; }
+.lead h2 { font-family: var(--serif); font-weight: 700; font-size: 44px; line-height: 1.05; margin: 0; }
+.lead h2.ar, .story h3.ar { font-family: var(--sans); }
+.bigstat { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; }
+.bigstat b { font-family: var(--display); font-weight: 900; font-size: 64px; line-height: .9; }
+.bigstat span { font-size: 15px; color: var(--muted); }
+.up { color: var(--up); } .down { color: var(--down); }
+.lines { list-style: none; margin: 0; padding: 0; }
+.lines li { padding: 7px 0; border-top: 1px solid var(--line-2); font-size: 16px; line-height: 1.55; color: var(--ink-2); }
+.lines li b { color: var(--ink); margin-inline-end: 6px; }
+.stories { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 330px), 1fr)); border-bottom: 1px solid var(--line); }
+.story { padding: 30px 30px 32px 0; display: flex; flex-direction: column; gap: 10px; border-bottom: 1px solid var(--line-2); min-width: 0; }
+.story .s { font-family: var(--display); font-weight: 900; font-size: 54px; line-height: .9; }
+.story .sl { font-size: 14px; color: var(--muted); margin-top: -6px; }
+.story h3 { font-family: var(--serif); font-weight: 700; font-size: 28px; line-height: 1.1; margin: 0; }
+details.more summary { cursor: pointer; font-weight: 700; color: var(--accent); min-height: 44px; display: flex; align-items: center; list-style: none; }
+details.more summary::-webkit-details-marker { display: none; }
+details.more .full p { font-family: var(--serif); font-size: 18px; line-height: 1.65; margin: .5rem 0; }
+details.more .full.ar p { font-family: var(--sans); font-size: 17px; line-height: 1.9; }
+.chainline { font-size: 15px; color: var(--muted); border-inline-start: 3px solid var(--accent); padding-inline-start: 10px; }
+.src { font-size: 13px; color: var(--muted); }
+.src a { color: var(--muted); }
+.block { padding: 44px 0 8px; }
+.block h2 { font-family: var(--serif); font-weight: 700; font-size: 34px; margin: 0 0 6px; }
+.block .note { font-size: 15px; color: var(--muted); margin: 0 0 18px; }
+.quick { list-style: none; margin: 0; padding: 0; columns: 2 320px; column-gap: 40px; }
+.quick li { break-inside: avoid; padding: 10px 0; border-top: 1px solid var(--line-2); font-size: 16px; line-height: 1.5; }
+.quick .tag { font-size: 12px; font-weight: 700; color: var(--kicker); text-transform: uppercase; letter-spacing: .5px; margin-inline-end: 6px; }
+.board { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 250px), 1fr)); gap: 0 32px; }
+.board h3 { font-size: 13px; font-weight: 700; color: var(--muted); letter-spacing: .6px; text-transform: uppercase; margin: 18px 0 4px; }
+.row { display: flex; justify-content: space-between; gap: 12px; padding: 8px 0; border-bottom: 1px solid var(--line-2); font-size: 15px; }
+.row b { font-weight: 700; white-space: nowrap; }
+.charts { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 380px), 1fr)); gap: 36px 44px; }
+.chart h3 { font-family: var(--serif); font-size: 22px; line-height: 1.2; margin: 0 0 12px; }
+.chart .cap { font-size: 13px; color: var(--muted); margin: 10px 0 0; }
+.bars { font-size: 14px; }
+.bar { display: flex; align-items: center; margin: 0 0 6px; }
+.bar > * + * { margin-left: 10px; }
+.bl { flex: 0 0 36%; text-align: right; line-height: 1.2; }
+.bt { flex: 1 1 auto; position: relative; height: 14px; }
+.bars.split .bt::before { content: ""; position: absolute; left: 50%; top: -3px; bottom: -3px; border-left: 1px solid var(--line); }
+.bars:not(.split) .bt::before { content: ""; position: absolute; left: 0; top: -3px; bottom: -3px; border-left: 1px solid var(--line); }
+.bf { position: absolute; top: 0; bottom: 0; }
+.bf.pos { background: var(--up); } .bf.neg { background: var(--down); } .bf.neu { background: var(--accent); } .bf.flag { background: var(--kicker); }
+.bf.proj { background: repeating-linear-gradient(135deg, var(--kicker) 0 5px, transparent 5px 9px); outline: 1px solid var(--kicker); }
+.bv { flex: 0 0 70px; font-weight: 700; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.spark { width: 100%; height: 80px; display: block; margin-top: 6px; }
+.lc-v { font-family: var(--display); font-weight: 800; font-size: 34px; line-height: 1; }
+.lc-c { font-weight: 700; font-size: 15px; }
+.lc-c.up { color: var(--up); } .lc-c.down { color: var(--down); }
+.spark .ln { fill: none; stroke-width: 2; vector-effect: non-scaling-stroke; }
+.spark.up .ln { stroke: var(--up); } .spark.down .ln { stroke: var(--down); }
+.spark .area { opacity: .12; } .spark.up .area { fill: var(--up); } .spark.down .area { fill: var(--down); }
+.risk { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr)); gap: 0 36px; }
+.risk > div { padding: 18px 0; border-top: 2px solid var(--ink); }
+.risk .lvl { font-size: 12px; font-weight: 700; letter-spacing: .6px; text-transform: uppercase; }
+.risk .lvl.esc { color: var(--down); } .risk .lvl.watch { color: var(--kicker); }
+.risk h3 { font-family: var(--serif); font-size: 24px; line-height: 1.15; margin: 6px 0 8px; }
+.risk dl { margin: 0; font-size: 15px; } .risk dt { font-weight: 700; margin-top: 6px; } .risk dd { margin: 0; color: var(--ink-2); }
+.cal { list-style: none; margin: 0; padding: 0; }
+.cal li { display: flex; flex-wrap: wrap; gap: 4px 24px; padding: 12px 0; border-top: 1px solid var(--line-2); }
+.cal b { flex: 0 0 200px; font-family: var(--display); font-size: 22px; line-height: 1.2; }
+.cal div { flex: 1 1 320px; }
+.learn { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); gap: 0 36px; }
+.learn > div { padding: 18px 0; border-top: 1px solid var(--line); }
+.learn h3 { font-family: var(--serif); font-size: 24px; margin: 0 0 6px; }
+.learn .ex { color: var(--muted); font-style: italic; }
+.learn .ar .ex { font-style: normal; }
+.empty { display: none; color: var(--muted); padding: 30px 0; }
+
+
+/* Tap-to-explain terms */
+button.term { font: inherit; color: inherit; background: none; border: 0; padding: 0; margin: 0; cursor: pointer; text-decoration: underline dotted; text-decoration-thickness: 2px; text-underline-offset: 3px; text-decoration-color: var(--accent); }
+.night button.term, .dusk button.term { text-decoration-color: var(--amber); }
+#term-pop { position: absolute; z-index: 50; width: min(340px, calc(100vw - 24px)); background: var(--paper); color: var(--ink); border: 1px solid var(--line); border-radius: 10px; box-shadow: 0 12px 32px rgba(0,0,0,.18); padding: 14px 16px; font-size: 15px; line-height: 1.55; }
+#term-pop h4 { font-family: var(--serif); font-size: 20px; margin: 0 0 6px; }
+#term-pop .ar { font-size: 16px; line-height: 1.8; margin-top: 6px; }
+#term-pop .row2 { display: flex; justify-content: space-between; gap: 10px; margin-top: 10px; }
+#term-pop button { font: inherit; font-size: 14px; font-weight: 600; min-height: 40px; padding: 0 12px; border-radius: 20px; border: 1px solid var(--line); background: transparent; color: var(--ink); cursor: pointer; }
+#term-pop button.ask { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+
+/* New here guide */
+details.guide { margin-top: 18px; max-width: 820px; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+details.guide summary { cursor: pointer; min-height: 48px; display: flex; align-items: center; font-weight: 700; list-style: none; }
+details.guide summary::-webkit-details-marker { display: none; }
+details.guide ol { margin: 0 0 16px; padding-inline-start: 22px; }
+details.guide li { margin: 6px 0; }
+
+/* Assistant */
+#ask-open { position: fixed; right: 18px; bottom: calc(18px + env(safe-area-inset-bottom, 0px)); z-index: 40; font: inherit; font-weight: 700; font-size: 15px; min-height: 52px; padding: 0 20px; border-radius: 26px; border: 0; background: var(--amber); color: #0B1726; box-shadow: 0 8px 24px rgba(0,0,0,.25); cursor: pointer; }
+#ask-panel { position: fixed; right: 18px; bottom: calc(18px + env(safe-area-inset-bottom, 0px)); z-index: 45; width: min(420px, calc(100vw - 24px)); height: min(620px, calc(100vh - 48px)); display: flex; flex-direction: column; background: var(--paper); color: var(--ink); border: 1px solid var(--line); border-radius: 14px; box-shadow: 0 18px 48px rgba(0,0,0,.28); overflow: hidden; }
+#ask-panel header { background: var(--night); color: var(--star); padding: 14px 16px; display: flex; justify-content: space-between; align-items: center; gap: 10px; }
+#ask-panel header b { font-family: var(--display); font-size: 22px; letter-spacing: .5px; }
+#ask-panel header span { display: block; font-size: 12px; color: var(--star-2); }
+#ask-close { font: inherit; font-size: 22px; width: 44px; height: 44px; border-radius: 22px; border: 0; background: transparent; color: var(--star); cursor: pointer; }
+#ask-log { flex: 1 1 auto; overflow-y: auto; padding: 14px 16px; display: flex; flex-direction: column; gap: 10px; }
+.msg { max-width: 88%; padding: 10px 13px; border-radius: 12px; font-size: 15px; line-height: 1.55; white-space: pre-wrap; overflow-wrap: break-word; }
+.msg.user { align-self: flex-end; background: var(--ink); color: var(--paper); }
+.msg.bot { align-self: flex-start; background: var(--bg); border: 1px solid var(--line-2); }
+.msg.note { align-self: center; background: none; color: var(--muted); font-size: 13px; text-align: center; }
+#ask-sugg { display: flex; flex-wrap: wrap; gap: 6px; padding: 0 16px 10px; }
+#ask-sugg button { font: inherit; font-size: 13px; min-height: 36px; padding: 0 12px; border-radius: 18px; border: 1px solid var(--line); background: transparent; color: var(--ink); cursor: pointer; }
+#ask-form { display: flex; gap: 8px; padding: 10px 12px; border-top: 1px solid var(--line); }
+#ask-input { flex: 1 1 auto; font: inherit; font-size: 15px; min-height: 44px; padding: 0 12px; border: 1px solid var(--line); border-radius: 22px; background: var(--bg); color: var(--ink); }
+#ask-send { font: inherit; font-weight: 700; min-height: 44px; padding: 0 16px; border-radius: 22px; border: 0; background: var(--ink); color: var(--paper); cursor: pointer; }
+#ask-panel .fine2 { font-size: 11px; color: var(--muted); padding: 0 14px 10px; }
+@media (max-width: 520px) { #ask-panel { right: 0; left: 0; bottom: 0; width: 100%; height: 85vh; border-radius: 14px 14px 0 0; } }
+
+/* NIGHT RETURNS */
+.foot { background: var(--night); color: var(--star); margin-top: 56px; }
+.foot .wrap { padding-top: 56px; padding-bottom: 64px; }
+.foot .q { font-family: var(--display); font-weight: 900; font-size: 64px; font-size: clamp(40px, 7vw, 64px); line-height: .92; max-width: 800px; margin: 0; }
+.foot .q-ar { font-size: 34px; font-weight: 700; line-height: 1.5; max-width: 800px; margin: 10px 0 0; }
+.foot .made { font-size: 16px; color: #C9D3DE; margin: 22px 0 0; padding-top: 18px; border-top: 1px solid var(--line-n); }
+.foot .fine { font-size: 13px; color: var(--star-3); margin: 10px 0 0; max-width: 760px; }
+</style>
+</head>
+<body data-lang="en" data-chat-endpoint="">
+
+<div class="night">
+<div class="wrap">
+  <header class="top">
+    <div><span class="brand">HEGAZY BRIEF</span><span class="date">Sunday, 18 October 2026</span> <a href="archive.html" style="color:var(--star-2);font-size:14px;margin-inline-start:12px">Past editions</a></div>
+    <div class="lang" role="group" aria-label="Language">
+      <button type="button" data-lang="en" aria-pressed="true">English</button>
+      <button type="button" data-lang="both" aria-pressed="false">Both</button>
+      <button type="button" data-lang="ar" aria-pressed="false">عربي</button>
+    </div>
+  </header>
+  <section class="hero">
+    <div class="when en">8:00 AM in Cairo</div>
+    <div class="when ar">الثامنة صباحًا بتوقيت القاهرة</div>
+    <h1 class="en">While Cairo slept,<br>the world moved.</h1>
+    <h1 class="ar">بينما كانت القاهرة نائمة، تحرّك العالم.</h1>
+  </section>
+  <section class="promise" aria-label="Our promise">
+    <div class="claim">
+      <div class="en"><p class="l1">I don’t guess what the world is doing.</p><p class="l2">I know.</p></div>
+      <p class="claim-ar ar">أنا لا أخمّن ما يفعله العالم. <span>أنا أعرف.</span></p>
+    </div>
+    <div class="stats">
+      <div><b>35</b><span>checks every morning</span></div>
+      <div><b>70</b><span>markets tracked</span></div>
+      <div><b>6</b><span>continents covered</span></div>
+      <div class="gold"><b>8:00</b><span>ready before Cairo wakes</span></div>
+    </div>
+  </section>
+  <section class="timeline" aria-label="The night, market by market">
+    
+  </section>
+</div>
+</div>
+
+
+
+<div class="morning">
+<div class="wrap">
+  <p class="hello en">Good morning. Here’s the full picture, sector by sector.</p>
+  <p class="hello ar" style="font-family:var(--sans)">صباح الخير. هذه الصورة الكاملة، قطاعًا بقطاع.</p>
+  <details class="guide en"><summary>New to markets? How to read this page</summary>
+    <ol>
+      <li><b>Green numbers went up, red numbers went down.</b> A percentage shows by how much since the last session.</li>
+      <li><b>Underlined words can be tapped.</b> One tap explains the term in simple language, without leaving the page.</li>
+      <li><b>Every story answers three questions:</b> what happened, why it happened, and what it means for Egypt.</li>
+      <li><b>Want the long version?</b> Tap “Read the full analysis” under any story.</li>
+      <li><b>Still confused?</b> Tap “Ask” at the bottom right and ask anything, in English or Arabic.</li>
+    </ol>
+  </details>
+  <details class="guide ar" dir="rtl"><summary>جديد على الأسواق؟ كيف تقرأ هذه الصفحة</summary>
+    <ol>
+      <li><b>الأرقام الخضراء ارتفعت والحمراء انخفضت.</b> النسبة المئوية توضح مقدار التغير منذ آخر جلسة.</li>
+      <li><b>الكلمات المسطّرة يمكن الضغط عليها.</b> ضغطة واحدة تشرح المصطلح ببساطة دون مغادرة الصفحة.</li>
+      <li><b>كل خبر يجيب عن ثلاثة أسئلة:</b> ماذا حدث، ولماذا، وماذا يعني لمصر.</li>
+      <li><b>تريد التفاصيل؟</b> اضغط «اقرأ التحليل الكامل» تحت أي خبر.</li>
+      <li><b>ما زال الأمر غير واضح؟</b> اضغط «اسأل» أسفل الصفحة واسأل أي سؤال بالعربية أو الإنجليزية.</li>
+    </ol>
+  </details>
+</div>
+<nav class="controls" aria-label="Filter stories"><div class="wrap">
+  <div class="tabs" role="group" aria-label="Sector">
+    <button type="button" data-sector="all" aria-pressed="true">All</button>
+    <button type="button" data-sector="markets" aria-pressed="false">Markets &amp; trading</button><button type="button" data-sector="economy" aria-pressed="false">Economy</button><button type="button" data-sector="finance" aria-pressed="false">Finance</button><button type="button" data-sector="accounting" aria-pressed="false">Accounting</button><button type="button" data-sector="politics" aria-pressed="false">Politics</button><button type="button" data-sector="business" aria-pressed="false">Business &amp; tech</button><button type="button" data-sector="wsj" aria-pressed="false">Wall Street Journal</button>
+    <button type="button" data-sector="charts" aria-pressed="false">Charts</button>
+    <button type="button" data-sector="board" aria-pressed="false">Markets board</button>
+    <button type="button" data-sector="risk" aria-pressed="false">Risk radar</button>
+    <button type="button" data-sector="next" aria-pressed="false">Coming up</button>
+    <button type="button" data-sector="learn" aria-pressed="false">Learn</button>
+  </div>
+  <label>Region <select id="region"><option value="all">Everywhere</option><option value="usa">USA</option><option value="europe">Europe</option><option value="asia">Asia</option><option value="egypt">Egypt</option><option value="gulf">Gulf</option><option value="mena">Middle East &amp; N. Africa</option><option value="africa">Africa</option><option value="latam">Latin America</option></select></label>
+  <label><input type="checkbox" id="important"> Top stories only</label>
+</div></nav>
+
+<main class="wrap">
+<section data-block="stories">
+  
+
+  <div class="stories">
+  
+  </div>
+
+  
+  <div class="block" data-quick>
+    <h2 class="en">In brief</h2><h2 class="ar" style="font-family:var(--sans)">باختصار</h2>
+    <ul class="quick"><li class="story-item" data-sector="markets" data-region="egypt" data-imp="LOW"><span class="tag">Markets &amp; trading</span><span class="en">The Egyptian Exchange</span><span class="ar"></span> <a class="src" href="https://news.google.com/rss/articles/CBMiZ0FVX3lxTE5kTEpGOEEtWThzSkJScTYwYmJlM3cxVURPaE14MW82NzgyVmhpelBhcUxYOG42cFBtWEFCSHNLQmc4ZFFzQ1REeWE4UHV2ZFJmMGRTQlZTOGZnNHBjT0VoaU5EN19RU0k?oc=5" target="_blank" rel="noopener">البورصة المصرية (official)</a></li><li class="story-item" data-sector="markets" data-region="usa europe asia egypt" data-imp="LOW"><span class="tag">Markets &amp; trading</span><span class="en">Federal Reserve Board announces termination of enforcement actions with Gardner Bancshares, Inc. and Small Business Bank</span><span class="ar"></span> <a class="src" href="https://www.federalreserve.gov/newsevents/pressreleases/enforcement20261016a.htm" target="_blank" rel="noopener">FRB: Press Release - All Releases (official)</a></li><li class="story-item" data-sector="markets" data-region="global" data-imp="LOW"><span class="tag">Markets &amp; trading</span><span class="en">New podcast episode looks at the latest situation in the Strait of Hormuz and across the Middle East</span><span class="ar"></span> <a class="src" href="https://news.google.com/rss/articles/CBMiwwFBVV95cUxOems4blpJWFN2U3VfLUdlQ2FNYVExVk9melppTEpXal8xTUV5NzFGOVdqdVZsVzc0eWdnWHI1aUtmR1hMcUVnYVRaTEE4R1MtZ1pqM3h0U1lLdzZNOVFyclpMTER5WjFDTDkzVC1jTFNtSGhkX254S0sxNlJEMWhwYm0wMVI0dUxlbGFWRjg3ZzV3NnBleHJNc3ExV0Z5cEZmclpoaVVFODFmVXIwbHkyLVI0LTJOUy1ocThPcUs1VEk1SDg?oc=5" target="_blank" rel="noopener">IEA - International Energy Agency (official)</a></li><li class="story-item" data-sector="markets" data-region="global" data-imp="LOW"><span class="tag">Markets &amp; trading</span><span class="en">U.S. small-scale solar generation has quadrupled in the last decade</span><span class="ar"></span> <a class="src" href="https://www.eia.gov/todayinenergy/detail.php?id=68324" target="_blank" rel="noopener">Today in Energy (official)</a></li><li class="story-item" data-sector="markets" data-region="global" data-imp="LOW"><span class="tag">Markets &amp; trading</span><span class="en">Category 2 Hurricane Isaias nears landfall, leading to production shut-ins</span><span class="ar"></span> <a class="src" href="https://www.eia.gov/todayinenergy/detail.php?id=68284" target="_blank" rel="noopener">Today in Energy (official)</a></li><li class="story-item" data-sector="markets" data-region="egypt" data-imp="LOW"><span class="tag">Markets &amp; trading</span><span class="en">MDLBEAST To Host Two-Night Takeover at Jeddah’s Onyx Arena Oct 29–30</span><span class="ar"></span> <a class="src" href="https://news.google.com/rss/articles/CBMingFBVV95cUxOWmQxcEc1V2dZb1FVbGZiUTZpMTFSdUZFR1NLQzFpNmNZUmdJWWxPV2ZVYlBXU0ZWQnM3MTRiZ0twZVoyOVJkbHIyNmhXNmIwbHJyRHNCM0R3M0xISDI1eUVtZk5xT2theGZQTEphbFpCclFRX21NRjNNQlJHdjNMTmtuTEg0T1BhcGd6SU5xUW0yemxIN25yYmxyMjdidw?oc=5" target="_blank" rel="noopener">CairoScene</a></li><li class="story-item" data-sector="markets" data-region="egypt" data-imp="LOW"><span class="tag">Markets &amp; trading</span><span class="en">Elsewedy–Sinohydro secures $2.2 B Saudi power project</span><span class="ar"></span> <a class="src" href="https://news.google.com/rss/articles/CBMilwFBVV95cUxOeFlIbWFEZUZtZ0N1MVZzU0pRMFh2VkJnc2xCSG5PUnJfVWxOZXJ5dXdCbzZOYUcxcUs3SWJuei1aUWt0ZUhGR0JucGtZbEw5Vm9ER1VUM3RCRHpmMkhlVUFSMFJtSFdyckdBSHVia3JYTEVCNVg0QldINjhxMHQ5MnlJSFNJWF8tTzhEVWR5WC1vLXpUZ3Bj?oc=5" target="_blank" rel="noopener">megaproject.com</a></li><li class="story-item" data-sector="markets" data-region="egypt" data-imp="LOW"><span class="tag">Markets &amp; trading</span><span class="en">السيسي يدعو البرلمان لجلسة طارئة حال طلب السعودية دعماً دفاعياً</span><span class="ar"></span> <a class="src" href="https://news.google.com/rss/articles/CBMi2gNBVV95cUxON0JfcVdFZmF4c2lFNUNZczAza1hEMDF2enJkVnNGS0hvZ2tsMXZTSU5NUkZua0tPS2ZiS01FZ0syc3IwbHZuaU5uVnI5R2RCSUd2ZVBjNzdmdVFSR2JzU1NYUU92bFlKdzNvYkpwcDB5TW5xdmJUWTNsZ1BqODBRRG1DQ252T3B3U0o5Q1ZITHpFaFFuMWtrWmp6MDJ1QzVxOVN1d3ZjaFVjVHJSUnB2cFY1d014T3RaRmd0Q0xEYjRwYVNLYnozaVpFaEJ5bGw5OTBpeERXSjJrNTFIbnpnNEVSbWtES3J6U2ozV3pjWXFzVzJudVo3aTIwYTQyMlJDVTRQaGk0TUowTWdPczdPSFdjcDExVWdWTG83Q045djAxR2RrLU9RLVozcm53SUVKVmxFN1NZV1ZLNzJMVmpkZkNEb0FKbVZuSWJoaFVZbWx2bC1zU1RQRVF6SV91amhWR3lmVHFDdmVvSFJDSzEwVXVCMk5DeDRSWTNQZ1k4NGxTYzIxRFA0bDlrU2tJVHNWbDQxQWFFY1dsclZnWk00WUFleVItQkNOQXlUeTFfanFwLW9Ub0lGQ0YyVlUwQ1pmWWFYOFlaWmdQOGVZS2dCS1g0ZHprN2JzWmc?oc=5" target="_blank" rel="noopener">الشرق بلومبرغ</a></li><li class="story-item" data-sector="economy" data-region="usa europe asia gulf egypt" data-imp="LOW"><span class="tag">Economy</span><span class="en">Press Releases</span><span class="ar"></span> <a class="src" href="https://news.google.com/rss/articles/CBMieEFVX3lxTFBqQzVsV2FnM0FFSGhvSVlSX2JuUGFmLWxTejhsLW8tVjY5Wnozb2ljUVYwNEFFWF9ENnlmSVJkZzQ3a3YwUG1vNGhwa1J4T21JWE8xbHFxUkx5M2oyV1hWSWtNNWhxZ0NHMGpDVG43V2o4T29VdWdtQQ?oc=5" target="_blank" rel="noopener">Reserve Bank of India (official)</a></li><li class="story-item" data-sector="economy" data-region="usa europe asia gulf egypt" data-imp="LOW"><span class="tag">Economy</span><span class="en">Tenders</span><span class="ar"></span> <a class="src" href="https://news.google.com/rss/articles/CBMia0FVX3lxTE9ZcUNSazdMUE9Ib2RoMWNmTHJKMnAtRnU5QUtjYXJGRTFjRkVfOThWUXp5VV8wTDNtS29INnNSRlRGdHV3bkRHWmdOS3AtR0tJbVZjWUx2NDVHWW1pRWFHV0pfZVhPMlJOM0E4?oc=5" target="_blank" rel="noopener">Reserve Bank of India (official)</a></li><li class="story-item" data-sector="economy" data-region="usa europe asia gulf egypt" data-imp="LOW"><span class="tag">Economy</span><span class="en">The Fed - Government Bonds’ Safe-Haven Property and Inflationary Pressures</span><span class="ar"></span> <a class="src" href="https://news.google.com/rss/articles/CBMizgFBVV95cUxQTVNyY3RMRG44SkpzZ0k0ZEV0N3IzRzVadDJZeVgteTRUMjdwcXRKdGY0YVF4SDMwRDNGdnprNENiYnExbUk1X2dMZ2Y0dW0xZmZzdzI5SXlHc1lWeTB4RUhKdjRmbkpLTnJQdGt4VGRTdXctbGZnN2RfdHY4cDdrdEp4eEdFakVhOF9iWFVGRWpjZGxmUV9keUk3a3E4d0s1a0RPSzlUMlpvR2MtbXdKd1k2dnpXai10ekV1RWZxWmVFM25lTE1tSHUwaWlEQQ?oc=5" target="_blank" rel="noopener">Federal Reserve (.gov) (official)</a></li><li class="story-item" data-sector="economy" data-region="usa europe asia gulf egypt" data-imp="LOW"><span class="tag">Economy</span><span class="en">Christine Lagarde: IMFC Statement</span><span class="ar"></span> <a class="src" href="https://www.ecb.europa.eu//press/key/date/2026/html/ecb.sp261017~7015ea3099.en.html" target="_blank" rel="noopener">ECB - European Central Bank (official)</a></li><li class="story-item" data-sector="economy" data-region="usa europe asia gulf egypt" data-imp="LOW"><span class="tag">Economy</span><span class="en">U.S. Import and Export Price Indexes News Release</span><span class="ar"></span> <a class="src" href="https://news.google.com/rss/articles/CBMibkFVX3lxTE1EOV9YT1JVZFNSbGYzSnFhZXNNcUdLaHpmYXFkNkpmdXBNaGV1S0xRZzNfeGFsczE2R1Zpb0ZuLWhTckswd0JsRUxKTkNpSV8xWV9hVGIxN1U5d2hDMXpqbjlkY1lac25oVFRtMXBn?oc=5" target="_blank" rel="noopener">Bureau of Labor Statistics (.gov) (official)</a></li><li class="story-item" data-sector="economy" data-region="usa europe asia gulf egypt" data-imp="LOW"><span class="tag">Economy</span><span class="en">- Bureau of Labor Statistics (.gov)</span><span class="ar"></span> <a class="src" href="https://news.google.com/rss/articles/CBMiaEFVX3lxTE9RTC1CRmViclJXUUE5ZXUzbkpHUVViRF9OMDZ5OWNUMUxSeUhMZmI1bzU4WXY3aUw2ZlFlNTZFWUFXb1dZTVlDc1c1U1BJODZoMDJ1em1lVzVMQjlfbTU1VmtqdUZxX29N?oc=5" target="_blank" rel="noopener">Bureau of Labor Statistics (.gov) (official)</a></li><li class="story-item" data-sector="economy" data-region="usa europe asia gulf egypt" data-imp="LOW"><span class="tag">Economy</span><span class="en">Prices for gasoline increased 34.2 percent over the year ended September 2026</span><span class="ar"></span> <a class="src" href="https://news.google.com/rss/articles/CBMitgFBVV95cUxNZmtNaFIta0tHYUZrRk5HS1hERXBQa3ZSVzJ1alRFTmZOQVVTUDVTQWlydEZWZ251RkF4bnJ0Z1EwaFB4X2xrR2o1R0w2MW04T3dTWXlHLVAwQ3hoaHdLU1B4Q05PVFFyeEZnUkl4VVlrMFJUcXhyYzNJcFpjSFZSTjF3TWlycHRBU1RvUENzMVZ2cDU2TVFnT1h0aGY1ZHhDU1JmbVVlS0J6TUUtRHBiWWVNeWdhUQ?oc=5" target="_blank" rel="noopener">Bureau of Labor Statistics (.gov) (official)</a></li><li class="story-item" data-sector="economy" data-region="usa europe asia gulf egypt" data-imp="LOW"><span class="tag">Economy</span><span class="en">Projections for 25-2031 - BLS Data</span><span class="ar"></span> <a class="src" href="https://news.google.com/rss/articles/CBMiggFBVV95cUxQY0k3OWRITzlFREx5Q2dOdmp1WnZwSDVwVE9oUWhHQnN4OVhjODRqTkEzTkpTYnkta3ZMa3hMdGV6a09Cb0NOSUJNM00wQXp2dHdsX2pfaERmbTZGdWZvejlMdXN3bmw5NTlRUmV2MmNOOEZYOWxMZlFmUnVRUEI0OFN3?oc=5" target="_blank" rel="noopener">Bureau of Labor Statistics (.gov) (official)</a></li><li class="story-item" data-sector="finance" data-region="global gulf egypt" data-imp="LOW"><span class="tag">Finance</span><span class="en">Citizens Financial Shares Fall 5.4% as Third-Quarter Revenue Misses Estimates Despite Earnings Beat</span><span class="ar"></span> <a class="src" href="https://news.google.com/rss/articles/CBMingFBVV95cUxOTWd3eWtTVkl1YjBzWFY2dmRGWnllcmcyemhpY3NuQ2F0SjMtSUdJVS1ZNVNXN0ZmMTE2enBqSlVOMm5OcjIxanhORjhqLVcxZkhmV1JkNFJtelo0NmVUYTdRem92b0FUM19pYW54RWVfNkhmc2t5SmtuM2V1dEdkQmg2YWQybjRVWk9oZ0ZHb3FXb3BQS043Z3dId1ppZw?oc=5" target="_blank" rel="noopener">Yahoo Finance</a></li><li class="story-item" data-sector="finance" data-region="global gulf egypt" data-imp="LOW"><span class="tag">Finance</span><span class="en">Citizens Financial Group (NYSE:CFG) Misses Q3 2026 Revenue Estimates</span><span class="ar"></span> <a class="src" href="https://news.google.com/rss/articles/CBMivgFBVV95cUxNV01oajdOU3dKTGl5b1lRTmFPVF9UbzJDN2JTaWdjN3N3V3BYWkRJdjBhWmU2LV9jaDF6enV2S1NPSmFkRW1fLUpLV1JCZGVjcXVBXzZCWVVOVkxxV1k5cXlIZEJfX3RZZVhlY1FtNFA1UzY5ekhpcmhFbEV6dWQ2YzVyanVfb0hrX0o2eG1INFpoNGxRUkIwdG9JRzlPZTNDTDlTcHFraVJFNXRRUHFIMW5QSWlWLXBWNWdGMjZn?oc=5" target="_blank" rel="noopener">StockStory</a></li><li class="story-item" data-sector="finance" data-region="global gulf egypt" data-imp="LOW"><span class="tag">Finance</span><span class="en">Earnings call transcript: WaFd Q4 2026 profit misses, revenue beats</span><span class="ar"></span> <a class="src" href="https://news.google.com/rss/articles/CBMivgFBVV95cUxQNTNNRDdqU1M2RU50anVDRktwcWRMekpua3JCMTBsV2t6Y0tfVXRrWUlnVDBZLW54bnpQcDlWNm9seUk3eU1TNEZQNHg4MFROWTZXN09tLVdYYkVKUkN2aTNKcWhSdnBWc3hpTWN0cl9aTDUzYUtGbVVna0lOV0dCTXExMkhDOERlYVVjY1I0TEExTVZsWC1nZG9iSWtNR0w2eUdBeGhodEFYdVZYd3FLVnFBTkp5VmpMWDdqbFpR?oc=5" target="_blank" rel="noopener">Investing.com</a></li><li class="story-item" data-sector="finance" data-region="global gulf egypt" data-imp="LOW"><span class="tag">Finance</span><span class="en">Citizens Financial Q3 earnings beat, revenue misses as capital markets fees decline (CFG:NYSE)</span><span class="ar"></span> <a class="src" href="https://news.google.com/rss/articles/CBMivAFBVV95cUxPdmVKdVlkakFJa0Rvc1JKMjVDSExhN2tubFFwdm1VenViaGJ0ejdhdDBqWjRUcnpaQ0VzNTd5UHFGdFducWVwYjZWWUFiNVo4WG0wczMtMmpQaGt6YVBHLUltejlJaDlPQm9UVjMtWUhnUWNMR3lEaEFUdmc4ZkZuNERDSUdjMGNnN042Slk1Q3h2aFZqVmNyUG5mV3VVZkFwMXBiUnVxSjFUWEg4cUUwTTZ2LVJyNEtET2pVVw?oc=5" target="_blank" rel="noopener">Seeking Alpha</a></li><li class="story-item" data-sector="finance" data-region="global gulf egypt" data-imp="LOW"><span class="tag">Finance</span><span class="en">WaFd Q4FY26 Results: EPS misses estimate, sales beat by 20%</span><span class="ar"></span> <a class="src" href="https://news.google.com/rss/articles/CBMirAFBVV95cUxObXVMR3NJRTUtRDUxd3dyVDJ0SXl0aXFOaVdVTTJyeE5RTnozS1JhY0JidXlIbmk3OXJFRVZtUFRsQUZKRV9KT29BRXZPaW5fN2otTUl6blhFNmV5S1V3VXladExHT0dyRjdHNnBySl8xaVJCMkN5REpmREd3d1ZHMVdkbnMyb0pUbC0zejZKM040ZlJVdFBCSW5uXzNSck9YQVJ1TDhBUHNfYWhI?oc=5" target="_blank" rel="noopener">scanx.trade</a></li><li class="story-item" data-sector="finance" data-region="global gulf egypt" data-imp="LOW"><span class="tag">Finance</span><span class="en">Malaga Financial Q3 2026 Earnings Results and Report</span><span class="ar"></span> <a class="src" href="https://news.google.com/rss/articles/CBMiiAFBVV95cUxPTjBMYXlWaUlmT3BXcUlWYmJoa09fNlF2U0ZRS0J3QUU5X2o5bEUzS3RlVWpFd05UV3VHeFdiWkRhckZBUmg5cnJCTkFKVnFDaE5LRURJYVZ5M2ZXYkRtdDBTRGhsUDBKUmVhMDh1NDBncGVHUE1YU1BVWmtlQ3VWNEtfaEFGYXps?oc=5" target="_blank" rel="noopener">MarketBeat</a></li><li class="story-item" data-sector="finance" data-region="global gulf egypt" data-imp="LOW"><span class="tag">Finance</span><span class="en">APP Stock Plunges 28% After-Hours On Revenue Miss And Soft Guidance — But CFO Says SEC Probe On Firm Now Closed</span><span class="ar"></span> <a class="src" href="https://news.google.com/rss/articles/CBMiggJBVV95cUxPSTFURTBkOWVDcHVPZXFSVGFFaXR0MjBQLXhSR2ZUVnNOOEtVM0V2ZWN6S0htN3pCTXBfRk9hcTZZT1YxZC0zaVYzR0lFWFp2anA5cF93akEwT3FBakhZWDBXelRibmEzV3VNZTZISkd0cENHa2dDdVVtVjVraFlnaUF6NmlOQVluTlFwR05hTzY5cmEzMldRNU0tN3NFR0p1b0I1eTdEUkhVVmtaUzFlb0tONmJSNkJ2dzM1ZlFFQVZ3V1Ntenl1QVB0LW91U3ZHLTBuTEdjZzA4UHJTVld2ZldhX1dkR0ZibDNQYW5tX1NaMlh5YVhTLUJ6NG9WQWZqaXc?oc=5" target="_blank" rel="noopener">Stocktwits</a></li><li class="story-item" data-sector="finance" data-region="global gulf egypt" data-imp="LOW"><span class="tag">Finance</span><span class="en">MarshBerry: Wealth Advisory M&amp;A Could Surpass 400 Deals in 2026</span><span class="ar"></span> <a class="src" href="https://news.google.com/rss/articles/CBMilAFBVV95cUxNV3J2U0NBVzFJeWdpYlBFWnZaSGxiNXBtZEFaMm05S2M2SUEyc21SbGJMWlA1V0JPRFlqOWtRR1BHSHZ0elVteGVUTUQ3b1dCNVZLRTlMaU82NU1vVHI5dEJ3RF9NRDdDY25sSnMydmNwTUxrc1N5VDFvbktGM3FVRUFOQ1pPV1Q5RzBIalM5SlpxeVBm?oc=5" target="_blank" rel="noopener">planadviser</a></li><li class="story-item" data-sector="accounting" data-region="global" data-imp="LOW"><span class="tag">Accounting</span><span class="en">Remarks at the Stanford University Private Capital Roundtable</span><span class="ar"></span> <a class="src" href="https://news.google.com/rss/articles/CBMikgFBVV95cUxORy1jc0tpWG5yVlp0dUllaHJxRDNJbkJPOFZ5a051SXZxd0JMNWdiQjJiTnV1YW52U0pKWEpxYUFDaG5PSGZoeTM0TmZ6UW42am80RmQ4a0p0NUlkQnhDOXNhaHJ1YWE2RWtHZnA4OGNQWGp1bjM3RUM1bms5UHJ5MC1VUU1pX1V5aHg5T0JWUFVQdw?oc=5" target="_blank" rel="noopener">SEC.gov (official)</a></li><li class="story-item" data-sector="accounting" data-region="global" data-imp="LOW"><span class="tag">Accounting</span><span class="en">Director David Woodcock: Back to Basics in SEC Enforcement</span><span class="ar"></span> <a class="src" href="https://news.google.com/rss/articles/CBMiywFBVV95cUxPRHFpZ29jc2ZicWxzNHg4azl5N3dJLVBnaGQwMldCN0J0UVp6QVgwTTZvMENYMFE1b083UDRTbEtmTlJlRGo1dURCV0hkejFlMF9GYjdBOUtaNDlLNm5fTmxxUURFZWVOSWU4a3R0TmZ5ZHppN2lFa1JhTVF5c1JqU1hEYzdfNXp2dno3OE9UUVJZS3ppYTJmX0RVbDEzNmZYOE5wUm0zUTZzX3cxcV8tU0FSUzR0VWJLcFJyYVZVMjlQdk5mTEI4S2drNA?oc=5" target="_blank" rel="noopener">SEC.gov (official)</a></li><li class="story-item" data-sector="accounting" data-region="global" data-imp="LOW"><span class="tag">Accounting</span><span class="en">8-K</span><span class="ar"></span> <a class="src" href="https://news.google.com/rss/articles/CBMijAFBVV95cUxPVFduRG81My1rVnVFaWNVTXg0WHhTclhaVGZia2E4Wk40VTlXa1d5bU1iNC1NU3gtLXI0OWFac0g5ZGZzY2NpemZMV2F4LW95VDU0QVBhWVdMWFVCNTU0aFdYY1pKU1JOSTg0eHV4VUFzSXNpc0dMUF9OOXZWbXRjMGU1LVpYWjZoTnA4VQ?oc=5" target="_blank" rel="noopener">SEC.gov (official)</a></li><li class="story-item" data-sector="accounting" data-region="global" data-imp="LOW"><span class="tag">Accounting</span><span class="en">Over $700M in new investments accompany higher distributable earnings at Ladder Capital (LADR).</span><span class="ar"></span> <a class="src" href="https://news.google.com/rss/articles/CBMirAFBVV95cUxNTkpPWGR0b0JocVR5SWVWV0FCNEVCOVJlZTdiMVRMZF9vd3JJSzhDRDFOMUdWUHBYMnJOOGpwcnkxWm5HTEk1V2dsZFd3WnhnSGE0OWx0SVJsVUNxLXppcWdGbEtNTV80TEhsNE9zTUJ5Z1BKOUp3cER2My1pVGZSeFdSYTN4ZkhYb2pxSTRiZk82VkZROFBOUU5IdFJYS2o3ZjNjdDhhcnBJTnp6?oc=5" target="_blank" rel="noopener">Stock Titan</a></li><li class="story-item" data-sector="accounting" data-region="global" data-imp="LOW"><span class="tag">Accounting</span><span class="en">RF Q3 Earnings Beat Estimates on Higher NII, Revenues Rise Y/Y</span><span class="ar"></span> <a class="src" href="https://news.google.com/rss/articles/CBMiuAFBVV95cUxQMEpmbnlsSHR4Q2Rzdl9xemRZVENFUnlkVm5aa0NhYllEbHJPZ0VFeVRhQ0lpYUZNLTBsZzltd0QyLVNPc1JHQ3k2XzVhWXk0ZDYtZmE5akNscGwxd3BEbmY1bHlta1pwdW5CV2RzSjBnVjR0bDB4Y3F2U3YtazFYQXhLeUlwdE1zaUNpdlJyZ1ZzU2dJY21MVFUyZEhWSXRQdEowemZIcmR4OGdXUTYtVG9zOFBYS2Fp?oc=5" target="_blank" rel="noopener">TradingView</a></li><li class="story-item" data-sector="accounting" data-region="global" data-imp="LOW"><span class="tag">Accounting</span><span class="en">Earnings call transcript: Regions Financial tops Q3 2026 profit estimates</span><span class="ar"></span> <a class="src" href="https://news.google.com/rss/articles/CBMixwFBVV95cUxPV1BxdXhaX29nVXlBUnZMLUN1enVpZWhoMXZZZDRXZEFEVUNJYnNVbjM3bWNLbFBET19QNmVfMUI1X0tsaks5cUV0cDhjNEpJMkhOVDdDOUxzNlVnNnh1b2hjcGlQblZxc0lTQXlnZzlTcmJSZXpjYjVmSURBaVUzakUwd0NaSHR0NU9vYUF4ZVZISmdfYXlxbUR0enRhZjdFZXE5WXlWVFhCTWdYM2poUHFjQXNnbmZCSUZkSS1jcDI3b3BWQ1I0?oc=5" target="_blank" rel="noopener">Investing.com</a></li><li class="story-item" data-sector="accounting" data-region="global" data-imp="LOW"><span class="tag">Accounting</span><span class="en">Ladder Capital Corp Reports Results for the Quarter Ended September 30, 2026</span><span class="ar"></span> <a class="src" href="https://news.google.com/rss/articles/CBMi0AFBVV95cUxQLUNsZWhjSW9fS19EbWJpMFplQUQybUw4Qm93MnFWVFBIcmVXeHk4eENnUUhNQjhxUmszdXJHRnc5Z1ItYnRkSExyMVJLOE5KLWJlaWFpdXlkOENjZ1VFQmltNXdVN3E0SjlnamJwUExreVAzMWRMQnNrWDktc1RDTDhYQjZIQnJfWjNReGsxbnNDWHU0WWxhUTh5WF9RNjk1NEtnTG9yRWJKd2FlM3BaUkxwRnljT3B1VWhOWS1wN3Z3S2VzZm5FWDRGREFKMFJy?oc=5" target="_blank" rel="noopener">FinancialContent</a></li><li class="story-item" data-sector="accounting" data-region="global" data-imp="LOW"><span class="tag">Accounting</span><span class="en">[Regions Financial Q3 2026 Earnings Call] Regions Posts $611M Profit as Capital Markets Revenue Surges 23% and Credit Losses Fall to 29bps</span><span class="ar"></span> <a class="src" href="https://news.google.com/rss/articles/CBMiW0FVX3lxTFAycHcwUl9vTmdLZ1JfUDc5blF3aWpDLUN2RllXN0RNbnZxZUNuLXJ0YlBOOTFaSXBGZktEdkxQbnJEbWRsUDhwOC1VQjBnaEx1anYtRTlnU2FiZzQ?oc=5" target="_blank" rel="noopener">BigGo Finance</a></li><li class="story-item" data-sector="politics" data-region="global" data-imp="LOW"><span class="tag">Politics</span><span class="en">Issuance of Amended Venezuela-related General License and Frequently Asked Question</span><span class="ar"></span> <a class="src" href="https://news.google.com/rss/articles/CBMiXkFVX3lxTE9ZLS1MSGlKbDhXQWtUbXNUeHZvV3Bib2ZmVlp4NHY1TklzUzZGTWVaNFNwczZBbjlDc2ZNVVFaUzN2OFJJTlNSQWt0NE1MbkNCdG9zd0xGWVpkVlhhT2c?oc=5" target="_blank" rel="noopener">Office of Foreign Assets Control (.gov) (official)</a></li><li class="story-item" data-sector="politics" data-region="global" data-imp="LOW"><span class="tag">Politics</span><span class="en">OFFICE OF FOREIGN ASSETS CONTROL Venezuela Sanctions Regulations 31 CFR part 591 GENERAL LICENSE NO. 60A Authorizing Transactio</span><span class="ar"></span> <a class="src" href="https://news.google.com/rss/articles/CBMiZEFVX3lxTE9Ub3h6ZTBBNGlZR2tqZ0RWVHZ2UUY5MzVJdHBEdmhzamQzZk96N2FJYjNXemVoM095c0dSWEtzRnZxSGcyRk9Ta0VBb0JrTW9hQi1qd2VwbDI2b2hCcXQwWHhUc18?oc=5" target="_blank" rel="noopener">Office of Foreign Assets Control (.gov) (official)</a></li><li class="story-item" data-sector="politics" data-region="global" data-imp="LOW"><span class="tag">Politics</span><span class="en">Recent Actions</span><span class="ar"></span> <a class="src" href="https://news.google.com/rss/articles/CBMidEFVX3lxTE16SnhtTm9PNDNsb0R3NTFLTFRrWEtwaHAteEdWVURocWZjMTFvQkpIVC1kVl93R21QR1lvZ2NpamFwMng5MlJBa2F2YWFFTW80RzJKc2VFYll1a1RROGxTa2pxSjRWRnVjNWY1Y2hOMlh2bVBK?oc=5" target="_blank" rel="noopener">Office of Foreign Assets Control (.gov) (official)</a></li><li class="story-item" data-sector="politics" data-region="global" data-imp="LOW"><span class="tag">Politics</span><span class="en">Frequently Asked Questions</span><span class="ar"></span> <a class="src" href="https://news.google.com/rss/articles/CBMikwFBVV95cUxOR0VIVjJkWVVENG95TkVRTHFEczNXd0pqYmh1dHhpRGlrOU5GVlhZZUZBa0Exd2JUSUxoVWNwMnhGVGtleXR5aU5HZ2haWXk3VFZUcTNURWxUTHc1dENSRjBJR1JyX0ZLV1dsaFBmZDdlMlJkLTBMNV9mTV9wcG1HaHkydzM0a3cwdmpOZW5xUXZYNWs?oc=5" target="_blank" rel="noopener">Office of Foreign Assets Control (.gov) (official)</a></li><li class="story-item" data-sector="politics" data-region="global" data-imp="LOW"><span class="tag">Politics</span><span class="en">WTO</span><span class="ar"></span> <a class="src" href="https://news.google.com/rss/articles/CBMidEFVX3lxTE81YVU0aXBmT21XeHpTRzQwc3pzUFpPU29GUndNaFlpUEE4MEZ6NURPZ0RiZDVScTVqRjhPVjVQSTlHYmRnVWxyUWNTYVR0UkExRzl4WlRnMUF1cEs4YnRfaDVpZlpOZDhmN0w0WnJyWDZaWUYz?oc=5" target="_blank" rel="noopener">World Trade Organization (official)</a></li><li class="story-item" data-sector="politics" data-region="mena gulf egypt" data-imp="LOW"><span class="tag">Politics</span><span class="en">Security Council LIVE: Sudan’s war spreads as drones and hunger take a deadly toll</span><span class="ar"></span> <a class="src" href="https://news.google.com/rss/articles/CBMiV0FVX3lxTE1KMVplaXVfYi1HbkNmc0k0UHhyUWZNX2sxOFMyM19EblZSYVlycEwxQUQ5eWFpdFhZbWNscUUtdm5mZ2hYeE1BaVB3S3VxNGsxRDBwN2lpZw?oc=5" target="_blank" rel="noopener">UN News (official)</a></li><li class="story-item" data-sector="politics" data-region="africa latam" data-imp="LOW"><span class="tag">Politics</span><span class="en">From ideas to solutions: connecting Africa and Europe’s innovation ecosystems</span><span class="ar"></span> <a class="src" href="https://news.google.com/rss/articles/CBMiywFBVV95cUxNWTNSQUY4MFlVMURPVnFLQjBtdkdwNWpZRllydDZ2Z0pMMW1GZmFsdFU2T2dkbWJhcXl4ZlBpa2tCYmVaUElmR2ZFcHZfa3BCd0NJSHh6Nkplbm1qMTBjWUx1Y2t4NzNKZVB3SmY5N0dVejFlNlgyRjBYSXpMSDdMOEJnZVhNSzd5S2ZyV3ZwckRYNThRaXdyY21ydE8yenJIRUg1aGtlUDVCQVpfbGx3cVRMOENydWpVemlBM1Y3b1A0My1ObGxMS0JKbw?oc=5" target="_blank" rel="noopener">EEAS (official)</a></li><li class="story-item" data-sector="politics" data-region="global" data-imp="LOW"><span class="tag">Politics</span><span class="en">Regional Economic Outlook for the Western Hemisphere, October 2026</span><span class="ar"></span> <a class="src" href="https://news.google.com/rss/articles/CBMixAFBVV95cUxNc0xmT253d1ZBa0duVEwwU25Bajd2N2kwdmdMQ1MzMm5qa1dkODFoRnpSYXBZS0NmVlltZkFnVTFRQnVzVXRoOGNMUlZBdG4ySFVUSEhnU3VEY3Y2ZndGaU9LcHlfZTZxMWx1dnJreTladUw3OG1aNWkwa2VnelVRZEFEeDBqWVB5dExlTklNZkV5LW5acHd3LUZwcDJvTjg0RG5jNS0zWFpQLVVYMFoyTng0ZE9mMV80SUtiTnhsaXdNMDBp?oc=5" target="_blank" rel="noopener">International Monetary Fund | IMF (official)</a></li><li class="story-item" data-sector="business" data-region="global" data-imp="LOW"><span class="tag">Business &amp; tech</span><span class="en">As Chip Stocks Sell Off, This Is the Flight-to-Safety Play I Would Choose</span><span class="ar"></span> <a class="src" href="https://news.google.com/rss/articles/CBMilwFBVV95cUxPNWhSQXEzcGpuUnVBRi1FSXAzV2p0S1Q3LWlhOTF2djJmNnUzQ0lOLXJiSHd0Tl9mZWNfcE4zOTI2UVVZUkhuVHFCaHVRbjBxbk93M2VlTXhPYmdtQUFmelRUWmpISE1WdG5KaDRIWlhDXzJ4cnFDM1FIbl9aVXkzS1pVOVdpOFYtZmsybTFUY19GV3NxWTZN?oc=5" target="_blank" rel="noopener">Yahoo Finance</a></li><li class="story-item" data-sector="business" data-region="global" data-imp="LOW"><span class="tag">Business &amp; tech</span><span class="en">Chip Stocks Continue Downward Streak, ’Pricing In A Crash’</span><span class="ar"></span> <a class="src" href="https://news.google.com/rss/articles/CBMinwFBVV95cUxNM1FKOUdPNHBQN2tvSy1wUllERUJ3NmpBdl81SGtQU1NoZlFwcC1RWG5VclV5MjE2MmNIdDZYNFdyMi11eHd5cVkydlJkUDltU29ZZlYweWRBcl9KZGg5bUU4UFlhMHlIX2xjWktUYng3d3NYcWs5d0VCZ3ZLWHdUOWoxeW05RXZRby1WSGx0bzY1RWxYRjlGT0Z2cjJwb2s?oc=5" target="_blank" rel="noopener">Investor&#39;s Business Daily</a></li><li class="story-item" data-sector="business" data-region="global" data-imp="LOW"><span class="tag">Business &amp; tech</span><span class="en">Chip Stocks Just Fell 8 Days in a Row, Their Longest Losing Streak Since 2008</span><span class="ar"></span> <a class="src" href="https://news.google.com/rss/articles/CBMivAFBVV95cUxPLXE3Ymd1MnpObFctRnNuYTJkRk9OYndiOTU3bzRqeUo2Mk05OGJHOGNNUnliZU8wVFlReDFsOUNfczU2ek1hQk9oNW9NMHhtRlRKOEpOaC1xaW00bV9JYUlaQ21WdG51VUJTdkhob21UdXJhTURQNlNubktaS3F6Z1V2SDR4S2JnT0ZadHhJTDA0MnZZVnJjLVFHazdxS21mRkIyOHM0WWRrckdWTnVET0NLclJKbnJSVV81cg?oc=5" target="_blank" rel="noopener">24/7 Wall St.</a></li><li class="story-item" data-sector="business" data-region="global" data-imp="LOW"><span class="tag">Business &amp; tech</span><span class="en">Taking a heavy position in semiconductor stocks made for a tough week in this paper trading competition. Chip stocks took a brutal hit across the board, dragging down my portfolio rankings pretty fast. It’s definitely frustrating to watch those simulated gains vani</span><span class="ar"></span> <a class="src" href="https://news.google.com/rss/articles/CBMisgFBVV95cUxOam83UzhicG1GS0NtQVNyakwyVktwQzhJaEhGWGs5ejZnRHV1UVA1UFhYOFB2OTJnTFNjMllZZjFTWC0yR2FPN2pOT1owU2x6UzROZk9lMWNZVUZYOWQwQUpkYkdLT0MyZTZnYnBhQ1l4eUxQYjVPRERIX1NNalpiWlREdWtmd19uNUhheVdKa3lXbTZRanlfRmo1bmJjeU8zZ2c5YlliZFZTUkZZLU5UTXdR?oc=5" target="_blank" rel="noopener">Moomoo</a></li><li class="story-item" data-sector="business" data-region="global" data-imp="LOW"><span class="tag">Business &amp; tech</span><span class="en">Short Sellers Cash In as Chip Stocks Tank</span><span class="ar"></span> <a class="src" href="https://news.google.com/rss/articles/CBMitwFBVV95cUxPUG1obWRiLS02cUNCYXBYQUI5UU1KY3hMaTRuY0d4QjYtbnp4aXF0aFNpMTFLamlSVVZ2cldzcEtFWllRUTh3TXVFQVM4NTRONy1KeUpTYjRKU0tKazItWFpoWUtXNkJPdlBWbmdOcklzYVFzcEEzQldrNVlqeEFJREZVNkphZC1aRl9wclh3ZXhFb3UzTEd1Q2l2UHF6cWdEbnRfdzdwczlURnNuT0lDNE12c3c5TU0?oc=5" target="_blank" rel="noopener">Bloomberg.com</a></li><li class="story-item" data-sector="business" data-region="global" data-imp="LOW"><span class="tag">Business &amp; tech</span><span class="en">3 U.S. Dividend Financial Stocks Built For Higher Interest Rates</span><span class="ar"></span> <a class="src" href="https://news.google.com/rss/articles/CBMimgFBVV95cUxQQ2pmM01LNERaMW1DWmlhQi0zMFBwU3daTXZ6TUZIcnIxNjBIRzY0R3M0cnZKaFhqcVU1ZFZxTFNvcFhHSXN3VzJOdVlkRkdGV0duamdEWktkdDU4T2tSWWV6YzhJRFR0UjhVbkR3RURCbXpFRzQ0NVE3Vm5ndmpZYWtXTVJlTTF6SDRyT09fc2pON1J3YUhjTzJ3?oc=5" target="_blank" rel="noopener">Yahoo Finance</a></li><li class="story-item" data-sector="business" data-region="global" data-imp="LOW"><span class="tag">Business &amp; tech</span><span class="en">U.S. Stocks Tick Down as Bank Earnings Don’t Excite</span><span class="ar"></span> <a class="src" href="https://news.google.com/rss/articles/CBMimAFBVV95cUxQTjc4TmVBTEFXWVpxaDF4SlNaZmdGTE5XMk1oeEhUQkRhQlJJeTZVN1RNWGRuR3NHajNfdkNqc2ZxTk15MEFOMkxCcXRZMGhlYmRURkVrTl8xRUcxSGpuVVN0Sks1a2JYZ3RjNEpPbVFUMk5EampnbFdRMnBaMElxakM0dHNPSnp1VjRieC1FRXZpcVlDT0xFRQ?oc=5" target="_blank" rel="noopener">WSJ</a></li><li class="story-item" data-sector="business" data-region="global" data-imp="LOW"><span class="tag">Business &amp; tech</span><span class="en">These tech stocks are a buy ahead of their earnings reports, Bank of America says</span><span class="ar"></span> <a class="src" href="https://news.google.com/rss/articles/CBMikwFBVV95cUxPSUxGQXNoaUVFWEEweEtSZWo2RHVaZ2lsZjk2ZWVVZWEwTUFTZXJ2SFVmM1JoWWRzcXRUNkF4Z0tTSlZZemI3LVVVeW53Zl9Ndy10Z196N3Y0UjZpa0x0Q0UtODdQMmx0TlczSUdzSkRDYlhMTHJGeTQ0bVByMU05cmhJTjh4RElqWlg0T1UwLW56VFU?oc=5" target="_blank" rel="noopener">CNBC</a></li><li class="story-item" data-sector="wsj" data-region="usa global" data-imp="LOW"><span class="tag">Wall Street Journal</span><span class="en">SoftBank in Early Talks to Buy Allied Universal</span><span class="ar"></span> <a class="src" href="https://news.google.com/rss/articles/CBMilgFBVV95cUxOa2JpejBhSm55eU5zM18zZldFMFd1b1hUYWNUQUt2NVY3SEdpZUE0eDZLVjIydHVaVVZ2d2NUSElQeGFPbDFSWGJFRUl6dlpfbk03cVFtTnVmdnJfSWJ0ZFByUkFLRTg2NUprZUZ3OWZzQTl6LS1sSTdTSld1NXBCZm1xem9EYTJ5UzdITE05SllwaktXcGc?oc=5" target="_blank" rel="noopener">WSJ</a></li><li class="story-item" data-sector="wsj" data-region="usa global" data-imp="LOW"><span class="tag">Wall Street Journal</span><span class="en">News Quiz for October 17, 2026</span><span class="ar"></span> <a class="src" href="https://news.google.com/rss/articles/CBMifkFVX3lxTE5zMGRYVFlTbzlGMjJqaFlNNVNtMzh2djBLN1RRb1JkNkoxbndnZDFkRENtWXp4bzlDQUpmcTc0TnZkbVJndUx3Y09ydWJWYXNtNFRldTYwclNLT2lTLW05Mi1vU0t4dFhuRXduc1dnS19SME1HWTd3MXdRRDZFdw?oc=5" target="_blank" rel="noopener">WSJ</a></li><li class="story-item" data-sector="wsj" data-region="usa global" data-imp="LOW"><span class="tag">Wall Street Journal</span><span class="en">A Five-Day Tour for Katie Zacharia</span><span class="ar"></span> <a class="src" href="https://news.google.com/rss/articles/CBMiigFBVV95cUxORjhwcUdlVXlhWi1EN0M3cGNrSUpfS0Zrc3ZlMVRSRDRBOXVCa0REVTN1NG15Vy1zN3F0ZnNjUE5JNzN5eHM1QUtjYnZEaGpiTG4yR0NGNWdZQV9vcnB3Mm82djF5NFdMa2lCT1ZRRTMxeFN2MHVLanVySzY5Yy1uaVlJVG5BN1BrZlE?oc=5" target="_blank" rel="noopener">WSJ</a></li><li class="story-item" data-sector="wsj" data-region="usa global" data-imp="LOW"><span class="tag">Wall Street Journal</span><span class="en">Former MIT Scientist Wins Defamation Case Over Sexual-Harassment Accusations</span><span class="ar"></span> <a class="src" href="https://news.google.com/rss/articles/CBMiuAFBVV95cUxPeXZoOEVQaHhUcEVrVGZpYVg3b0d3M053bnFJZTd0dHhMMm5lYkNkRy1vYzZHRFB3MmwzMUVjOU45RUthNDdTMnFfa2F6TU1vYl95aVBaemkzaWRkckxkVGtXbzBHT0FINWR3Y0RrZmFWbzlfRGI4bDM3enBpMnZRaEk1NkpTMWhBNjRXdHZuWWNZZFoxQTM2Wl8wMkJab0xOMU4zYy1hTENOaHFKWk5MRmFPNWNyaUNM?oc=5" target="_blank" rel="noopener">WSJ</a></li><li class="story-item" data-sector="wsj" data-region="usa global" data-imp="LOW"><span class="tag">Wall Street Journal</span><span class="en">It’s Too Late for Small Fixes at Pepsi</span><span class="ar"></span> <a class="src" href="https://news.google.com/rss/articles/CBMigAFBVV95cUxQRXJtYlJ2NXRjMDdlVDBfY3lSbHNKZmpIWUthcURSbmltUzlNODdIU2JOdDhBYnplU2R5bkwtZzdUMWR1Mi10bDFjNVlCSGlfR3RjN09kTGZDbmlMUWs1TloySVV2UXlzMVhVNXNPdDU5a19tNzlIa0wwTHFlV2RaUA?oc=5" target="_blank" rel="noopener">WSJ</a></li><li class="story-item" data-sector="wsj" data-region="usa global" data-imp="LOW"><span class="tag">Wall Street Journal</span><span class="en">Katie Zacharia Projected Confidence. Less Than an Hour Later, She Was Out. | The 10-Point for Oct. 17</span><span class="ar"></span> <a class="src" href="https://news.google.com/rss/articles/CBMiuwFBVV95cUxQSHF1ajhlclg5MmFLeURtVDRUUGQyY1pwcHpPN19Kc09rNW9kVG96ZjBzeEExN0V4RnczeXJNZU9heEFndkMtZlhveXpIdTNpOUtsdmNzNl9tNExmMzFlVlk3NFk3UHFKQTZFZi04TS1yVldYRW1zRXp4R3BrNmlVdEdfQUVmM3k1TjlvT2hBdFlGWXdEcU9JTUFaRFpSX0hEVVVma3RRUlhMaHVlVHZhWkg1OTRYV1YxNFNz?oc=5" target="_blank" rel="noopener">WSJ</a></li><li class="story-item" data-sector="wsj" data-region="usa global" data-imp="LOW"><span class="tag">Wall Street Journal</span><span class="en">What Tesla’s Flying Roadster Really Means for the Global Auto Race</span><span class="ar"></span> <a class="src" href="https://news.google.com/rss/articles/CBMirgFBVV95cUxQbXFSbnVSM0FJd1F5NmJEZmpFdVpIekF6LUR6cVllNURwemcxekdLNUFUUEg0RU1HU1l4UEFOSVkxb2VhZmpVdXdpWDFUZmxEYmRRdVVEYnNEWWFBZEVfZXBzMWNWMzVST1FrZk42NE9NRFR5c0xTdWNvM2xpT1kzRjk3aHdsUzRrdzNGRHhzWTVwR19tZVJjOE05NVdEOUJmcng1V0toYzJzcFhaRXc?oc=5" target="_blank" rel="noopener">WSJ</a></li><li class="story-item" data-sector="wsj" data-region="usa global" data-imp="LOW"><span class="tag">Wall Street Journal</span><span class="en">Why Europe’s Right Is Breaking Up With MAGA</span><span class="ar"></span> <a class="src" href="https://news.google.com/rss/articles/CBMiiAFBVV95cUxQX3RmdzZqNXJ6S2M5c0FLNGdPeEhDZ3hnV1E5YTRIamF3WTB5VkZHYmZJbUJDdmphRU50aFlLZnZyTkltRWFway1lOEpHbWlzdTFsS2p2b2RYMDYtQkU5djc4bHB3YVRDaDVDQWQwVW1lRmUxcGdCSGJwSnR0UTVudWFRcnU3bnlM?oc=5" target="_blank" rel="noopener">WSJ</a></li></ul>
+  </div>
+  
+  <p class="empty" id="empty">Nothing matches these filters today. Try another region, or switch off “Top stories only.”</p>
+</section>
+
+<section class="block" data-block="charts">
+  <h2 class="en">Charts</h2><h2 class="ar" style="font-family:var(--sans)">الرسوم البيانية</h2>
+  <p class="note en">Every bar is a sourced number.</p>
+  <div class="charts"><figure class="chart" data-region="all" style="margin:0"><h3 class="en">Today’s moves</h3><h3 class="ar" style="font-family:var(--sans)">حركة اليوم</h3><div class="bars split"><div class="bar"><span class="bl">Total crypto market cap (USD bn)</span><span class="bt"><span class="bf neg" style="left:0.00%;width:50.00%"></span></span><span class="bv">−3.39%</span></div></div><p class="cap en">Daily change at last close, %. Source: Yahoo Finance.</p><p class="cap ar">التغير اليومي عند آخر إغلاق %. المصدر: ياهو فاينانس.</p></figure></div>
+</section>
+
+<section class="block" data-block="board">
+  <h2 class="en">Markets board</h2><h2 class="ar" style="font-family:var(--sans)">لوحة الأسواق</h2>
+  <p class="note en">Last close from Yahoo Finance, the ECB, CoinGecko and FRED. Updated 02:22 Cairo time; may be delayed.</p>
+  <div class="board"><div data-region="usa"><h3>USA</h3><div class="row"><span>S&amp;P 500</span><b class="num ">no data</b></div><div class="row"><span>Nasdaq</span><b class="num ">no data</b></div><div class="row"><span>Dow</span><b class="num ">no data</b></div><div class="row"><span>Russell 2000</span><b class="num ">no data</b></div><div class="row"><span>VIX</span><b class="num ">no data</b></div></div><div data-region="usa"><h3>US sectors (SPDR funds)</h3><div class="row"><span>Technology</span><b class="num ">no data</b></div><div class="row"><span>Financials</span><b class="num ">no data</b></div><div class="row"><span>Energy</span><b class="num ">no data</b></div><div class="row"><span>Health care</span><b class="num ">no data</b></div><div class="row"><span>Consumer discretionary</span><b class="num ">no data</b></div><div class="row"><span>Consumer staples</span><b class="num ">no data</b></div><div class="row"><span>Industrials</span><b class="num ">no data</b></div><div class="row"><span>Materials</span><b class="num ">no data</b></div><div class="row"><span>Utilities</span><b class="num ">no data</b></div><div class="row"><span>Real estate</span><b class="num ">no data</b></div><div class="row"><span>Communication</span><b class="num ">no data</b></div></div><div data-region="europe"><h3>Europe</h3><div class="row"><span>STOXX 600</span><b class="num ">no data</b></div><div class="row"><span>FTSE 100</span><b class="num ">no data</b></div><div class="row"><span>DAX</span><b class="num ">no data</b></div><div class="row"><span>CAC 40</span><b class="num ">no data</b></div><div class="row"><span>FTSE MIB</span><b class="num ">no data</b></div><div class="row"><span>IBEX 35</span><b class="num ">no data</b></div></div><div data-region="asia"><h3>Asia</h3><div class="row"><span>Nikkei 225</span><b class="num ">no data</b></div><div class="row"><span>Hang Seng</span><b class="num ">no data</b></div><div class="row"><span>Shanghai</span><b class="num ">no data</b></div><div class="row"><span>KOSPI</span><b class="num ">no data</b></div><div class="row"><span>Taiwan</span><b class="num ">no data</b></div><div class="row"><span>Sensex</span><b class="num ">no data</b></div><div class="row"><span>Nifty 50</span><b class="num ">no data</b></div><div class="row"><span>Indonesia</span><b class="num ">no data</b></div><div class="row"><span>ASX 200</span><b class="num ">no data</b></div></div><div data-region="gulf"><h3>Gulf</h3><div class="row"><span>Saudi TASI</span><b class="num ">no data</b></div></div><div data-region="egypt"><h3>Egypt</h3><div class="row"><span>EGX30</span><b class="num ">no data</b></div></div><div data-region="egypt"><h3>My watchlist</h3><div class="row"><span>MNT-Halan</span><b class="num ">no data</b></div><div class="row"><span>Talaat Moustafa</span><b class="num ">no data</b></div><div class="row"><span>Eastern Company</span><b class="num ">no data</b></div><div class="row"><span>Abu Qir Fertilizers</span><b class="num ">no data</b></div><div class="row"><span>Elsewedy Electric</span><b class="num ">no data</b></div></div><div data-region="global"><h3>Rest of world</h3><div class="row"><span>Canada TSX</span><b class="num ">no data</b></div><div class="row"><span>Brazil Bovespa</span><b class="num ">no data</b></div><div class="row"><span>Mexico IPC</span><b class="num ">no data</b></div><div class="row"><span>Turkey BIST 100</span><b class="num ">no data</b></div><div class="row"><span>Emerging markets (EEM fund)</span><b class="num ">no data</b></div></div><div data-region="usa"><h3>US bond yields (%)</h3><div class="row"><span>US 5-year</span><b class="num ">no data</b></div><div class="row"><span>US 10-year</span><b class="num ">no data</b></div><div class="row"><span>US 30-year</span><b class="num ">no data</b></div></div><div data-region="global"><h3>Currencies</h3><div class="row"><span>Dollar index</span><b class="num ">no data</b></div><div class="row"><span>EUR/USD</span><b class="num ">no data</b></div><div class="row"><span>GBP/USD</span><b class="num ">no data</b></div><div class="row"><span>USD/JPY</span><b class="num ">no data</b></div><div class="row"><span>USD/CNY</span><b class="num ">no data</b></div><div class="row"><span>USD/INR</span><b class="num ">no data</b></div><div class="row"><span>USD/TRY</span><b class="num ">no data</b></div><div class="row"><span>USD/EGP</span><b class="num ">no data</b></div></div><div data-region="global"><h3>Commodities (USD)</h3><div class="row"><span>Brent</span><b class="num ">no data</b></div><div class="row"><span>WTI</span><b class="num ">no data</b></div><div class="row"><span>US natural gas</span><b class="num ">no data</b></div><div class="row"><span>Gold</span><b class="num ">no data</b></div><div class="row"><span>Silver</span><b class="num ">no data</b></div><div class="row"><span>Copper</span><b class="num ">no data</b></div><div class="row"><span>Wheat (cents)</span><b class="num ">no data</b></div><div class="row"><span>Corn (cents)</span><b class="num ">no data</b></div><div class="row"><span>Soybeans (cents)</span><b class="num ">no data</b></div><div class="row"><span>Sugar (cents)</span><b class="num ">no data</b></div></div><div data-region="global"><h3>Crypto (USD)</h3><div class="row"><span>Bitcoin</span><b class="num ">no data</b></div><div class="row"><span>Ethereum</span><b class="num ">no data</b></div></div><div data-region="global"><h3>Currencies (ECB reference rates)</h3><div class="row"><span>USD/EUR (ECB)</span><b class="num down">0.89 (−0.40%)</b></div><div class="row"><span>USD/GBP (ECB)</span><b class="num down">0.75 (−0.66%)</b></div><div class="row"><span>USD/JPY (ECB)</span><b class="num up">158.02 (+0.03%)</b></div><div class="row"><span>USD/CNY (ECB)</span><b class="num down">6.69 (−0.07%)</b></div><div class="row"><span>USD/INR (ECB)</span><b class="num down">94.96 (−0.11%)</b></div><div class="row"><span>USD/TRY (ECB)</span><b class="num up">49.53 (+0.22%)</b></div></div><div data-region="global"><h3>Crypto market</h3><div class="row"><span>Total crypto market cap (USD bn)</span><b class="num down">2,740.98 (−3.39%)</b></div></div><div data-region="usa"><h3>US rates and jobs (FRED)</h3><div class="row"><span>US 2-year yield (%)</span><b class="num ">no data</b></div><div class="row"><span>US 10-year yield (%, FRED)</span><b class="num ">no data</b></div><div class="row"><span>US 30-year yield (%)</span><b class="num ">no data</b></div><div class="row"><span>Fed funds target, top (%)</span><b class="num ">no data</b></div><div class="row"><span>US unemployment (%)</span><b class="num ">no data</b></div></div></div>
+</section>
+
+<section class="block" data-block="risk">
+  <h2 class="en">Risk radar</h2><h2 class="ar" style="font-family:var(--sans)">رادار المخاطر</h2>
+  <p class="note en">The situations most likely to move markets next.</p>
+  <div class="risk"></div>
+</section>
+
+<section class="block" data-block="next">
+  <h2 class="en">Coming up</h2><h2 class="ar" style="font-family:var(--sans)">الأحداث القادمة</h2>
+  <ul class="cal"></ul>
+</section>
+
+<section class="block" data-block="learn">
+  <h2 class="en">Learn the language of markets</h2><h2 class="ar" style="font-family:var(--sans)">تعلّم لغة الأسواق</h2>
+  <div class="learn"><div data-region="all">
+    <div class="en"><h3>index</h3><p>Add a GEMINI_API_KEY to get explanations.</p><p class="ex"></p></div>
+    <div class="ar"><h3 style="font-family:var(--sans)"></h3><p></p><p class="ex"></p></div>
+  </div></div>
+</section>
+</main>
+</div>
+
+<footer class="foot"><div class="wrap">
+  <p class="q en">“The world moves every morning. By eight, I know why.”</p>
+  <p class="q-ar ar">«العالم يتحرك كل صباح. وبحلول الثامنة، أعرف السبب.»</p>
+  <p class="made">Made by Youssef Hegazy in Cairo.</p>
+  <p class="fine">For learning, not investment advice.</p>
+</div></footer>
+
+<div id="term-pop" class="hidden" role="dialog" aria-label="Term explanation"></div>
+<button id="ask-open" type="button" class="hidden" aria-haspopup="dialog"><span class="en">Ask Hegazy Brief</span><span class="ar">اسأل</span></button>
+<section id="ask-panel" class="hidden" role="dialog" aria-label="Ask Hegazy Brief">
+  <header><div><b>Ask Hegazy Brief</b><span class="en">Any question about today’s news, explained simply</span><span class="ar">أي سؤال عن أخبار اليوم بشرح بسيط</span></div><button id="ask-close" type="button" aria-label="Close">×</button></header>
+  <div id="ask-log" aria-live="polite"></div>
+  <div id="ask-sugg">
+    <button type="button" class="en">Explain today in simple words</button>
+    <button type="button" class="en">Why does oil matter for Egypt?</button>
+    <button type="button" class="en">What is a bond yield?</button>
+    <button type="button" class="ar">اشرح لي أخبار اليوم ببساطة</button>
+    <button type="button" class="ar">لماذا يتراجع الجنيه؟</button>
+  </div>
+  <form id="ask-form"><label for="ask-input" class="hidden">Your question</label><input id="ask-input" autocomplete="off" placeholder="Ask anything… اسأل أي سؤال"><button id="ask-send" type="submit">Send</button></form>
+  <p class="fine2">Answers are AI-generated from today’s brief and general knowledge. Not investment advice.</p>
+</section>
+<script type="application/json" id="glossary">[{"term": "Index", "match": ["stock index", "index"], "ar_match": ["مؤشر"], "en": "A number that tracks a group of companies’ share prices, so you can see in one figure whether a market went up or down.", "ar": "رقم يتابع أسعار أسهم مجموعة من الشركات، حتى تعرف برقم واحد هل ارتفع السوق أم انخفض."}, {"term": "S&P 500", "match": ["S&P 500"], "en": "An index of 500 of the biggest US companies. It’s the most watched measure of the US stock market.", "ar": "مؤشر يضم 500 من أكبر الشركات الأمريكية، وهو أكثر مقياس متابَع للبورصة الأمريكية."}, {"term": "Nasdaq", "match": ["Nasdaq"], "ar_match": ["ناسداك"], "en": "A US stock index full of technology companies like Apple, Nvidia and Microsoft. When tech falls, the Nasdaq falls most.", "ar": "مؤشر أمريكي مليء بشركات التكنولوجيا مثل أبل وإنفيديا ومايكروسوفت. عندما تهبط التكنولوجيا يكون هبوطه الأكبر."}, {"term": "Dow", "match": ["Dow"], "ar_match": ["داو جونز"], "en": "The Dow Jones, an index of 30 large, long-established US companies.", "ar": "مؤشر داو جونز، ويضم 30 شركة أمريكية كبيرة وعريقة."}, {"term": "Russell 2000", "match": ["Russell 2000"], "en": "An index of 2,000 smaller US companies. It shows how smaller businesses are doing.", "ar": "مؤشر يضم 2000 شركة أمريكية أصغر، ويوضح أداء الشركات الصغيرة."}, {"term": "VIX", "match": ["VIX", "fear index"], "ar_match": ["مؤشر الخوف"], "en": "The “fear index.” It rises when investors expect big price swings, so a higher VIX means more worry.", "ar": "«مؤشر الخوف». يرتفع عندما يتوقع المستثمرون تقلبات كبيرة، فارتفاعه يعني قلقًا أكبر."}, {"term": "STOXX 600", "match": ["STOXX 600"], "en": "An index of 600 large companies across Europe.", "ar": "مؤشر يضم 600 شركة كبيرة في أنحاء أوروبا."}, {"term": "DAX", "match": ["DAX"], "ar_match": ["داكس"], "en": "Germany’s main stock index, made of 40 big German companies.", "ar": "المؤشر الرئيسي للبورصة الألمانية، ويضم 40 شركة ألمانية كبرى."}, {"term": "Nikkei", "match": ["Nikkei 225", "Nikkei"], "ar_match": ["نيكاي"], "en": "Japan’s main stock index.", "ar": "المؤشر الرئيسي للبورصة اليابانية."}, {"term": "KOSPI", "match": ["KOSPI"], "ar_match": ["كوسبي"], "en": "South Korea’s main stock index. Samsung and other chipmakers are a big part of it.", "ar": "المؤشر الرئيسي لكوريا الجنوبية، وتشكل سامسونج وشركات الرقائق جزءًا كبيرًا منه."}, {"term": "Hang Seng", "match": ["Hang Seng"], "ar_match": ["هانج سنج"], "en": "Hong Kong’s main stock index, full of big Chinese companies.", "ar": "المؤشر الرئيسي لهونج كونج، ويضم شركات صينية كبرى."}, {"term": "EGX30", "match": ["EGX30"], "en": "The main index of the Egyptian Exchange, tracking its 30 biggest and most traded companies.", "ar": "المؤشر الرئيسي للبورصة المصرية، ويتابع أكبر 30 شركة وأكثرها تداولًا."}, {"term": "EGX70", "match": ["EGX70"], "en": "An Egyptian index of 70 smaller and medium-sized companies.", "ar": "مؤشر مصري يضم 70 شركة صغيرة ومتوسطة."}, {"term": "Tadawul", "match": ["TASI", "Saudi index", "Tadawul"], "ar_match": ["المؤشر السعودي"], "en": "Saudi Arabia’s stock exchange. TASI is its main index.", "ar": "البورصة السعودية، ومؤشرها الرئيسي هو تاسي."}, {"term": "Brent", "match": ["Brent"], "ar_match": ["برنت"], "en": "The world’s main benchmark price for oil. When people say “oil prices,” they usually mean Brent, in US dollars per barrel.", "ar": "السعر المرجعي العالمي الرئيسي للبترول. عندما يقال «أسعار البترول» فالمقصود غالبًا برنت، بالدولار للبرميل."}, {"term": "WTI", "match": ["WTI", "US crude"], "ar_match": ["غرب تكساس"], "en": "The US benchmark oil price (West Texas Intermediate). It usually moves with Brent.", "ar": "سعر البترول المرجعي الأمريكي (غرب تكساس)، ويتحرك غالبًا مع برنت."}, {"term": "Barrel", "match": ["barrel", "barrels"], "ar_match": ["برميل"], "en": "The unit oil is sold in: about 159 liters.", "ar": "الوحدة التي يُباع بها البترول، وتساوي حوالي 159 لترًا."}, {"term": "Bond", "match": ["bond", "bonds"], "ar_match": ["سندات", "السندات"], "en": "A loan you give to a government or company. They pay you interest and return your money on a set date.", "ar": "قرض تعطيه لحكومة أو شركة، تدفع لك عليه فائدة وتعيد لك أموالك في موعد محدد."}, {"term": "Bond yield", "match": ["yield", "yields"], "ar_match": ["عائد", "عوائد"], "en": "The yearly return a bond pays. When many people buy bonds, prices rise and yields fall, and the other way round.", "ar": "العائد السنوي الذي يدفعه السند. عندما يشتري كثيرون السندات ترتفع أسعارها وتنخفض عوائدها، والعكس صحيح."}, {"term": "Treasury bills", "match": ["treasury bills", "T-bills", "treasury bill"], "ar_match": ["أذون الخزانة"], "en": "Short-term loans to the government, usually for a year or less. In Egypt they’re among the safest places to put money.", "ar": "قروض قصيرة الأجل للحكومة، غالبًا لسنة أو أقل. وفي مصر تعتبر من أكثر الأماكن أمانًا لوضع الأموال."}, {"term": "Inflation", "match": ["inflation"], "ar_match": ["التضخم", "تضخم"], "en": "How fast prices are rising. Inflation of 14% means things cost about 14% more than a year ago.", "ar": "سرعة ارتفاع الأسعار. تضخم 14% يعني أن الأشياء أغلى بحوالي 14% مما كانت قبل عام."}, {"term": "Core inflation", "match": ["core inflation"], "ar_match": ["التضخم الأساسي"], "en": "Inflation without food and energy, whose prices jump around a lot. It shows the underlying trend.", "ar": "التضخم بدون الغذاء والطاقة لأن أسعارهما متقلبة، ويوضح الاتجاه الحقيقي للأسعار."}, {"term": "Producer prices", "match": ["producer prices"], "ar_match": ["أسعار المنتجين"], "en": "What businesses pay for materials and goods. When these rise, shop prices often rise later.", "ar": "ما تدفعه الشركات مقابل الخامات والسلع. عندما ترتفع، ترتفع أسعار المحلات غالبًا لاحقًا."}, {"term": "PCE", "match": ["PCE"], "en": "The US Federal Reserve’s favorite inflation measure, based on what Americans actually spend.", "ar": "مقياس التضخم المفضل لدى الاحتياطي الفيدرالي الأمريكي، ويعتمد على ما ينفقه الأمريكيون فعلًا."}, {"term": "Federal Reserve", "match": ["Federal Reserve", "the Fed", "Fed"], "ar_match": ["الاحتياطي الفيدرالي", "الفيدرالي"], "en": "The US central bank. Its interest-rate decisions move money around the whole world, including Egypt.", "ar": "البنك المركزي الأمريكي. قرارات الفائدة التي يتخذها تحرّك الأموال في العالم كله، ومنه مصر."}, {"term": "Central bank", "match": ["central bank"], "ar_match": ["البنك المركزي"], "en": "The bank that manages a country’s money: it sets interest rates and fights inflation.", "ar": "البنك الذي يدير أموال الدولة: يحدد أسعار الفائدة ويحارب التضخم."}, {"term": "Interest rate", "match": ["interest rates", "interest rate", "rate hike", "hike"], "ar_match": ["الفائدة", "رفع الفائدة"], "en": "The price of borrowing money. Higher rates make loans more expensive, which slows spending and cools inflation.", "ar": "ثمن اقتراض المال. الفائدة الأعلى تجعل القروض أغلى، فيقل الإنفاق ويهدأ التضخم."}, {"term": "Current account", "match": ["current account"], "ar_match": ["الحساب الجاري"], "en": "Roughly the difference between the foreign money a country earns (exports, tourism, remittances) and spends (imports). A deficit means more goes out than comes in.", "ar": "تقريبًا الفرق بين العملة الأجنبية التي تكسبها الدولة (صادرات وسياحة وتحويلات) والتي تنفقها (واردات). العجز يعني أن ما يخرج أكثر مما يدخل."}, {"term": "Remittances", "match": ["remittances"], "ar_match": ["التحويلات", "تحويلات"], "en": "Money sent home by people working abroad. For Egypt it’s now the biggest source of dollars.", "ar": "الأموال التي يرسلها العاملون في الخارج إلى بلادهم، وهي الآن أكبر مصدر للدولار في مصر."}, {"term": "IPO", "match": ["IPO"], "ar_match": ["طرح عام", "الطرح"], "en": "Initial public offering: when a company sells its shares to the public for the first time and starts trading on the stock exchange.", "ar": "الطرح العام الأولي: عندما تبيع شركة أسهمها للجمهور لأول مرة وتبدأ التداول في البورصة."}, {"term": "Oversubscribed", "match": ["oversubscribed"], "ar_match": ["تغطية"], "en": "When investors ask for more shares than are on offer. “11 times oversubscribed” means demand was 11 times the supply.", "ar": "عندما يطلب المستثمرون أسهمًا أكثر من المعروض. «تغطية 11 مرة» تعني أن الطلب كان 11 ضعف المعروض."}, {"term": "EPS", "match": ["earnings per share", "EPS", "per share"], "ar_match": ["ربحية السهم"], "en": "Earnings per share: the company’s profit divided by its number of shares.", "ar": "ربحية السهم: ربح الشركة مقسومًا على عدد أسهمها."}, {"term": "Adjusted earnings", "match": ["adjusted"], "ar_match": ["المعدّل", "معدّل"], "en": "Profit after removing items the company calls unusual, like one-time losses. Useful, but always check what was removed.", "ar": "الربح بعد استبعاد بنود تعتبرها الشركة غير عادية مثل الخسائر لمرة واحدة. مفيد، لكن تحقق دائمًا مما تم استبعاده."}, {"term": "Net profit", "match": ["net profit", "net income"], "ar_match": ["صافي الربح", "صافي ربح"], "en": "What’s left after every cost, interest payment and tax: the bottom line.", "ar": "ما يتبقى بعد كل التكاليف والفوائد والضرائب، أي السطر الأخير."}, {"term": "Chip stocks", "match": ["chipmakers", "chip stocks", "semiconductor", "chips"], "ar_match": ["الرقائق"], "en": "Companies that make computer chips, the brains inside phones, cars and AI computers.", "ar": "الشركات التي تصنع رقائق الكمبيوتر، وهي العقل داخل الهواتف والسيارات وأجهزة الذكاء الاصطناعي."}, {"term": "Data center", "match": ["data-center", "data center", "data centers"], "ar_match": ["مراكز البيانات"], "en": "A huge building full of computers that run websites and AI systems.", "ar": "مبنى ضخم مليء بأجهزة الكمبيوتر التي تشغّل المواقع وأنظمة الذكاء الاصطناعي."}, {"term": "MSCI", "match": ["MSCI"], "en": "A company that builds the indexes many global funds copy. If MSCI changes a country’s status, those funds must buy or sell.", "ar": "شركة تبني المؤشرات التي تقلدها صناديق عالمية كثيرة. إذا غيّرت تصنيف دولة، تضطر هذه الصناديق للشراء أو البيع."}, {"term": "Emerging market", "match": ["emerging-market", "emerging markets", "emerging market"], "ar_match": ["الأسواق الناشئة", "سوق ناشئ"], "en": "A country growing fast but not yet rich, like Egypt, India or Brazil. Its markets usually carry more risk and more potential.", "ar": "دولة تنمو بسرعة لكنها لم تصبح غنية بعد، مثل مصر والهند والبرازيل. أسواقها غالبًا أكثر مخاطرة وأكثر فرصًا."}, {"term": "Circuit breaker", "match": ["circuit breakers", "circuit breaker"], "ar_match": ["قواطع الدائرة", "قاطع الدائرة"], "en": "An automatic pause in trading when prices fall too fast, to stop panic selling.", "ar": "إيقاف تلقائي للتداول عندما تهبط الأسعار بسرعة كبيرة، لمنع البيع بذعر."}, {"term": "Safe haven", "match": ["safe haven", "safety"], "ar_match": ["الملاذ الآمن", "الأمان"], "en": "Something investors buy when scared because they expect it to hold value, like gold or US government bonds.", "ar": "أصل يشتريه المستثمرون عند الخوف لأنهم يتوقعون أن يحافظ على قيمته، مثل الذهب والسندات الأمريكية."}, {"term": "Risk premium", "match": ["risk premium"], "ar_match": ["علاوة مخاطر"], "en": "The extra price people pay because something might go wrong, like oil costing more while ships are being attacked.", "ar": "السعر الإضافي الذي يُدفع لأن شيئًا قد يسوء، مثل ارتفاع البترول بينما تتعرض السفن للهجمات."}, {"term": "Sanctions", "match": ["sanctions"], "ar_match": ["العقوبات", "عقوبات"], "en": "Penalties a country puts on another country, company or person, like banning trade with them.", "ar": "عقوبات تفرضها دولة على دولة أو شركة أو شخص، مثل حظر التجارة معهم."}, {"term": "Tariff", "match": ["tariffs", "tariff"], "ar_match": ["التعريفات", "تعريفات"], "en": "A tax on imported goods. It makes foreign products more expensive.", "ar": "ضريبة على السلع المستوردة، تجعل المنتجات الأجنبية أغلى."}, {"term": "Shadow fleet", "match": ["shadow fleet"], "ar_match": ["أسطول الظل"], "en": "Old tankers that carry oil from sanctioned countries, often hiding where they go.", "ar": "ناقلات قديمة تنقل البترول من دول عليها عقوبات، وغالبًا تخفي وجهتها."}, {"term": "IEA", "match": ["International Energy Agency", "IEA"], "ar_match": ["وكالة الطاقة الدولية"], "en": "The International Energy Agency. It can release countries’ emergency oil stocks when supply is short.", "ar": "وكالة الطاقة الدولية، ويمكنها السحب من مخزونات البترول الطارئة للدول عند نقص الإمدادات."}, {"term": "Strait of Hormuz", "match": ["Strait of Hormuz", "Hormuz"], "ar_match": ["مضيق هرمز", "هرمز"], "en": "A narrow sea passage between Iran and Oman. Before the war, about a fifth of the world’s oil passed through it.", "ar": "ممر بحري ضيق بين إيران وعُمان. قبل الحرب كان حوالي خُمس بترول العالم يمر عبره."}, {"term": "Bab al-Mandeb", "match": ["Bab al-Mandeb"], "ar_match": ["باب المندب"], "en": "The narrow strait at the southern end of the Red Sea. Ships heading to the Suez Canal pass through it.", "ar": "المضيق الضيق في الطرف الجنوبي للبحر الأحمر، وتمر عبره السفن المتجهة إلى قناة السويس."}, {"term": "Suez Canal", "match": ["Suez Canal", "Suez"], "ar_match": ["قناة السويس"], "en": "Egypt’s canal linking the Red Sea and the Mediterranean. Ships pay fees to use it, a key source of dollars for Egypt.", "ar": "قناة مصر التي تربط البحر الأحمر بالمتوسط. تدفع السفن رسومًا لعبورها، وهي مصدر رئيسي للدولار لمصر."}, {"term": "Net sellers", "match": ["net sellers", "kept selling"], "ar_match": ["صافي بائعين"], "en": "When a group of investors sells more shares than it buys over a period, meaning money is leaving.", "ar": "عندما تبيع مجموعة من المستثمرين أسهمًا أكثر مما تشتري خلال فترة، أي أن الأموال تخرج."}, {"term": "Blue chips", "match": ["blue chips", "blue-chip", "big companies", "large companies"], "ar_match": ["الأسهم الكبرى", "الشركات الكبرى"], "en": "Large, well-known, established companies.", "ar": "الشركات الكبيرة المعروفة الراسخة."}, {"term": "Sell-off", "match": ["sell-off", "sold off"], "ar_match": ["موجة بيع"], "en": "A period when many investors sell at once and prices drop fast.", "ar": "فترة يبيع فيها مستثمرون كثيرون في وقت واحد فتهبط الأسعار بسرعة."}, {"term": "Dollar index", "match": ["dollar index", "DXY"], "ar_match": ["مؤشر الدولار"], "en": "A measure of the US dollar’s strength against other major currencies.", "ar": "مقياس لقوة الدولار الأمريكي أمام العملات الرئيسية الأخرى."}, {"term": "Percentage point", "match": ["percentage points", "points above"], "ar_match": ["نقاط مئوية", "نقاط فوق"], "en": "The simple difference between two percentages. From 14% to 24% is 10 percentage points.", "ar": "الفرق البسيط بين نسبتين مئويتين. من 14% إلى 24% هو 10 نقاط مئوية."}, {"term": "GAAP", "match": ["GAAP", "official accounting"], "ar_match": ["المحاسبة الرسمية"], "en": "The official US accounting rules companies must follow when reporting profits.", "ar": "قواعد المحاسبة الرسمية الأمريكية التي يجب أن تتبعها الشركات عند إعلان أرباحها."}, {"term": "Consensus", "match": ["analysts expected", "expected", "forecasts"], "ar_match": ["التوقعات", "المتوقعة"], "en": "The average of what analysts predicted. Results above it are a “beat,” below it a “miss.”", "ar": "متوسط توقعات المحللين. النتيجة الأعلى منه «تجاوز» والأقل «إخفاق»."}]</script>
+<script type="application/json" id="brief-data">{"date": "Sunday, 18 October 2026", "markets": ["USA: ", "US sectors (SPDR funds): ", "Europe: ", "Asia: ", "Gulf: ", "Egypt: ", "My watchlist: ", "Rest of world: ", "US bond yields (%): ", "Currencies: ", "Commodities (USD): ", "Crypto (USD): ", "Currencies (ECB reference rates): USD/EUR (ECB) 0.89 (-0.40%), USD/GBP (ECB) 0.75 (-0.66%), USD/JPY (ECB) 158.02 (+0.03%), USD/CNY (ECB) 6.69 (-0.07%), USD/INR (ECB) 94.96 (-0.11%), USD/TRY (ECB) 49.53 (+0.22%)", "Crypto market: Total crypto market cap (USD bn) 2,740.98 (-3.39%)", "US rates and jobs (FRED): "], "stories": [{"title": "The Egyptian Exchange", "text": "The Egyptian Exchange | Sources: البورصة المصرية (official)"}, {"title": "Federal Reserve Board announces termination of enforcement actions with Gardner Bancshares, Inc. and Small Business Bank", "text": "Federal Reserve Board announces termination of enforcement actions with Gardner Bancshares, Inc. and Small Business Bank | Sources: FRB: Press Release - All Releases (official)"}, {"title": "New podcast episode looks at the latest situation in the Strait of Hormuz and across the Middle East", "text": "New podcast episode looks at the latest situation in the Strait of Hormuz and across the Middle East | Sources: IEA - International Energy Agency (official)"}, {"title": "U.S. small-scale solar generation has quadrupled in the last decade", "text": "U.S. small-scale solar generation has quadrupled in the last decade | Sources: Today in Energy (official)"}, {"title": "Category 2 Hurricane Isaias nears landfall, leading to production shut-ins", "text": "Category 2 Hurricane Isaias nears landfall, leading to production shut-ins | Sources: Today in Energy (official)"}, {"title": "MDLBEAST To Host Two-Night Takeover at Jeddah’s Onyx Arena Oct 29–30", "text": "MDLBEAST To Host Two-Night Takeover at Jeddah’s Onyx Arena Oct 29–30 | Sources: CairoScene"}, {"title": "Elsewedy–Sinohydro secures $2.2 B Saudi power project", "text": "Elsewedy–Sinohydro secures $2.2 B Saudi power project | Sources: megaproject.com"}, {"title": "السيسي يدعو البرلمان لجلسة طارئة حال طلب السعودية دعماً دفاعياً", "text": "السيسي يدعو البرلمان لجلسة طارئة حال طلب السعودية دعماً دفاعياً | Sources: الشرق بلومبرغ"}, {"title": "Press Releases", "text": "Press Releases | Sources: Reserve Bank of India (official)"}, {"title": "Tenders", "text": "Tenders | Sources: Reserve Bank of India (official)"}, {"title": "The Fed - Government Bonds’ Safe-Haven Property and Inflationary Pressures", "text": "The Fed - Government Bonds’ Safe-Haven Property and Inflationary Pressures | Sources: Federal Reserve (.gov) (official)"}, {"title": "Christine Lagarde: IMFC Statement", "text": "Christine Lagarde: IMFC Statement | Sources: ECB - European Central Bank (official)"}, {"title": "U.S. Import and Export Price Indexes News Release", "text": "U.S. Import and Export Price Indexes News Release | Sources: Bureau of Labor Statistics (.gov) (official)"}, {"title": "- Bureau of Labor Statistics (.gov)", "text": "- Bureau of Labor Statistics (.gov) | Sources: Bureau of Labor Statistics (.gov) (official)"}, {"title": "Prices for gasoline increased 34.2 percent over the year ended September 2026", "text": "Prices for gasoline increased 34.2 percent over the year ended September 2026 | Sources: Bureau of Labor Statistics (.gov) (official)"}, {"title": "Projections for 25-2031 - BLS Data", "text": "Projections for 25-2031 - BLS Data | Sources: Bureau of Labor Statistics (.gov) (official)"}, {"title": "Citizens Financial Shares Fall 5.4% as Third-Quarter Revenue Misses Estimates Despite Earnings Beat", "text": "Citizens Financial Shares Fall 5.4% as Third-Quarter Revenue Misses Estimates Despite Earnings Beat | Sources: Yahoo Finance"}, {"title": "Citizens Financial Group (NYSE:CFG) Misses Q3 2026 Revenue Estimates", "text": "Citizens Financial Group (NYSE:CFG) Misses Q3 2026 Revenue Estimates | Sources: StockStory"}, {"title": "Earnings call transcript: WaFd Q4 2026 profit misses, revenue beats", "text": "Earnings call transcript: WaFd Q4 2026 profit misses, revenue beats | Sources: Investing.com"}, {"title": "Citizens Financial Q3 earnings beat, revenue misses as capital markets fees decline (CFG:NYSE)", "text": "Citizens Financial Q3 earnings beat, revenue misses as capital markets fees decline (CFG:NYSE) | Sources: Seeking Alpha"}, {"title": "WaFd Q4FY26 Results: EPS misses estimate, sales beat by 20%", "text": "WaFd Q4FY26 Results: EPS misses estimate, sales beat by 20% | Sources: scanx.trade"}, {"title": "Malaga Financial Q3 2026 Earnings Results and Report", "text": "Malaga Financial Q3 2026 Earnings Results and Report | Sources: MarketBeat"}, {"title": "APP Stock Plunges 28% After-Hours On Revenue Miss And Soft Guidance — But CFO Says SEC Probe On Firm Now Closed", "text": "APP Stock Plunges 28% After-Hours On Revenue Miss And Soft Guidance — But CFO Says SEC Probe On Firm Now Closed | Sources: Stocktwits"}, {"title": "MarshBerry: Wealth Advisory M&A Could Surpass 400 Deals in 2026", "text": "MarshBerry: Wealth Advisory M&A Could Surpass 400 Deals in 2026 | Sources: planadviser"}, {"title": "Remarks at the Stanford University Private Capital Roundtable", "text": "Remarks at the Stanford University Private Capital Roundtable | Sources: SEC.gov (official)"}, {"title": "Director David Woodcock: Back to Basics in SEC Enforcement", "text": "Director David Woodcock: Back to Basics in SEC Enforcement | Sources: SEC.gov (official)"}, {"title": "8-K", "text": "8-K | Sources: SEC.gov (official)"}, {"title": "Over $700M in new investments accompany higher distributable earnings at Ladder Capital (LADR).", "text": "Over $700M in new investments accompany higher distributable earnings at Ladder Capital (LADR). | Sources: Stock Titan"}, {"title": "RF Q3 Earnings Beat Estimates on Higher NII, Revenues Rise Y/Y", "text": "RF Q3 Earnings Beat Estimates on Higher NII, Revenues Rise Y/Y | Sources: TradingView"}, {"title": "Earnings call transcript: Regions Financial tops Q3 2026 profit estimates", "text": "Earnings call transcript: Regions Financial tops Q3 2026 profit estimates | Sources: Investing.com"}, {"title": "Ladder Capital Corp Reports Results for the Quarter Ended September 30, 2026", "text": "Ladder Capital Corp Reports Results for the Quarter Ended September 30, 2026 | Sources: FinancialContent"}, {"title": "[Regions Financial Q3 2026 Earnings Call] Regions Posts $611M Profit as Capital Markets Revenue Surges 23% and Credit Losses Fall to 29bps", "text": "[Regions Financial Q3 2026 Earnings Call] Regions Posts $611M Profit as Capital Markets Revenue Surges 23% and Credit Losses Fall to 29bps | Sources: BigGo Finance"}, {"title": "Issuance of Amended Venezuela-related General License and Frequently Asked Question", "text": "Issuance of Amended Venezuela-related General License and Frequently Asked Question | Sources: Office of Foreign Assets Control (.gov) (official)"}, {"title": "OFFICE OF FOREIGN ASSETS CONTROL Venezuela Sanctions Regulations 31 CFR part 591 GENERAL LICENSE NO. 60A Authorizing Transactio", "text": "OFFICE OF FOREIGN ASSETS CONTROL Venezuela Sanctions Regulations 31 CFR part 591 GENERAL LICENSE NO. 60A Authorizing Transactio | Sources: Office of Foreign Assets Control (.gov) (official)"}, {"title": "Recent Actions", "text": "Recent Actions | Sources: Office of Foreign Assets Control (.gov) (official)"}, {"title": "Frequently Asked Questions", "text": "Frequently Asked Questions | Sources: Office of Foreign Assets Control (.gov) (official)"}, {"title": "WTO", "text": "WTO | Sources: World Trade Organization (official)"}, {"title": "Security Council LIVE: Sudan’s war spreads as drones and hunger take a deadly toll", "text": "Security Council LIVE: Sudan’s war spreads as drones and hunger take a deadly toll | Sources: UN News (official)"}, {"title": "From ideas to solutions: connecting Africa and Europe’s innovation ecosystems", "text": "From ideas to solutions: connecting Africa and Europe’s innovation ecosystems | Sources: EEAS (official)"}, {"title": "Regional Economic Outlook for the Western Hemisphere, October 2026", "text": "Regional Economic Outlook for the Western Hemisphere, October 2026 | Sources: International Monetary Fund | IMF (official)"}, {"title": "As Chip Stocks Sell Off, This Is the Flight-to-Safety Play I Would Choose", "text": "As Chip Stocks Sell Off, This Is the Flight-to-Safety Play I Would Choose | Sources: Yahoo Finance"}, {"title": "Chip Stocks Continue Downward Streak, ’Pricing In A Crash’", "text": "Chip Stocks Continue Downward Streak, ’Pricing In A Crash’ | Sources: Investor's Business Daily"}, {"title": "Chip Stocks Just Fell 8 Days in a Row, Their Longest Losing Streak Since 2008", "text": "Chip Stocks Just Fell 8 Days in a Row, Their Longest Losing Streak Since 2008 | Sources: 24/7 Wall St."}, {"title": "Taking a heavy position in semiconductor stocks made for a tough week in this paper trading competition. Chip stocks took a brutal hit across the board, dragging down my portfolio rankings pretty fast. It’s definitely frustrating to watch those simulated gains vani", "text": "Taking a heavy position in semiconductor stocks made for a tough week in this paper trading competition. Chip stocks took a brutal hit across the board, dragging down my portfolio rankings pretty fast. It’s definitely frustrating to watch those simulated gains vani | Sources: Moomoo"}, {"title": "Short Sellers Cash In as Chip Stocks Tank", "text": "Short Sellers Cash In as Chip Stocks Tank | Sources: Bloomberg.com"}, {"title": "3 U.S. Dividend Financial Stocks Built For Higher Interest Rates", "text": "3 U.S. Dividend Financial Stocks Built For Higher Interest Rates | Sources: Yahoo Finance"}, {"title": "U.S. Stocks Tick Down as Bank Earnings Don’t Excite", "text": "U.S. Stocks Tick Down as Bank Earnings Don’t Excite | Sources: WSJ"}, {"title": "These tech stocks are a buy ahead of their earnings reports, Bank of America says", "text": "These tech stocks are a buy ahead of their earnings reports, Bank of America says | Sources: CNBC"}, {"title": "SoftBank in Early Talks to Buy Allied Universal", "text": "SoftBank in Early Talks to Buy Allied Universal | Sources: WSJ"}, {"title": "News Quiz for October 17, 2026", "text": "News Quiz for October 17, 2026 | Sources: WSJ"}, {"title": "A Five-Day Tour for Katie Zacharia", "text": "A Five-Day Tour for Katie Zacharia | Sources: WSJ"}, {"title": "Former MIT Scientist Wins Defamation Case Over Sexual-Harassment Accusations", "text": "Former MIT Scientist Wins Defamation Case Over Sexual-Harassment Accusations | Sources: WSJ"}, {"title": "It’s Too Late for Small Fixes at Pepsi", "text": "It’s Too Late for Small Fixes at Pepsi | Sources: WSJ"}, {"title": "Katie Zacharia Projected Confidence. Less Than an Hour Later, She Was Out. | The 10-Point for Oct. 17", "text": "Katie Zacharia Projected Confidence. Less Than an Hour Later, She Was Out. | The 10-Point for Oct. 17 | Sources: WSJ"}, {"title": "What Tesla’s Flying Roadster Really Means for the Global Auto Race", "text": "What Tesla’s Flying Roadster Really Means for the Global Auto Race | Sources: WSJ"}, {"title": "Why Europe’s Right Is Breaking Up With MAGA", "text": "Why Europe’s Right Is Breaking Up With MAGA | Sources: WSJ"}]}</script>
+<script>
+(function () {
+  var body = document.body, st = { sector: "all", region: "all", top: false };
+  function save(k, v) { try { localStorage.setItem(k, v); } catch (e) {} }
+  function load(k) { try { return localStorage.getItem(k); } catch (e) { return null; } }
+  function setLang(l) {
+    body.dataset.lang = l;
+    document.documentElement.lang = l === "ar" ? "ar" : "en";
+    document.querySelectorAll(".lang button").forEach(function (b) { b.setAttribute("aria-pressed", String(b.dataset.lang === l)); });
+    save("hb-lang", l);
+  }
+  document.querySelectorAll(".lang button").forEach(function (b) { b.addEventListener("click", function () { setLang(b.dataset.lang); }); });
+  setLang(load("hb-lang") || "en");
+
+  function regOk(el) {
+    var r = (el.getAttribute("data-region") || "all").split(" ");
+    return st.region === "all" || r.indexOf("all") > -1 || r.indexOf("global") > -1 || r.indexOf(st.region) > -1;
+  }
+  var blocks = ["charts", "board", "risk", "next", "learn"];
+  function apply() {
+    var storiesOn = blocks.indexOf(st.sector) === -1, shown = 0;
+    document.querySelectorAll(".story-item").forEach(function (el) {
+      var imp = el.getAttribute("data-imp");
+      var ok = storiesOn && (st.sector === "all" || el.dataset.sector === st.sector) && regOk(el) && (!st.top || imp === "HIGH");
+      el.classList.toggle("hidden", !ok); if (ok) shown++;
+    });
+    var q = document.querySelector("[data-quick]");
+    if (q) q.classList.toggle("hidden", !q.querySelector(".story-item:not(.hidden)"));
+    var st2 = document.querySelector(".stories");
+    if (st2) st2.classList.toggle("hidden", !st2.querySelector(".story-item:not(.hidden)"));
+    document.querySelector('[data-block="stories"]').classList.toggle("hidden", !storiesOn);
+    document.getElementById("empty").style.display = storiesOn && !shown ? "block" : "none";
+    blocks.forEach(function (k) {
+      var b = document.querySelector('[data-block="' + k + '"]');
+      if (!b) return;
+      b.classList.toggle("hidden", !(st.sector === "all" || st.sector === k));
+      b.querySelectorAll("[data-region]").forEach(function (el) { el.classList.toggle("hidden", !regOk(el)); });
+    });
+    document.querySelectorAll(".stop").forEach(function (el) { el.style.opacity = regOk(el) ? "1" : ".35"; });
+  }
+  document.querySelectorAll(".tabs button").forEach(function (b) {
+    b.addEventListener("click", function () {
+      st.sector = b.dataset.sector;
+      document.querySelectorAll(".tabs button").forEach(function (x) { x.setAttribute("aria-pressed", String(x === b)); });
+      apply();
+      var n = document.querySelector(".controls"); if (n.getBoundingClientRect().top < 0) n.scrollIntoView({ behavior: "smooth" });
+    });
+  });
+  document.getElementById("region").addEventListener("change", function (e) { st.region = e.target.value; apply(); });
+  document.getElementById("important").addEventListener("change", function (e) { st.top = e.target.checked; apply(); });
+  apply();
+
+  /* ---------- Tap-to-explain ---------- */
+  var GL = JSON.parse(document.getElementById("glossary").textContent || "[]");
+  function esc(t) { return t.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"); }
+  function matchers(lang) {
+    var list = [];
+    GL.forEach(function (g, i) {
+      (lang === "ar" ? (g.ar_match || []) : (g.match || [])).forEach(function (m) {
+        var cs = lang !== "ar" && /[A-Z]/.test(m) && m.replace(/[^A-Za-z]/g, "").length <= 4;
+        var re = lang === "ar" ? new RegExp(esc(m)) : new RegExp("\\b" + esc(m) + "\\b", cs ? "" : "i");
+        list.push({ re: re, i: i, len: m.length });
+      });
+    });
+    return list.sort(function (a, b) { return b.len - a.len; });
+  }
+  var M = { en: matchers("en"), ar: matchers("ar") };
+  function wrapTerms(root, lang) {
+    var used = {}, walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, {
+      acceptNode: function (n) {
+        return n.parentElement.closest("a,button,h1,h2,h3,summary,.src,.kick,.s,.sl,.bigstat,.v,.t,.p") ? NodeFilter.FILTER_REJECT : NodeFilter.FILTER_ACCEPT;
+      }
+    });
+    var nodes = []; while (walker.nextNode()) nodes.push(walker.currentNode);
+    nodes.forEach(function (node) {
+      var cur = node;
+      while (cur) {
+        var best = null;
+        M[lang].forEach(function (m) {
+          if (used[m.i]) return;
+          var r = m.re.exec(cur.nodeValue);
+          if (r && (!best || r.index < best.idx || (r.index === best.idx && r[0].length > best.text.length))) best = { idx: r.index, text: r[0], i: m.i };
+        });
+        if (!best) break;
+        used[best.i] = true;
+        var after = cur.splitText(best.idx);
+        var rest = after.splitText(best.text.length);
+        var b = document.createElement("button");
+        b.type = "button"; b.className = "term"; b.dataset.g = best.i; b.textContent = after.nodeValue;
+        after.parentNode.replaceChild(b, after);
+        cur = rest;
+      }
+    });
+  }
+  document.querySelectorAll(".story-item .en, .lead .txt .en, .quick .en, .chain.en, .stop .d.en").forEach(function (el) { wrapTerms(el, "en"); });
+  document.querySelectorAll(".story-item .ar, .lead .txt .ar, .quick .ar, .chain.ar, .stop .d.ar").forEach(function (el) { wrapTerms(el, "ar"); });
+
+  var pop = document.getElementById("term-pop"), popFor = null;
+  function closePop() { pop.classList.add("hidden"); popFor = null; }
+  function openPop(btn) {
+    var g = GL[+btn.dataset.g]; if (!g) return;
+    var lang = body.dataset.lang;
+    pop.innerHTML = "";
+    var h = document.createElement("h4"); h.textContent = g.term; pop.appendChild(h);
+    if (lang !== "ar") { var p1 = document.createElement("p"); p1.style.margin = "0"; p1.textContent = g.en; pop.appendChild(p1); }
+    if (lang !== "en" && g.ar) { var p2 = document.createElement("p"); p2.className = "ar"; p2.setAttribute("dir", "rtl"); p2.style.margin = "6px 0 0"; p2.textContent = g.ar; pop.appendChild(p2); }
+    var row = document.createElement("div"); row.className = "row2";
+    var ask = document.createElement("button"); ask.type = "button"; ask.className = "ask"; ask.textContent = lang === "ar" ? "اسأل المساعد عن هذا" : "Ask the assistant about this";
+    ask.addEventListener("click", function () { closePop(); openAsk(lang === "ar" ? ("اشرح لي ببساطة: " + g.term + " ولماذا يهم مصر اليوم؟") : ("Explain " + g.term + " simply, and why it matters for Egypt today.")); });
+    var cl = document.createElement("button"); cl.type = "button"; cl.textContent = lang === "ar" ? "إغلاق" : "Close"; cl.addEventListener("click", closePop);
+    if (askReady) row.appendChild(ask); row.appendChild(cl); pop.appendChild(row);
+    pop.classList.remove("hidden");
+    var r = btn.getBoundingClientRect(), w = pop.offsetWidth;
+    var left = Math.max(12, Math.min(window.scrollX + r.left, window.scrollX + document.documentElement.clientWidth - w - 12));
+    pop.style.left = left + "px"; pop.style.top = (window.scrollY + r.bottom + 8) + "px";
+    popFor = btn; cl.focus();
+  }
+  document.addEventListener("click", function (e) {
+    var t = e.target.closest && e.target.closest("button.term");
+    if (t) { if (popFor === t) closePop(); else openPop(t); return; }
+    if (!pop.contains(e.target)) closePop();
+  });
+  document.addEventListener("keydown", function (e) { if (e.key === "Escape") { closePop(); if (!panel.classList.contains("hidden")) closeAsk(); } });
+
+  /* ---------- Assistant ---------- */
+  var BRIEF = JSON.parse(document.getElementById("brief-data").textContent || "{}");
+  var panel = document.getElementById("ask-panel"), openBtn = document.getElementById("ask-open");
+  var log = document.getElementById("ask-log"), input = document.getElementById("ask-input");
+  var history = [], busy = false, askReady = false, backend = null;
+  var ENDPOINT = body.getAttribute("data-chat-endpoint") || "";
+  var INSTR = "You are the assistant inside Hegazy Brief, a daily briefing on world markets, the economy, finance, accounting, business and politics, explained for Egyptians. " +
+    "The reader may know nothing about finance, or may be an expert. Answer in the same language as the question (Arabic or English). " +
+    "Start with a direct answer in plain words, explain every technical term you use, and connect the answer to Egypt when it is relevant. " +
+    "For anything about today's news, use the search_brief tool and repeat its numbers exactly. If the brief does not cover the question, say so, then answer from general knowledge, clearly marked as not from today's brief and possibly out of date. " +
+    "Never give personal investment advice and never tell anyone to buy or sell; you may explain how things work. Politics: neutral facts only, no opinions about politicians or parties. " +
+    "Keep answers under 170 words unless the reader asks for more. Plain text only: no markdown, no headings, no tables.";
+  function searchBrief(q) {
+    var words = String(q || "").toLowerCase().split(/[^\p{L}\p{N}$%.]+/u).filter(function (w) { return w.length > 2; });
+    var scored = (BRIEF.stories || []).map(function (s) {
+      var hay = (s.text || "").toLowerCase(), sc = 0;
+      words.forEach(function (w) { if (hay.indexOf(w) > -1) sc++; });
+      return { s: s, sc: sc };
+    }).filter(function (x) { return x.sc > 0; }).sort(function (a, b) { return b.sc - a.sc; }).slice(0, 4);
+    return { date: BRIEF.date, markets: BRIEF.markets, stories: scored.map(function (x) { return x.s.text; }) };
+  }
+  function bubble(cls, text) { var d = document.createElement("div"); d.className = "msg " + cls; d.textContent = text; log.appendChild(d); log.scrollTop = log.scrollHeight; return d; }
+  function openAsk(q) {
+    panel.classList.remove("hidden"); openBtn.classList.add("hidden");
+    if (!log.children.length) bubble("bot", body.dataset.lang === "ar" ? "أهلًا! اسألني عن أي خبر أو مصطلح في موجز اليوم، وسأشرحه ببساطة." : "Hi! Ask me about any story or word in today’s brief, and I’ll explain it simply.");
+    if (q) { send(q); } else { input.focus(); }
+  }
+  function closeAsk() { panel.classList.add("hidden"); openBtn.classList.remove("hidden"); openBtn.focus(); }
+  async function send(q) {
+    q = String(q || "").trim(); if (!q || busy) return;
+    busy = true; input.value = ""; bubble("user", q);
+    var out = bubble("bot", "…");
+    var convo = history.slice(-6).map(function (m) { return (m.role === "user" ? "Reader: " : "Assistant: ") + m.content; }).join("\n");
+    var titles = (BRIEF.stories || []).map(function (s) { return "- " + s.title; }).join("\n");
+    var prompt = INSTR + "\n\nToday's edition: " + BRIEF.date + "\nStory titles:\n" + titles + (convo ? "\n\nConversation so far:\n" + convo : "") + "\n\nReader's question: " + q;
+    try {
+      var answer = "";
+      if (backend === "endpoint") {
+        var ctx = searchBrief(q);
+        var r = await fetch(ENDPOINT, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ question: q, history: history.slice(-6), context: ctx, titles: titles }) });
+        if (!r.ok) throw { code: r.status === 429 ? "rate_limited" : "error" };
+        answer = (await r.json()).answer || "";
+        out.textContent = answer;
+      } else {
+        var sample = await claude.use("sample");
+        if (!sample) throw { code: "not_granted" };
+        var res = await sample(prompt, {
+          cache: false,
+          tools: [{ name: "search_brief", description: "Search today's Hegazy Brief stories and market numbers by keywords. Returns the matching stories in full and the market board.",
+                    inputSchema: { type: "object", properties: { query: { type: "string" } }, required: ["query"] },
+                    execute: function (i) { return searchBrief(i.query); } }],
+          onText: function (e) { out.textContent = e.text || "…"; log.scrollTop = log.scrollHeight; }
+        });
+        answer = res.text || out.textContent;
+        out.textContent = answer;
+      }
+      history.push({ role: "user", content: q }, { role: "assistant", content: answer });
+    } catch (err) {
+      var code = err && err.code;
+      out.className = "msg note";
+      out.textContent = code === "rate_limited" ? "Too many questions right now. Please try again in a minute."
+        : code === "not_granted" ? "The assistant needs your permission to answer. You can allow it from this page’s permissions."
+        : "Sorry, the assistant couldn’t answer just now. Please try again.";
+    }
+    busy = false; log.scrollTop = log.scrollHeight;
+  }
+  openBtn.addEventListener("click", function () { openAsk(); });
+  document.getElementById("ask-close").addEventListener("click", closeAsk);
+  document.getElementById("ask-form").addEventListener("submit", function (e) { e.preventDefault(); send(input.value); });
+  document.querySelectorAll("#ask-sugg button").forEach(function (b) { b.addEventListener("click", function () { send(b.textContent); }); });
+  if (ENDPOINT) { backend = "endpoint"; askReady = true; openBtn.classList.remove("hidden"); }
+  else if (window.claude && claude.use) {
+    claude.use("sample").then(function (s) { if (s) { backend = "sample"; askReady = true; openBtn.classList.remove("hidden"); } });
+  }
+})();
+</script>
+</body>
+</html>
