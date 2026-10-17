@@ -1,0 +1,774 @@
+# The Hegazy Brief: configuration.
+# Every checklist line is searched every day. Its result appears in the Coverage Report.
+#
+# queries:    Google News searches in English (the code adds the region and language settings)
+# ar_queries: Google News searches in Arabic (Egypt edition)
+# feeds:      direct RSS feeds (these usually include photos)
+# sector:     markets | economy | finance | accounting | politics | business | wsj
+# regions:    usa | europe | asia | egypt | gulf | mena | africa | latam | global
+
+start_date: '2026-10-17'
+max_age_hours: 36
+per_query: 8
+max_high: 8
+max_radar: 8
+# Address of your chat server (see worker/chat-worker.js). Leave empty to hide the assistant.
+chat_endpoint: ''
+feeds:
+  bbc_business: https://feeds.bbci.co.uk/news/business/rss.xml
+  bbc_world: https://feeds.bbci.co.uk/news/world/rss.xml
+  bbc_us: https://feeds.bbci.co.uk/news/world/us_and_canada/rss.xml
+  bbc_mideast: https://feeds.bbci.co.uk/news/world/middle_east/rss.xml
+  bbc_europe: https://feeds.bbci.co.uk/news/world/europe/rss.xml
+  bbc_asia: https://feeds.bbci.co.uk/news/world/asia/rss.xml
+  bbc_africa: https://feeds.bbci.co.uk/news/world/africa/rss.xml
+  bbc_latam: https://feeds.bbci.co.uk/news/world/latin_america/rss.xml
+  bbc_tech: https://feeds.bbci.co.uk/news/technology/rss.xml
+  cnbc_top: https://www.cnbc.com/id/100003114/device/rss/rss.html
+  cnbc_economy: https://www.cnbc.com/id/20910258/device/rss/rss.html
+  cnbc_finance: https://www.cnbc.com/id/10000664/device/rss/rss.html
+  cnbc_tech: https://www.cnbc.com/id/19854910/device/rss/rss.html
+  cnbc_politics: https://www.cnbc.com/id/10000113/device/rss/rss.html
+  cnbc_investing: https://www.cnbc.com/id/15839069/device/rss/rss.html
+  aljazeera: https://www.aljazeera.com/xml/rss/all.xml
+  fed: https://www.federalreserve.gov/feeds/press_all.xml
+  ecb: https://www.ecb.europa.eu/rss/press.html
+  boe: https://www.bankofengland.co.uk/rss/news
+  sec: https://www.sec.gov/news/pressreleases.rss
+  bls: https://www.bls.gov/feed/bls_latest.rss
+  eia: https://www.eia.gov/rss/todayinenergy.xml
+  un: https://news.un.org/feed/subscribe/en/news/all/rss.xml
+checklist:
+- id: A1
+  title: My watchlist
+  sector: markets
+  regions:
+  - egypt
+  queries:
+  - site:egx.com.eg OR site:mubasher.info Talaat OR Elsewedy OR Eastern OR "Abu Qir" OR Halan
+  - MNT-Halan OR HALN
+  - '"Talaat Moustafa"'
+  - '"Eastern Company" Egypt tobacco'
+  - '"Abu Qir Fertilizers"'
+  - '"Elsewedy Electric"'
+  ar_queries:
+  - حالان
+  - طلعت مصطفى
+  - الشرقية للدخان
+  - أبوقير للأسمدة
+  - السويدي إليكتريك
+- id: A2.1
+  title: US stocks and sectors
+  sector: markets
+  regions:
+  - usa
+  queries:
+  - stock market today Wall Street close
+  - S&P 500 sectors
+  feeds:
+  - cnbc_top
+- id: A2.2
+  title: European stocks
+  sector: markets
+  regions:
+  - europe
+  queries:
+  - European stocks close STOXX 600
+  - FTSE 100 close
+- id: A2.3
+  title: Asian stocks
+  sector: markets
+  regions:
+  - asia
+  queries:
+  - Asian stocks Nikkei Hang Seng KOSPI
+  - Sensex Nifty close
+- id: A2.4
+  title: Gulf stocks
+  sector: markets
+  regions:
+  - gulf
+  queries:
+  - Gulf stocks Saudi index Tadawul
+  - Dubai Abu Dhabi Qatar stocks
+- id: A2.5
+  title: Egyptian stocks
+  sector: markets
+  regions:
+  - egypt
+  queries:
+  - site:egx.com.eg
+  - site:almalnews.com OR site:alborsaanews.com OR site:amwalalghad.com
+  - EGX30 OR "Egyptian Exchange"
+  - Egypt stocks foreign investors
+  ar_queries:
+  - البورصة المصرية site:almalnews.com OR site:alborsaanews.com OR site:youm7.com OR site:amwalalghad.com
+  - البورصة المصرية
+  - EGX30 إغلاق
+- id: A2.6
+  title: Rest of world stocks
+  sector: markets
+  regions:
+  - latam
+  - africa
+  - global
+  queries:
+  - Bovespa OR "Mexico stocks" OR TSX
+  - Johannesburg stocks OR Nigeria stocks OR Turkey stocks
+  - emerging markets stocks MSCI
+- id: A3
+  title: Bonds
+  sector: markets
+  regions:
+  - usa
+  - europe
+  - asia
+  - egypt
+  queries:
+  - site:mof.gov.eg OR site:cbe.org.eg treasury bills
+  - Treasury yields
+  - Bund yields OR gilt yields OR JGB yields
+  - Egypt treasury bills auction OR Egypt eurobond
+  feeds:
+  - fed
+- id: A4
+  title: Currencies
+  sector: markets
+  regions:
+  - global
+  - egypt
+  queries:
+  - site:cbe.org.eg exchange rate
+  - dollar index currencies forex
+  - Egyptian pound dollar
+  ar_queries:
+  - سعر الدولار الجنيه
+- id: A5
+  title: Commodities
+  sector: markets
+  regions:
+  - global
+  queries:
+  - site:opec.org OR site:iea.org oil
+  - oil prices Brent
+  - gold prices
+  - wheat prices OR grain markets
+  - copper OR iron ore prices
+  - natural gas prices Europe TTF
+  feeds:
+  - eia
+- id: A6
+  title: Crypto
+  sector: markets
+  regions:
+  - global
+  queries:
+  - bitcoin price crypto market
+- id: A7
+  title: Central banks
+  sector: economy
+  regions:
+  - usa
+  - europe
+  - asia
+  - gulf
+  - egypt
+  queries:
+  - site:cbe.org.eg
+  - site:boj.or.jp OR site:rbi.org.in OR site:sama.gov.sa
+  - Federal Reserve
+  - ECB OR "Bank of England" interest rates
+  - '"Bank of Japan" OR PBOC OR RBI rates'
+  - '"Central Bank of Egypt" OR SAMA'
+  ar_queries:
+  - البنك المركزي المصري لجنة السياسة النقدية
+  - البنك المركزي المصري الفائدة
+  feeds:
+  - fed
+  - ecb
+  - boe
+- id: A8
+  title: Economic data
+  sector: economy
+  regions:
+  - usa
+  - europe
+  - asia
+  - gulf
+  - egypt
+  queries:
+  - site:capmas.gov.eg OR site:cbe.org.eg inflation
+  - site:bls.gov OR site:bea.gov
+  - inflation data CPI
+  - jobs report OR unemployment rate
+  - GDP growth data
+  - PMI manufacturing
+  - China economy data
+  - Egypt inflation OR Egypt economy
+  feeds:
+  - bls
+  - cnbc_economy
+  - bbc_business
+  ar_queries:
+  - الجهاز المركزي للتعبئة العامة والإحصاء التضخم
+- id: A9
+  title: Sectors and industries
+  sector: business
+  regions:
+  - global
+  queries:
+  - semiconductor stocks OR AI stocks
+  - bank stocks OR insurance
+  - healthcare pharma stocks
+  - real estate property market
+  - automakers OR electric vehicles
+  - retail consumer spending
+  - defense aerospace stocks
+  - shipping freight rates
+  - airlines travel tourism
+  - telecom media
+  - food agriculture prices
+  - mining metals stocks
+  feeds:
+  - cnbc_tech
+  - bbc_tech
+- id: A10
+  title: 'Companies: earnings, deals, IPOs'
+  sector: finance
+  regions:
+  - global
+  - gulf
+  - egypt
+  queries:
+  - site:egx.com.eg disclosure OR results
+  - earnings results quarter beats misses
+  - merger acquisition deal
+  - IPO listing
+  - bankruptcy OR default company
+  - Saudi OR UAE IPO
+  - Egypt IPO OR Egypt company results
+  feeds:
+  - cnbc_finance
+  - cnbc_investing
+  ar_queries:
+  - نتائج أعمال شركة site:almalnews.com OR site:alborsaanews.com OR site:youm7.com OR site:amwalalghad.com
+- id: A11
+  title: Accounting
+  sector: accounting
+  regions:
+  - global
+  queries:
+  - site:sec.gov accounting OR enforcement
+  - site:fra.gov.eg
+  - adjusted earnings OR one-time charge OR writedown
+  - restatement OR auditor OR accounting scandal
+  - IFRS OR FASB OR SEC accounting rule
+  - Egypt Financial Regulatory Authority
+  ar_queries:
+  - الهيئة العامة للرقابة المالية
+  feeds:
+  - sec
+- id: A12.1
+  title: Power and government
+  sector: politics
+  regions:
+  - global
+  queries:
+  - prime minister resigns OR cabinet reshuffle OR government collapse
+  - confidence vote government
+- id: A12.2
+  title: Elections
+  sector: politics
+  regions:
+  - global
+  - usa
+  queries:
+  - election results
+  - midterm elections
+  - referendum vote
+- id: A12.3
+  title: Foreign policy and diplomacy
+  sector: politics
+  regions:
+  - global
+  queries:
+  - diplomatic talks agreement summit
+  - ambassador expelled OR diplomatic dispute
+- id: A12.4
+  title: Wars and security
+  sector: politics
+  regions:
+  - global
+  - mena
+  - europe
+  queries:
+  - ceasefire talks
+  - military strike attack
+  - Russia Ukraine war
+  - Iran Strait of Hormuz
+  - Houthis Red Sea
+  feeds:
+  - aljazeera
+  - bbc_world
+- id: A12.5
+  title: Sanctions, tariffs, economic statecraft
+  sector: politics
+  regions:
+  - global
+  queries:
+  - site:treasury.gov sanctions
+  - site:wto.org
+  - tariffs trade deal
+  - sanctions announced
+  - export controls chips
+- id: A12.6
+  title: Legislation and public policy
+  sector: politics
+  regions:
+  - global
+  - usa
+  - europe
+  queries:
+  - bill passed parliament OR Congress
+  - budget tax plan government
+  - subsidy cut OR subsidies
+- id: A12.7
+  title: Great-power competition
+  sector: politics
+  regions:
+  - usa
+  - asia
+  - europe
+  queries:
+  - US China relations
+  - China Taiwan
+  - Russia NATO Europe
+- id: A12.8
+  title: Middle East and North Africa
+  sector: politics
+  regions:
+  - mena
+  - gulf
+  - egypt
+  queries:
+  - site:cabinet.gov.eg
+  - Egypt government
+  - Egypt Gaza OR Egypt Israel
+  - Saudi Arabia OR UAE OR Qatar policy
+  - Iraq OR Syria OR Lebanon OR Jordan
+  - Libya OR Sudan OR Tunisia OR Algeria OR Morocco
+  - Suez Canal
+  ar_queries:
+  - مجلس الوزراء المصري يقرر
+  - الحكومة المصرية قرار
+  - مدبولي
+  - قناة السويس
+  feeds:
+  - bbc_mideast
+- id: A12.9
+  title: Europe and UK
+  sector: politics
+  regions:
+  - europe
+  queries:
+  - European Commission decision
+  - UK government budget
+  - EU energy OR migration policy
+  feeds:
+  - bbc_europe
+- id: A12.10
+  title: Asia and Indo-Pacific
+  sector: politics
+  regions:
+  - asia
+  queries:
+  - China policy Beijing
+  - India government Modi
+  - Japan government
+  - South Korea OR North Korea
+  - South China Sea OR ASEAN
+  feeds:
+  - bbc_asia
+- id: A12.11
+  title: Africa and Latin America
+  sector: politics
+  regions:
+  - africa
+  - latam
+  queries:
+  - Africa election OR African Union
+  - Africa debt IMF
+  - Brazil OR Mexico OR Argentina government
+  feeds:
+  - bbc_africa
+  - bbc_latam
+- id: A12.12
+  title: International organizations
+  sector: politics
+  regions:
+  - global
+  queries:
+  - site:imf.org
+  - site:worldbank.org
+  - UN Security Council
+  - IMF OR World Bank
+  - WTO OR G20 OR G7 OR BRICS OR NATO
+  feeds:
+  - un
+- id: A12.13
+  title: Domestic pressures
+  sector: politics
+  regions:
+  - global
+  queries:
+  - protests OR strike workers
+  - cost of living prices protest
+  - corruption investigation minister
+- id: A12.14
+  title: Political economy
+  sector: politics
+  regions:
+  - global
+  - egypt
+  queries:
+  - privatization state-owned
+  - public debt budget deficit
+  - sovereign wealth fund
+  ar_queries:
+  - طرح الشركات الحكومية
+- id: A12.15
+  title: Political risk watch
+  sector: politics
+  regions:
+  - global
+  queries:
+  - escalation risk deadline talks
+  - political crisis markets
+- id: A13
+  title: Egypt deep check
+  sector: economy
+  regions:
+  - egypt
+  queries:
+  - site:sca.gov.eg OR "Suez Canal Authority"
+  - site:cbe.org.eg reserves OR remittances
+  - Egypt remittances OR reserves
+  - Egypt tourism
+  - Egypt gas imports OR Egypt LNG
+  - Egypt IMF OR Egypt Gulf investment OR Egypt EU funding
+  - Egypt external debt
+  ar_queries:
+  - هيئة قناة السويس الإيرادات
+  - البنك المركزي المصري الاحتياطي
+  - الاحتياطي النقدي مصر
+  - تحويلات المصريين بالخارج
+  - السياحة مصر
+  - واردات الغاز مصر
+- id: A14
+  title: Wall Street Journal
+  sector: wsj
+  regions:
+  - usa
+  - global
+  queries:
+  - site:wsj.com
+- id: A15
+  title: Counter-check
+  sector: markets
+  regions:
+  - global
+  queries:
+  - oil prices fall OR IEA reserve release
+  - stocks rebound OR relief rally
+- id: A16
+  title: 'Calendar: next 7 days'
+  sector: economy
+  regions:
+  - global
+  queries:
+  - week ahead markets
+  - earnings next week
+  - central bank meeting next week
+markets:
+- group: USA
+  region: usa
+  check: A2.1
+  items:
+  - - S&P 500
+    - ^GSPC
+  - - Nasdaq
+    - ^IXIC
+  - - Dow
+    - ^DJI
+  - - Russell 2000
+    - ^RUT
+  - - VIX
+    - ^VIX
+- group: US sectors (SPDR funds)
+  region: usa
+  check: A2.1
+  items:
+  - - Technology
+    - XLK
+  - - Financials
+    - XLF
+  - - Energy
+    - XLE
+  - - Health care
+    - XLV
+  - - Consumer discretionary
+    - XLY
+  - - Consumer staples
+    - XLP
+  - - Industrials
+    - XLI
+  - - Materials
+    - XLB
+  - - Utilities
+    - XLU
+  - - Real estate
+    - XLRE
+  - - Communication
+    - XLC
+- group: Europe
+  region: europe
+  check: A2.2
+  items:
+  - - STOXX 600
+    - ^STOXX
+  - - FTSE 100
+    - ^FTSE
+  - - DAX
+    - ^GDAXI
+  - - CAC 40
+    - ^FCHI
+  - - FTSE MIB
+    - FTSEMIB.MI
+  - - IBEX 35
+    - ^IBEX
+- group: Asia
+  region: asia
+  check: A2.3
+  items:
+  - - Nikkei 225
+    - ^N225
+  - - Hang Seng
+    - ^HSI
+  - - Shanghai
+    - 000001.SS
+  - - KOSPI
+    - ^KS11
+  - - Taiwan
+    - ^TWII
+  - - Sensex
+    - ^BSESN
+  - - Nifty 50
+    - ^NSEI
+  - - Indonesia
+    - ^JKSE
+  - - ASX 200
+    - ^AXJO
+- group: Gulf
+  region: gulf
+  check: A2.4
+  items:
+  - - Saudi TASI
+    - ^TASI.SR
+- group: Egypt
+  region: egypt
+  check: A2.5
+  items:
+  - - EGX30
+    - ^CASE30
+- group: My watchlist
+  region: egypt
+  check: A1
+  items:
+  - - MNT-Halan
+    - HALN.CA
+  - - Talaat Moustafa
+    - TMGH.CA
+  - - Eastern Company
+    - EAST.CA
+  - - Abu Qir Fertilizers
+    - ABUK.CA
+  - - Elsewedy Electric
+    - SWDY.CA
+- group: Rest of world
+  region: global
+  check: A2.6
+  items:
+  - - Canada TSX
+    - ^GSPTSE
+  - - Brazil Bovespa
+    - ^BVSP
+  - - Mexico IPC
+    - ^MXX
+  - - Turkey BIST 100
+    - XU100.IS
+  - - Emerging markets (EEM fund)
+    - EEM
+- group: US bond yields (%)
+  region: usa
+  check: A3
+  items:
+  - - US 5-year
+    - ^FVX
+  - - US 10-year
+    - ^TNX
+  - - US 30-year
+    - ^TYX
+- group: Currencies
+  region: global
+  check: A4
+  items:
+  - - Dollar index
+    - DX-Y.NYB
+  - - EUR/USD
+    - EURUSD=X
+  - - GBP/USD
+    - GBPUSD=X
+  - - USD/JPY
+    - JPY=X
+  - - USD/CNY
+    - CNY=X
+  - - USD/INR
+    - INR=X
+  - - USD/TRY
+    - TRY=X
+  - - USD/EGP
+    - EGP=X
+- group: Commodities (USD)
+  region: global
+  check: A5
+  items:
+  - - Brent
+    - BZ=F
+  - - WTI
+    - CL=F
+  - - US natural gas
+    - NG=F
+  - - Gold
+    - GC=F
+  - - Silver
+    - SI=F
+  - - Copper
+    - HG=F
+  - - Wheat (cents)
+    - ZW=F
+  - - Corn (cents)
+    - ZC=F
+  - - Soybeans (cents)
+    - ZS=F
+  - - Sugar (cents)
+    - SB=F
+- group: Crypto (USD)
+  region: global
+  check: A6
+  items:
+  - - Bitcoin
+    - BTC-USD
+  - - Ethereum
+    - ETH-USD
+charts:
+- name: S&P 500
+  symbol: ^GSPC
+  region: usa
+- name: Nasdaq
+  symbol: ^IXIC
+  region: usa
+- name: US 10-year yield (%)
+  symbol: ^TNX
+  region: usa
+- name: STOXX 600
+  symbol: ^STOXX
+  region: europe
+- name: Nikkei 225
+  symbol: ^N225
+  region: asia
+- name: Saudi TASI
+  symbol: ^TASI.SR
+  region: gulf
+- name: EGX30
+  symbol: ^CASE30
+  region: egypt
+- name: USD/EGP
+  symbol: EGP=X
+  region: egypt
+- name: Brent oil (USD)
+  symbol: BZ=F
+  region: global
+- name: Gold (USD)
+  symbol: GC=F
+  region: global
+- name: Wheat (US cents)
+  symbol: ZW=F
+  region: egypt
+- name: Bitcoin (USD)
+  symbol: BTC-USD
+  region: global
+curriculum:
+- stock
+- index
+- market cap
+- bull and bear market
+- volatility
+- dividend
+- IPO
+- revenue
+- net profit
+- profit margin
+- EPS
+- P/E ratio
+- valuation
+- earnings season
+- inflation
+- interest rates
+- central bank
+- bonds
+- bond yield
+- exchange rate
+- GDP
+- risk-on and risk-off
+- sector rotation
+- liquidity
+- short selling
+- index funds
+- diversification
+- commodities
+- recession
+- hedging
+official_feeds:
+- fed
+- ecb
+- boe
+- sec
+- bls
+- eia
+- un
+official_domains:
+- cbe.org.eg
+- egx.com.eg
+- fra.gov.eg
+- cabinet.gov.eg
+- mof.gov.eg
+- sca.gov.eg
+- capmas.gov.eg
+- imf.org
+- worldbank.org
+- federalreserve.gov
+- ecb.europa.eu
+- bankofengland.co.uk
+- boj.or.jp
+- rbi.org.in
+- sama.gov.sa
+- opec.org
+- iea.org
+- wto.org
+- un.org
+- sec.gov
+- bls.gov
+- bea.gov
+- treasury.gov
+- eia.gov
+- europa.eu

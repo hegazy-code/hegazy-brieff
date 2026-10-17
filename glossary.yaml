@@ -1,0 +1,271 @@
+# Tap-to-explain glossary. Each term is highlighted once per story; one tap shows the explanation.
+# match: words to find in English text (case-insensitive). ar_match: words to find in Arabic text.
+# Add new terms any time; keep explanations short and simple.
+- term: Index
+  match: [stock index, index]
+  ar_match: [مؤشر]
+  en: "A number that tracks a group of companies’ share prices, so you can see in one figure whether a market went up or down."
+  ar: "رقم يتابع أسعار أسهم مجموعة من الشركات، حتى تعرف برقم واحد هل ارتفع السوق أم انخفض."
+- term: S&P 500
+  match: [S&P 500]
+  en: "An index of 500 of the biggest US companies. It’s the most watched measure of the US stock market."
+  ar: "مؤشر يضم 500 من أكبر الشركات الأمريكية، وهو أكثر مقياس متابَع للبورصة الأمريكية."
+- term: Nasdaq
+  match: [Nasdaq]
+  ar_match: [ناسداك]
+  en: "A US stock index full of technology companies like Apple, Nvidia and Microsoft. When tech falls, the Nasdaq falls most."
+  ar: "مؤشر أمريكي مليء بشركات التكنولوجيا مثل أبل وإنفيديا ومايكروسوفت. عندما تهبط التكنولوجيا يكون هبوطه الأكبر."
+- term: Dow
+  match: [Dow]
+  ar_match: [داو جونز]
+  en: "The Dow Jones, an index of 30 large, long-established US companies."
+  ar: "مؤشر داو جونز، ويضم 30 شركة أمريكية كبيرة وعريقة."
+- term: Russell 2000
+  match: [Russell 2000]
+  en: "An index of 2,000 smaller US companies. It shows how smaller businesses are doing."
+  ar: "مؤشر يضم 2000 شركة أمريكية أصغر، ويوضح أداء الشركات الصغيرة."
+- term: VIX
+  match: [VIX, fear index]
+  ar_match: [مؤشر الخوف]
+  en: "The “fear index.” It rises when investors expect big price swings, so a higher VIX means more worry."
+  ar: "«مؤشر الخوف». يرتفع عندما يتوقع المستثمرون تقلبات كبيرة، فارتفاعه يعني قلقًا أكبر."
+- term: STOXX 600
+  match: [STOXX 600]
+  en: "An index of 600 large companies across Europe."
+  ar: "مؤشر يضم 600 شركة كبيرة في أنحاء أوروبا."
+- term: DAX
+  match: [DAX]
+  ar_match: [داكس]
+  en: "Germany’s main stock index, made of 40 big German companies."
+  ar: "المؤشر الرئيسي للبورصة الألمانية، ويضم 40 شركة ألمانية كبرى."
+- term: Nikkei
+  match: [Nikkei 225, Nikkei]
+  ar_match: [نيكاي]
+  en: "Japan’s main stock index."
+  ar: "المؤشر الرئيسي للبورصة اليابانية."
+- term: KOSPI
+  match: [KOSPI]
+  ar_match: [كوسبي]
+  en: "South Korea’s main stock index. Samsung and other chipmakers are a big part of it."
+  ar: "المؤشر الرئيسي لكوريا الجنوبية، وتشكل سامسونج وشركات الرقائق جزءًا كبيرًا منه."
+- term: Hang Seng
+  match: [Hang Seng]
+  ar_match: [هانج سنج]
+  en: "Hong Kong’s main stock index, full of big Chinese companies."
+  ar: "المؤشر الرئيسي لهونج كونج، ويضم شركات صينية كبرى."
+- term: EGX30
+  match: [EGX30]
+  en: "The main index of the Egyptian Exchange, tracking its 30 biggest and most traded companies."
+  ar: "المؤشر الرئيسي للبورصة المصرية، ويتابع أكبر 30 شركة وأكثرها تداولًا."
+- term: EGX70
+  match: [EGX70]
+  en: "An Egyptian index of 70 smaller and medium-sized companies."
+  ar: "مؤشر مصري يضم 70 شركة صغيرة ومتوسطة."
+- term: Tadawul
+  match: [TASI, Saudi index, Tadawul]
+  ar_match: [المؤشر السعودي]
+  en: "Saudi Arabia’s stock exchange. TASI is its main index."
+  ar: "البورصة السعودية، ومؤشرها الرئيسي هو تاسي."
+- term: Brent
+  match: [Brent]
+  ar_match: [برنت]
+  en: "The world’s main benchmark price for oil. When people say “oil prices,” they usually mean Brent, in US dollars per barrel."
+  ar: "السعر المرجعي العالمي الرئيسي للبترول. عندما يقال «أسعار البترول» فالمقصود غالبًا برنت، بالدولار للبرميل."
+- term: WTI
+  match: [WTI, US crude]
+  ar_match: [غرب تكساس]
+  en: "The US benchmark oil price (West Texas Intermediate). It usually moves with Brent."
+  ar: "سعر البترول المرجعي الأمريكي (غرب تكساس)، ويتحرك غالبًا مع برنت."
+- term: Barrel
+  match: [barrel, barrels]
+  ar_match: [برميل]
+  en: "The unit oil is sold in: about 159 liters."
+  ar: "الوحدة التي يُباع بها البترول، وتساوي حوالي 159 لترًا."
+- term: Bond
+  match: [bond, bonds]
+  ar_match: [سندات, السندات]
+  en: "A loan you give to a government or company. They pay you interest and return your money on a set date."
+  ar: "قرض تعطيه لحكومة أو شركة، تدفع لك عليه فائدة وتعيد لك أموالك في موعد محدد."
+- term: Bond yield
+  match: [yield, yields]
+  ar_match: [عائد, عوائد]
+  en: "The yearly return a bond pays. When many people buy bonds, prices rise and yields fall, and the other way round."
+  ar: "العائد السنوي الذي يدفعه السند. عندما يشتري كثيرون السندات ترتفع أسعارها وتنخفض عوائدها، والعكس صحيح."
+- term: Treasury bills
+  match: [treasury bills, T-bills, treasury bill]
+  ar_match: [أذون الخزانة]
+  en: "Short-term loans to the government, usually for a year or less. In Egypt they’re among the safest places to put money."
+  ar: "قروض قصيرة الأجل للحكومة، غالبًا لسنة أو أقل. وفي مصر تعتبر من أكثر الأماكن أمانًا لوضع الأموال."
+- term: Inflation
+  match: [inflation]
+  ar_match: [التضخم, تضخم]
+  en: "How fast prices are rising. Inflation of 14% means things cost about 14% more than a year ago."
+  ar: "سرعة ارتفاع الأسعار. تضخم 14% يعني أن الأشياء أغلى بحوالي 14% مما كانت قبل عام."
+- term: Core inflation
+  match: [core inflation]
+  ar_match: [التضخم الأساسي]
+  en: "Inflation without food and energy, whose prices jump around a lot. It shows the underlying trend."
+  ar: "التضخم بدون الغذاء والطاقة لأن أسعارهما متقلبة، ويوضح الاتجاه الحقيقي للأسعار."
+- term: Producer prices
+  match: [producer prices]
+  ar_match: [أسعار المنتجين]
+  en: "What businesses pay for materials and goods. When these rise, shop prices often rise later."
+  ar: "ما تدفعه الشركات مقابل الخامات والسلع. عندما ترتفع، ترتفع أسعار المحلات غالبًا لاحقًا."
+- term: PCE
+  match: [PCE]
+  en: "The US Federal Reserve’s favorite inflation measure, based on what Americans actually spend."
+  ar: "مقياس التضخم المفضل لدى الاحتياطي الفيدرالي الأمريكي، ويعتمد على ما ينفقه الأمريكيون فعلًا."
+- term: Federal Reserve
+  match: [Federal Reserve, the Fed, Fed]
+  ar_match: [الاحتياطي الفيدرالي, الفيدرالي]
+  en: "The US central bank. Its interest-rate decisions move money around the whole world, including Egypt."
+  ar: "البنك المركزي الأمريكي. قرارات الفائدة التي يتخذها تحرّك الأموال في العالم كله، ومنه مصر."
+- term: Central bank
+  match: [central bank]
+  ar_match: [البنك المركزي]
+  en: "The bank that manages a country’s money: it sets interest rates and fights inflation."
+  ar: "البنك الذي يدير أموال الدولة: يحدد أسعار الفائدة ويحارب التضخم."
+- term: Interest rate
+  match: [interest rates, interest rate, rate hike, hike]
+  ar_match: [الفائدة, رفع الفائدة]
+  en: "The price of borrowing money. Higher rates make loans more expensive, which slows spending and cools inflation."
+  ar: "ثمن اقتراض المال. الفائدة الأعلى تجعل القروض أغلى، فيقل الإنفاق ويهدأ التضخم."
+- term: Current account
+  match: [current account]
+  ar_match: [الحساب الجاري]
+  en: "Roughly the difference between the foreign money a country earns (exports, tourism, remittances) and spends (imports). A deficit means more goes out than comes in."
+  ar: "تقريبًا الفرق بين العملة الأجنبية التي تكسبها الدولة (صادرات وسياحة وتحويلات) والتي تنفقها (واردات). العجز يعني أن ما يخرج أكثر مما يدخل."
+- term: Remittances
+  match: [remittances]
+  ar_match: [التحويلات, تحويلات]
+  en: "Money sent home by people working abroad. For Egypt it’s now the biggest source of dollars."
+  ar: "الأموال التي يرسلها العاملون في الخارج إلى بلادهم، وهي الآن أكبر مصدر للدولار في مصر."
+- term: IPO
+  match: [IPO]
+  ar_match: [طرح عام, الطرح]
+  en: "Initial public offering: when a company sells its shares to the public for the first time and starts trading on the stock exchange."
+  ar: "الطرح العام الأولي: عندما تبيع شركة أسهمها للجمهور لأول مرة وتبدأ التداول في البورصة."
+- term: Oversubscribed
+  match: [oversubscribed]
+  ar_match: [تغطية]
+  en: "When investors ask for more shares than are on offer. “11 times oversubscribed” means demand was 11 times the supply."
+  ar: "عندما يطلب المستثمرون أسهمًا أكثر من المعروض. «تغطية 11 مرة» تعني أن الطلب كان 11 ضعف المعروض."
+- term: EPS
+  match: [earnings per share, EPS, per share]
+  ar_match: [ربحية السهم]
+  en: "Earnings per share: the company’s profit divided by its number of shares."
+  ar: "ربحية السهم: ربح الشركة مقسومًا على عدد أسهمها."
+- term: Adjusted earnings
+  match: [adjusted]
+  ar_match: [المعدّل, معدّل]
+  en: "Profit after removing items the company calls unusual, like one-time losses. Useful, but always check what was removed."
+  ar: "الربح بعد استبعاد بنود تعتبرها الشركة غير عادية مثل الخسائر لمرة واحدة. مفيد، لكن تحقق دائمًا مما تم استبعاده."
+- term: Net profit
+  match: [net profit, net income]
+  ar_match: [صافي الربح, صافي ربح]
+  en: "What’s left after every cost, interest payment and tax: the bottom line."
+  ar: "ما يتبقى بعد كل التكاليف والفوائد والضرائب، أي السطر الأخير."
+- term: Chip stocks
+  match: [chipmakers, chip stocks, semiconductor, chips]
+  ar_match: [الرقائق]
+  en: "Companies that make computer chips, the brains inside phones, cars and AI computers."
+  ar: "الشركات التي تصنع رقائق الكمبيوتر، وهي العقل داخل الهواتف والسيارات وأجهزة الذكاء الاصطناعي."
+- term: Data center
+  match: [data-center, data center, data centers]
+  ar_match: [مراكز البيانات]
+  en: "A huge building full of computers that run websites and AI systems."
+  ar: "مبنى ضخم مليء بأجهزة الكمبيوتر التي تشغّل المواقع وأنظمة الذكاء الاصطناعي."
+- term: MSCI
+  match: [MSCI]
+  en: "A company that builds the indexes many global funds copy. If MSCI changes a country’s status, those funds must buy or sell."
+  ar: "شركة تبني المؤشرات التي تقلدها صناديق عالمية كثيرة. إذا غيّرت تصنيف دولة، تضطر هذه الصناديق للشراء أو البيع."
+- term: Emerging market
+  match: [emerging-market, emerging markets, emerging market]
+  ar_match: [الأسواق الناشئة, سوق ناشئ]
+  en: "A country growing fast but not yet rich, like Egypt, India or Brazil. Its markets usually carry more risk and more potential."
+  ar: "دولة تنمو بسرعة لكنها لم تصبح غنية بعد، مثل مصر والهند والبرازيل. أسواقها غالبًا أكثر مخاطرة وأكثر فرصًا."
+- term: Circuit breaker
+  match: [circuit breakers, circuit breaker]
+  ar_match: [قواطع الدائرة, قاطع الدائرة]
+  en: "An automatic pause in trading when prices fall too fast, to stop panic selling."
+  ar: "إيقاف تلقائي للتداول عندما تهبط الأسعار بسرعة كبيرة، لمنع البيع بذعر."
+- term: Safe haven
+  match: [safe haven, safety]
+  ar_match: [الملاذ الآمن, الأمان]
+  en: "Something investors buy when scared because they expect it to hold value, like gold or US government bonds."
+  ar: "أصل يشتريه المستثمرون عند الخوف لأنهم يتوقعون أن يحافظ على قيمته، مثل الذهب والسندات الأمريكية."
+- term: Risk premium
+  match: [risk premium]
+  ar_match: [علاوة مخاطر]
+  en: "The extra price people pay because something might go wrong, like oil costing more while ships are being attacked."
+  ar: "السعر الإضافي الذي يُدفع لأن شيئًا قد يسوء، مثل ارتفاع البترول بينما تتعرض السفن للهجمات."
+- term: Sanctions
+  match: [sanctions]
+  ar_match: [العقوبات, عقوبات]
+  en: "Penalties a country puts on another country, company or person, like banning trade with them."
+  ar: "عقوبات تفرضها دولة على دولة أو شركة أو شخص، مثل حظر التجارة معهم."
+- term: Tariff
+  match: [tariffs, tariff]
+  ar_match: [التعريفات, تعريفات]
+  en: "A tax on imported goods. It makes foreign products more expensive."
+  ar: "ضريبة على السلع المستوردة، تجعل المنتجات الأجنبية أغلى."
+- term: Shadow fleet
+  match: [shadow fleet]
+  ar_match: [أسطول الظل]
+  en: "Old tankers that carry oil from sanctioned countries, often hiding where they go."
+  ar: "ناقلات قديمة تنقل البترول من دول عليها عقوبات، وغالبًا تخفي وجهتها."
+- term: IEA
+  match: [International Energy Agency, IEA]
+  ar_match: [وكالة الطاقة الدولية]
+  en: "The International Energy Agency. It can release countries’ emergency oil stocks when supply is short."
+  ar: "وكالة الطاقة الدولية، ويمكنها السحب من مخزونات البترول الطارئة للدول عند نقص الإمدادات."
+- term: Strait of Hormuz
+  match: [Strait of Hormuz, Hormuz]
+  ar_match: [مضيق هرمز, هرمز]
+  en: "A narrow sea passage between Iran and Oman. Before the war, about a fifth of the world’s oil passed through it."
+  ar: "ممر بحري ضيق بين إيران وعُمان. قبل الحرب كان حوالي خُمس بترول العالم يمر عبره."
+- term: Bab al-Mandeb
+  match: [Bab al-Mandeb]
+  ar_match: [باب المندب]
+  en: "The narrow strait at the southern end of the Red Sea. Ships heading to the Suez Canal pass through it."
+  ar: "المضيق الضيق في الطرف الجنوبي للبحر الأحمر، وتمر عبره السفن المتجهة إلى قناة السويس."
+- term: Suez Canal
+  match: [Suez Canal, Suez]
+  ar_match: [قناة السويس]
+  en: "Egypt’s canal linking the Red Sea and the Mediterranean. Ships pay fees to use it, a key source of dollars for Egypt."
+  ar: "قناة مصر التي تربط البحر الأحمر بالمتوسط. تدفع السفن رسومًا لعبورها، وهي مصدر رئيسي للدولار لمصر."
+- term: Net sellers
+  match: [net sellers, kept selling]
+  ar_match: [صافي بائعين]
+  en: "When a group of investors sells more shares than it buys over a period, meaning money is leaving."
+  ar: "عندما تبيع مجموعة من المستثمرين أسهمًا أكثر مما تشتري خلال فترة، أي أن الأموال تخرج."
+- term: Blue chips
+  match: [blue chips, blue-chip, big companies, large companies]
+  ar_match: [الأسهم الكبرى, الشركات الكبرى]
+  en: "Large, well-known, established companies."
+  ar: "الشركات الكبيرة المعروفة الراسخة."
+- term: Sell-off
+  match: [sell-off, sold off]
+  ar_match: [موجة بيع]
+  en: "A period when many investors sell at once and prices drop fast."
+  ar: "فترة يبيع فيها مستثمرون كثيرون في وقت واحد فتهبط الأسعار بسرعة."
+- term: Dollar index
+  match: [dollar index, DXY]
+  ar_match: [مؤشر الدولار]
+  en: "A measure of the US dollar’s strength against other major currencies."
+  ar: "مقياس لقوة الدولار الأمريكي أمام العملات الرئيسية الأخرى."
+- term: Percentage point
+  match: [percentage points, points above]
+  ar_match: [نقاط مئوية, نقاط فوق]
+  en: "The simple difference between two percentages. From 14% to 24% is 10 percentage points."
+  ar: "الفرق البسيط بين نسبتين مئويتين. من 14% إلى 24% هو 10 نقاط مئوية."
+- term: GAAP
+  match: [GAAP, official accounting]
+  ar_match: [المحاسبة الرسمية]
+  en: "The official US accounting rules companies must follow when reporting profits."
+  ar: "قواعد المحاسبة الرسمية الأمريكية التي يجب أن تتبعها الشركات عند إعلان أرباحها."
+- term: Consensus
+  match: [analysts expected, expected, forecasts]
+  ar_match: [التوقعات, المتوقعة]
+  en: "The average of what analysts predicted. Results above it are a “beat,” below it a “miss.”"
+  ar: "متوسط توقعات المحللين. النتيجة الأعلى منه «تجاوز» والأقل «إخفاق»."
