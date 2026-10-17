@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Past editions: Hegazy Brief</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@800&family=IBM+Plex+Sans+Arabic:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root { color-scheme: light; --bg: #EEF1F5; --panel: #FFFFFF; --ink: #0E1726; --line: #D5DCE5; --red: #D12B2B; --teal: #0E6E7E;
+  box-sizing: border-box; padding-top: env(safe-area-inset-top, 0px); padding-bottom: env(safe-area-inset-bottom, 0px); }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { color-scheme: dark; --bg: #0C131C; --panel: #131D29; --ink: #E8EEF4; --line: #243241; --red: #FF5C5C; --teal: #46C2D3; } }
+:root[data-theme="dark"] { color-scheme: dark; --bg: #0C131C; --panel: #131D29; --ink: #E8EEF4; --line: #243241; --red: #FF5C5C; --teal: #46C2D3; }
+body { margin: 0; background: var(--bg); color: var(--ink); font-family: "IBM Plex Sans Arabic", "Segoe UI", Arial, sans-serif; }
+.wrap { max-width: 46rem; margin: 0 auto; padding: 1.5rem 1rem 3rem; }
+h1 { font-family: "Barlow Condensed", "Arial Narrow", sans-serif; font-size: 3.2rem; line-height: .9; margin: 0 0 .3rem; }
+h1 span { color: var(--red); } a { color: var(--teal); }
+ul { list-style: none; padding: 0; margin: 1.5rem 0 0; } li { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; margin-bottom: .5rem; }
+li a { display: block; padding: .8rem 1rem; font-weight: 600; text-decoration: none; }
+</style></head>
+<body><div class="wrap"><h1>Hegazy<span>.</span>Brief</h1><a href="index.html">Back to today</a>
+<ul>{% for d in days %}<li><a href="{{ d.date }}.html">{{ d.pretty }}</a></li>{% endfor %}</ul></div></body></html>

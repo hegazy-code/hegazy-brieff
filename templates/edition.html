@@ -1,0 +1,624 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Hegazy Brief: {{ pretty_date }}</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;800;900&family=Newsreader:ital,opsz,wght@0,6..72,500;0,6..72,700;1,6..72,500&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  color-scheme: light;
+  --night: #0B1726; --night-2: #13243A; --dusk: #1E3550; --star: #F3EFE6; --star-2: #B9C5D2; --star-3: #7E91A6; --line-n: #22364D;
+  --amber: #F2A93B; --up-n: #4CC38A; --down-n: #FF7A59;
+  --bg: #F3F5F7; --paper: #FFFFFF; --ink: #0F1D2E; --ink-2: #2E3B4A; --muted: #4A5868; --line: #C9D2DB; --line-2: #DEE3E9;
+  --up: #1F7A4D; --down: #C2410C; --accent: #1F4E79; --kicker: #B4561B; --ph: #DDE3E9;
+  --display: "Big Shoulders Display", "Arial Narrow", "Segoe UI", sans-serif;
+  --serif: "Newsreader", Georgia, "Times New Roman", serif;
+  --sans: "IBM Plex Sans Arabic", "Segoe UI", Tahoma, Arial, sans-serif;
+  box-sizing: border-box;
+  padding-top: env(safe-area-inset-top, 0px);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --bg: #111C28; --paper: #172433; --ink: #E6ECF2; --ink-2: #C3CDD8; --muted: #9AA8B7; --line: #2C3B4C; --line-2: #243243;
+    --up: #4CC38A; --down: #FF8A66; --accent: #7DB7F5; --kicker: #F2A93B; --ph: #22324A;
+  }
+}
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: #111C28; --paper: #172433; --ink: #E6ECF2; --ink-2: #C3CDD8; --muted: #9AA8B7; --line: #2C3B4C; --line-2: #243243;
+  --up: #4CC38A; --down: #FF8A66; --accent: #7DB7F5; --kicker: #F2A93B; --ph: #22324A;
+}
+*, *::before, *::after { box-sizing: inherit; }
+html { background: var(--night); scroll-padding-top: calc(4.5rem + env(safe-area-inset-top, 0px)); }
+body { margin: 0; font-family: var(--sans); color: var(--ink); background: var(--bg); font-size: 17px; line-height: 1.6; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 30; background: var(--bg); }
+a { color: var(--accent); }
+:focus-visible { outline: 3px solid var(--amber); outline-offset: 2px; }
+.wrap { max-width: 1200px; margin: 0 auto; padding: 0 28px; }
+@media (max-width: 640px) { .wrap { padding: 0 18px; } }
+.num { font-variant-numeric: tabular-nums; }
+[data-lang="en"] .ar { display: none !important; }
+[data-lang="ar"] .en { display: none !important; }
+.ar { direction: rtl; text-align: right; }
+.hidden { display: none !important; }
+
+/* NIGHT */
+.night { background: var(--night); color: var(--star); }
+.top { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 12px 24px; padding-top: 22px; }
+.brand { font-family: var(--display); font-weight: 900; font-size: 28px; letter-spacing: 1.5px; }
+.date { font-size: 14px; color: var(--star-2); margin-inline-start: 14px; }
+.lang { display: flex; gap: 8px; }
+.lang button { font: inherit; font-size: 14px; font-weight: 600; min-height: 44px; padding: 0 16px; border-radius: 22px; border: 1px solid #3A4E66; background: transparent; color: var(--star); cursor: pointer; }
+.lang button[aria-pressed="true"] { background: var(--star); color: var(--night); border-color: var(--star); }
+.hero { padding: 64px 0 44px; }
+.hero .when { font-size: 15px; font-weight: 600; color: var(--amber); }
+.hero h1 { font-family: var(--display); font-weight: 900; font-size: 96px; font-size: clamp(56px, 10vw, 96px); line-height: .88; margin: 14px 0 0; letter-spacing: -1px; }
+.hero h1.ar { font-family: var(--sans); font-size: clamp(38px, 6vw, 60px); line-height: 1.3; }
+.promise { border-top: 1px solid var(--line-n); padding: 30px 0 34px; display: flex; flex-wrap: wrap; align-items: flex-end; gap: 26px 56px; }
+.promise .claim { flex: 3 1 520px; min-width: 0; }
+.promise .l1 { font-family: var(--display); font-weight: 900; font-size: 58px; font-size: clamp(38px, 6vw, 58px); line-height: .92; margin: 0; }
+.promise .l2 { font-family: var(--display); font-weight: 900; font-size: 96px; font-size: clamp(64px, 10vw, 96px); line-height: .88; margin: 4px 0 0; color: var(--amber); letter-spacing: -1px; }
+.promise .claim-ar { font-size: 34px; font-weight: 700; line-height: 1.5; margin: 10px 0 0; }
+.promise .claim-ar span { color: var(--amber); }
+.stats { flex: 2 1 300px; min-width: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px 28px; }
+.stats b { display: block; font-family: var(--display); font-weight: 900; font-size: 48px; line-height: .9; }
+.stats span { font-size: 14px; color: var(--star-2); }
+.stats .gold b { color: var(--amber); }
+.timeline { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 170px), 1fr)); border-top: 1px solid var(--line-n); }
+.stop { padding: 22px 18px 26px; display: flex; flex-direction: column; gap: 6px; border-left: 1px solid #1C2E43; }
+.stop:first-child { border-left: 0; padding-left: 0; }
+.stop .t { font-size: 12px; font-weight: 700; color: var(--star-3); letter-spacing: .8px; }
+.stop .p { font-size: 15px; font-weight: 600; }
+.stop .v { font-family: var(--display); font-weight: 800; font-size: 52px; line-height: .95; }
+.stop .v.up { color: var(--up-n); } .stop .v.down { color: var(--down-n); }
+.stop .d { font-size: 14px; line-height: 1.5; color: var(--star-2); }
+@media (max-width: 640px) { .stop { border-left: 0; padding-left: 0; border-top: 1px solid #1C2E43; } .stop:first-child { border-top: 0; } }
+
+/* DUSK */
+.dusk { background: var(--dusk); color: var(--star); }
+.dusk .wrap { padding-top: 44px; padding-bottom: 48px; }
+.dusk h2 { font-family: var(--display); font-weight: 900; font-size: 46px; line-height: 1; margin: 0; }
+.dusk .sub { font-size: 15px; color: var(--star-2); }
+.dusk .head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 8px 24px; margin-bottom: 22px; }
+.chain { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 12px; font-size: 18px; font-weight: 600; }
+.chain .last { color: var(--amber); font-weight: 700; }
+
+/* MORNING */
+.morning { background: var(--bg); color: var(--ink); }
+.hello { font-family: var(--serif); font-size: 30px; line-height: 1.3; margin: 0; padding-top: 52px; max-width: 820px; }
+.controls { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20; background: var(--bg); margin-top: 26px; border-top: 2px solid var(--ink); border-bottom: 1px solid var(--line); }
+.controls .wrap { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 18px; padding-top: 4px; padding-bottom: 4px; }
+.tabs { display: flex; gap: 2px; overflow-x: auto; flex: 1 1 520px; min-width: 0; }
+.tabs button { font: inherit; font-size: 15px; white-space: nowrap; min-height: 44px; padding: 0 11px; border: 0; border-bottom: 3px solid transparent; background: transparent; color: var(--muted); cursor: pointer; }
+.tabs button[aria-pressed="true"] { color: var(--ink); font-weight: 700; border-bottom-color: var(--ink); }
+.controls label { display: flex; align-items: center; gap: 8px; font-size: 15px; }
+.controls select { font: inherit; font-size: 15px; min-height: 40px; padding: 0 10px; border: 1px solid var(--line); border-radius: 6px; background: var(--paper); color: var(--ink); }
+.controls input[type="checkbox"] { width: 20px; height: 20px; accent-color: var(--ink); }
+.kick { font-size: 13px; font-weight: 700; color: var(--kicker); letter-spacing: .6px; text-transform: uppercase; }
+.kick.blue { color: var(--accent); }
+.lead { display: flex; flex-wrap: wrap; gap: 36px; padding: 40px 0 44px; border-bottom: 1px solid var(--line); }
+.lead .art { flex: 7 1 520px; min-width: 0; }
+.lead .art img, .lead .art svg { width: 100%; height: auto; display: block; border-radius: 2px; }
+.lead .art figcaption { font-size: 13px; color: var(--muted); margin-top: 8px; }
+.lead .txt { flex: 5 1 340px; min-width: 0; display: flex; flex-direction: column; gap: 12px; }
+.lead h2 { font-family: var(--serif); font-weight: 700; font-size: 44px; line-height: 1.05; margin: 0; }
+.lead h2.ar, .story h3.ar { font-family: var(--sans); }
+.bigstat { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; }
+.bigstat b { font-family: var(--display); font-weight: 900; font-size: 64px; line-height: .9; }
+.bigstat span { font-size: 15px; color: var(--muted); }
+.up { color: var(--up); } .down { color: var(--down); }
+.lines { list-style: none; margin: 0; padding: 0; }
+.lines li { padding: 7px 0; border-top: 1px solid var(--line-2); font-size: 16px; line-height: 1.55; color: var(--ink-2); }
+.lines li b { color: var(--ink); margin-inline-end: 6px; }
+.stories { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 330px), 1fr)); border-bottom: 1px solid var(--line); }
+.story { padding: 30px 30px 32px 0; display: flex; flex-direction: column; gap: 10px; border-bottom: 1px solid var(--line-2); min-width: 0; }
+.story .s { font-family: var(--display); font-weight: 900; font-size: 54px; line-height: .9; }
+.story .sl { font-size: 14px; color: var(--muted); margin-top: -6px; }
+.story h3 { font-family: var(--serif); font-weight: 700; font-size: 28px; line-height: 1.1; margin: 0; }
+details.more summary { cursor: pointer; font-weight: 700; color: var(--accent); min-height: 44px; display: flex; align-items: center; list-style: none; }
+details.more summary::-webkit-details-marker { display: none; }
+details.more .full p { font-family: var(--serif); font-size: 18px; line-height: 1.65; margin: .5rem 0; }
+details.more .full.ar p { font-family: var(--sans); font-size: 17px; line-height: 1.9; }
+.chainline { font-size: 15px; color: var(--muted); border-inline-start: 3px solid var(--accent); padding-inline-start: 10px; }
+.src { font-size: 13px; color: var(--muted); }
+.src a { color: var(--muted); }
+.block { padding: 44px 0 8px; }
+.block h2 { font-family: var(--serif); font-weight: 700; font-size: 34px; margin: 0 0 6px; }
+.block .note { font-size: 15px; color: var(--muted); margin: 0 0 18px; }
+.quick { list-style: none; margin: 0; padding: 0; columns: 2 320px; column-gap: 40px; }
+.quick li { break-inside: avoid; padding: 10px 0; border-top: 1px solid var(--line-2); font-size: 16px; line-height: 1.5; }
+.quick .tag { font-size: 12px; font-weight: 700; color: var(--kicker); text-transform: uppercase; letter-spacing: .5px; margin-inline-end: 6px; }
+.board { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 250px), 1fr)); gap: 0 32px; }
+.board h3 { font-size: 13px; font-weight: 700; color: var(--muted); letter-spacing: .6px; text-transform: uppercase; margin: 18px 0 4px; }
+.row { display: flex; justify-content: space-between; gap: 12px; padding: 8px 0; border-bottom: 1px solid var(--line-2); font-size: 15px; }
+.row b { font-weight: 700; white-space: nowrap; }
+.charts { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 380px), 1fr)); gap: 36px 44px; }
+.chart h3 { font-family: var(--serif); font-size: 22px; line-height: 1.2; margin: 0 0 12px; }
+.chart .cap { font-size: 13px; color: var(--muted); margin: 10px 0 0; }
+.bars { font-size: 14px; }
+.bar { display: flex; align-items: center; margin: 0 0 6px; }
+.bar > * + * { margin-left: 10px; }
+.bl { flex: 0 0 36%; text-align: right; line-height: 1.2; }
+.bt { flex: 1 1 auto; position: relative; height: 14px; }
+.bars.split .bt::before { content: ""; position: absolute; left: 50%; top: -3px; bottom: -3px; border-left: 1px solid var(--line); }
+.bars:not(.split) .bt::before { content: ""; position: absolute; left: 0; top: -3px; bottom: -3px; border-left: 1px solid var(--line); }
+.bf { position: absolute; top: 0; bottom: 0; }
+.bf.pos { background: var(--up); } .bf.neg { background: var(--down); } .bf.neu { background: var(--accent); } .bf.flag { background: var(--kicker); }
+.bf.proj { background: repeating-linear-gradient(135deg, var(--kicker) 0 5px, transparent 5px 9px); outline: 1px solid var(--kicker); }
+.bv { flex: 0 0 70px; font-weight: 700; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.spark { width: 100%; height: 80px; display: block; margin-top: 6px; }
+.lc-v { font-family: var(--display); font-weight: 800; font-size: 34px; line-height: 1; }
+.lc-c { font-weight: 700; font-size: 15px; }
+.lc-c.up { color: var(--up); } .lc-c.down { color: var(--down); }
+.spark .ln { fill: none; stroke-width: 2; vector-effect: non-scaling-stroke; }
+.spark.up .ln { stroke: var(--up); } .spark.down .ln { stroke: var(--down); }
+.spark .area { opacity: .12; } .spark.up .area { fill: var(--up); } .spark.down .area { fill: var(--down); }
+.risk { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr)); gap: 0 36px; }
+.risk > div { padding: 18px 0; border-top: 2px solid var(--ink); }
+.risk .lvl { font-size: 12px; font-weight: 700; letter-spacing: .6px; text-transform: uppercase; }
+.risk .lvl.esc { color: var(--down); } .risk .lvl.watch { color: var(--kicker); }
+.risk h3 { font-family: var(--serif); font-size: 24px; line-height: 1.15; margin: 6px 0 8px; }
+.risk dl { margin: 0; font-size: 15px; } .risk dt { font-weight: 700; margin-top: 6px; } .risk dd { margin: 0; color: var(--ink-2); }
+.cal { list-style: none; margin: 0; padding: 0; }
+.cal li { display: flex; flex-wrap: wrap; gap: 4px 24px; padding: 12px 0; border-top: 1px solid var(--line-2); }
+.cal b { flex: 0 0 200px; font-family: var(--display); font-size: 22px; line-height: 1.2; }
+.cal div { flex: 1 1 320px; }
+.learn { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); gap: 0 36px; }
+.learn > div { padding: 18px 0; border-top: 1px solid var(--line); }
+.learn h3 { font-family: var(--serif); font-size: 24px; margin: 0 0 6px; }
+.learn .ex { color: var(--muted); font-style: italic; }
+.learn .ar .ex { font-style: normal; }
+.empty { display: none; color: var(--muted); padding: 30px 0; }
+
+
+/* Tap-to-explain terms */
+button.term { font: inherit; color: inherit; background: none; border: 0; padding: 0; margin: 0; cursor: pointer; text-decoration: underline dotted; text-decoration-thickness: 2px; text-underline-offset: 3px; text-decoration-color: var(--accent); }
+.night button.term, .dusk button.term { text-decoration-color: var(--amber); }
+#term-pop { position: absolute; z-index: 50; width: min(340px, calc(100vw - 24px)); background: var(--paper); color: var(--ink); border: 1px solid var(--line); border-radius: 10px; box-shadow: 0 12px 32px rgba(0,0,0,.18); padding: 14px 16px; font-size: 15px; line-height: 1.55; }
+#term-pop h4 { font-family: var(--serif); font-size: 20px; margin: 0 0 6px; }
+#term-pop .ar { font-size: 16px; line-height: 1.8; margin-top: 6px; }
+#term-pop .row2 { display: flex; justify-content: space-between; gap: 10px; margin-top: 10px; }
+#term-pop button { font: inherit; font-size: 14px; font-weight: 600; min-height: 40px; padding: 0 12px; border-radius: 20px; border: 1px solid var(--line); background: transparent; color: var(--ink); cursor: pointer; }
+#term-pop button.ask { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+
+/* New here guide */
+details.guide { margin-top: 18px; max-width: 820px; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+details.guide summary { cursor: pointer; min-height: 48px; display: flex; align-items: center; font-weight: 700; list-style: none; }
+details.guide summary::-webkit-details-marker { display: none; }
+details.guide ol { margin: 0 0 16px; padding-inline-start: 22px; }
+details.guide li { margin: 6px 0; }
+
+/* Assistant */
+#ask-open { position: fixed; right: 18px; bottom: calc(18px + env(safe-area-inset-bottom, 0px)); z-index: 40; font: inherit; font-weight: 700; font-size: 15px; min-height: 52px; padding: 0 20px; border-radius: 26px; border: 0; background: var(--amber); color: #0B1726; box-shadow: 0 8px 24px rgba(0,0,0,.25); cursor: pointer; }
+#ask-panel { position: fixed; right: 18px; bottom: calc(18px + env(safe-area-inset-bottom, 0px)); z-index: 45; width: min(420px, calc(100vw - 24px)); height: min(620px, calc(100vh - 48px)); display: flex; flex-direction: column; background: var(--paper); color: var(--ink); border: 1px solid var(--line); border-radius: 14px; box-shadow: 0 18px 48px rgba(0,0,0,.28); overflow: hidden; }
+#ask-panel header { background: var(--night); color: var(--star); padding: 14px 16px; display: flex; justify-content: space-between; align-items: center; gap: 10px; }
+#ask-panel header b { font-family: var(--display); font-size: 22px; letter-spacing: .5px; }
+#ask-panel header span { display: block; font-size: 12px; color: var(--star-2); }
+#ask-close { font: inherit; font-size: 22px; width: 44px; height: 44px; border-radius: 22px; border: 0; background: transparent; color: var(--star); cursor: pointer; }
+#ask-log { flex: 1 1 auto; overflow-y: auto; padding: 14px 16px; display: flex; flex-direction: column; gap: 10px; }
+.msg { max-width: 88%; padding: 10px 13px; border-radius: 12px; font-size: 15px; line-height: 1.55; white-space: pre-wrap; overflow-wrap: break-word; }
+.msg.user { align-self: flex-end; background: var(--ink); color: var(--paper); }
+.msg.bot { align-self: flex-start; background: var(--bg); border: 1px solid var(--line-2); }
+.msg.note { align-self: center; background: none; color: var(--muted); font-size: 13px; text-align: center; }
+#ask-sugg { display: flex; flex-wrap: wrap; gap: 6px; padding: 0 16px 10px; }
+#ask-sugg button { font: inherit; font-size: 13px; min-height: 36px; padding: 0 12px; border-radius: 18px; border: 1px solid var(--line); background: transparent; color: var(--ink); cursor: pointer; }
+#ask-form { display: flex; gap: 8px; padding: 10px 12px; border-top: 1px solid var(--line); }
+#ask-input { flex: 1 1 auto; font: inherit; font-size: 15px; min-height: 44px; padding: 0 12px; border: 1px solid var(--line); border-radius: 22px; background: var(--bg); color: var(--ink); }
+#ask-send { font: inherit; font-weight: 700; min-height: 44px; padding: 0 16px; border-radius: 22px; border: 0; background: var(--ink); color: var(--paper); cursor: pointer; }
+#ask-panel .fine2 { font-size: 11px; color: var(--muted); padding: 0 14px 10px; }
+@media (max-width: 520px) { #ask-panel { right: 0; left: 0; bottom: 0; width: 100%; height: 85vh; border-radius: 14px 14px 0 0; } }
+
+/* NIGHT RETURNS */
+.foot { background: var(--night); color: var(--star); margin-top: 56px; }
+.foot .wrap { padding-top: 56px; padding-bottom: 64px; }
+.foot .q { font-family: var(--display); font-weight: 900; font-size: 64px; font-size: clamp(40px, 7vw, 64px); line-height: .92; max-width: 800px; margin: 0; }
+.foot .q-ar { font-size: 34px; font-weight: 700; line-height: 1.5; max-width: 800px; margin: 10px 0 0; }
+.foot .made { font-size: 16px; color: #C9D3DE; margin: 22px 0 0; padding-top: 18px; border-top: 1px solid var(--line-n); }
+.foot .fine { font-size: 13px; color: var(--star-3); margin: 10px 0 0; max-width: 760px; }
+</style>
+</head>
+<body data-lang="en" data-chat-endpoint="{{ chat_endpoint or '' }}">
+
+<div class="night">
+<div class="wrap">
+  <header class="top">
+    <div><span class="brand">HEGAZY BRIEF</span><span class="date">{{ pretty_date }}</span>{% if archive_link %} <a href="archive.html" style="color:var(--star-2);font-size:14px;margin-inline-start:12px">Past editions</a>{% endif %}</div>
+    <div class="lang" role="group" aria-label="Language">
+      <button type="button" data-lang="en" aria-pressed="true">English</button>
+      <button type="button" data-lang="both" aria-pressed="false">Both</button>
+      <button type="button" data-lang="ar" aria-pressed="false">عربي</button>
+    </div>
+  </header>
+  <section class="hero">
+    <div class="when en">8:00 AM in Cairo</div>
+    <div class="when ar">الثامنة صباحًا بتوقيت القاهرة</div>
+    <h1 class="en">While Cairo slept,<br>the world moved.</h1>
+    <h1 class="ar">بينما كانت القاهرة نائمة، تحرّك العالم.</h1>
+  </section>
+  <section class="promise" aria-label="Our promise">
+    <div class="claim">
+      <div class="en"><p class="l1">I don’t guess what the world is doing.</p><p class="l2">I know.</p></div>
+      <p class="claim-ar ar">أنا لا أخمّن ما يفعله العالم. <span>أنا أعرف.</span></p>
+    </div>
+    <div class="stats">
+      <div><b>35</b><span>checks every morning</span></div>
+      <div><b>70</b><span>markets tracked</span></div>
+      <div><b>6</b><span>continents covered</span></div>
+      <div class="gold"><b>8:00</b><span>ready before Cairo wakes</span></div>
+    </div>
+  </section>
+  <section class="timeline" aria-label="The night, market by market">
+    {% for s in timeline %}<div class="stop" data-region="{{ s.region }}">
+      <span class="t">{{ s.time }}</span><span class="p">{{ s.place }}</span>
+      <span class="v num {{ s.cls }}">{{ s.value }}</span>
+      <span class="d en">{{ s.en }}</span><span class="d ar">{{ s.ar }}</span>
+    </div>{% endfor %}
+  </section>
+</div>
+</div>
+
+{% if chain %}
+<div class="dusk"><div class="wrap">
+  <div class="head"><h2 class="en">How the night reaches your pocket</h2><h2 class="ar" style="font-family:var(--sans);font-size:34px">كيف تصل أحداث الليل إلى جيبك</h2>
+  <span class="sub en">From the world’s headlines to prices in Cairo</span></div>
+  <div class="chain en">{% for c in chain %}<span class="{{ 'last' if loop.last else '' }}">{{ c.en }}</span>{% if not loop.last %}<svg aria-hidden="true" width="34" height="16" viewBox="0 0 34 16" fill="none" stroke="#F2A93B" stroke-width="2"><path d="M1 8h30M25 2l6 6-6 6"></path></svg>{% endif %}{% endfor %}</div>
+  <div class="chain ar" style="margin-top:10px">{% for c in chain %}<span class="{{ 'last' if loop.last else '' }}">{{ c.ar }}</span>{% if not loop.last %}<svg aria-hidden="true" width="34" height="16" viewBox="0 0 34 16" fill="none" stroke="#F2A93B" stroke-width="2"><path d="M33 8H3M9 2L3 8l6 6"></path></svg>{% endif %}{% endfor %}</div>
+</div></div>
+{% endif %}
+
+<div class="morning">
+<div class="wrap">
+  <p class="hello en">Good morning. Here’s the full picture, sector by sector.</p>
+  <p class="hello ar" style="font-family:var(--sans)">صباح الخير. هذه الصورة الكاملة، قطاعًا بقطاع.</p>
+  <details class="guide en"><summary>New to markets? How to read this page</summary>
+    <ol>
+      <li><b>Green numbers went up, red numbers went down.</b> A percentage shows by how much since the last session.</li>
+      <li><b>Underlined words can be tapped.</b> One tap explains the term in simple language, without leaving the page.</li>
+      <li><b>Every story answers three questions:</b> what happened, why it happened, and what it means for Egypt.</li>
+      <li><b>Want the long version?</b> Tap “Read the full analysis” under any story.</li>
+      <li><b>Still confused?</b> Tap “Ask” at the bottom right and ask anything, in English or Arabic.</li>
+    </ol>
+  </details>
+  <details class="guide ar" dir="rtl"><summary>جديد على الأسواق؟ كيف تقرأ هذه الصفحة</summary>
+    <ol>
+      <li><b>الأرقام الخضراء ارتفعت والحمراء انخفضت.</b> النسبة المئوية توضح مقدار التغير منذ آخر جلسة.</li>
+      <li><b>الكلمات المسطّرة يمكن الضغط عليها.</b> ضغطة واحدة تشرح المصطلح ببساطة دون مغادرة الصفحة.</li>
+      <li><b>كل خبر يجيب عن ثلاثة أسئلة:</b> ماذا حدث، ولماذا، وماذا يعني لمصر.</li>
+      <li><b>تريد التفاصيل؟</b> اضغط «اقرأ التحليل الكامل» تحت أي خبر.</li>
+      <li><b>ما زال الأمر غير واضح؟</b> اضغط «اسأل» أسفل الصفحة واسأل أي سؤال بالعربية أو الإنجليزية.</li>
+    </ol>
+  </details>
+</div>
+<nav class="controls" aria-label="Filter stories"><div class="wrap">
+  <div class="tabs" role="group" aria-label="Sector">
+    <button type="button" data-sector="all" aria-pressed="true">All</button>
+    {% for k, en, ar in sector_names %}<button type="button" data-sector="{{ k }}" aria-pressed="false">{{ en }}</button>{% endfor %}
+    <button type="button" data-sector="charts" aria-pressed="false">Charts</button>
+    <button type="button" data-sector="board" aria-pressed="false">Markets board</button>
+    <button type="button" data-sector="risk" aria-pressed="false">Risk radar</button>
+    <button type="button" data-sector="next" aria-pressed="false">Coming up</button>
+    <button type="button" data-sector="learn" aria-pressed="false">Learn</button>
+  </div>
+  <label>Region <select id="region"><option value="all">Everywhere</option>{% for k, en, ar in regions %}<option value="{{ k }}">{{ en }}</option>{% endfor %}</select></label>
+  <label><input type="checkbox" id="important"> Top stories only</label>
+</div></nav>
+
+<main class="wrap">
+<section data-block="stories">
+  {% if lead %}
+  <article class="lead story-item" data-sector="{{ lead.sector }}" data-region="{{ lead.region_str }}" data-imp="{{ lead.importance }}">
+    {% if lead.image or lead.illustration %}<figure class="art" style="margin:0">
+      {% if lead.image %}<img src="{{ lead.image }}" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.parentNode.remove()">{% else %}{{ lead.illustration|safe }}{% endif %}
+      {% if lead.image_credit %}<figcaption>{{ lead.image_credit }}</figcaption>{% endif %}
+    </figure>{% endif %}
+    <div class="txt">
+      <span class="kick">{{ lead.kicker }}</span>
+      <h2 class="en">{{ lead.t_en }}</h2><h2 class="ar">{{ lead.t_ar }}</h2>
+      {% if lead.stat %}<div class="bigstat"><b class="num {{ lead.stat_cls }}">{{ lead.stat }}</b><span>{{ lead.label }}</span></div>{% endif %}
+      <ul class="lines en"><li><b>What</b> {{ lead.what_en }}</li><li><b>Why</b> {{ lead.why_en }}</li><li><b>For Egypt</b> {{ lead.egypt_en }}</li></ul>
+      <ul class="lines ar"><li><b>ماذا</b> {{ lead.what_ar }}</li><li><b>لماذا</b> {{ lead.why_ar }}</li><li><b>لمصر</b> {{ lead.egypt_ar }}</li></ul>
+      {% if lead.full_en %}<details class="more"><summary><span class="en">Read the full analysis</span><span class="ar">اقرأ التحليل الكامل</span></summary>
+        <div class="full en">{% for p in lead.full_en %}<p>{{ p }}</p>{% endfor %}{% if lead.chain_en %}<p class="chainline">{{ lead.chain_en }}</p>{% endif %}</div>
+        <div class="full ar">{% for p in lead.full_ar %}<p>{{ p }}</p>{% endfor %}{% if lead.chain_ar %}<p class="chainline">{{ lead.chain_ar }}</p>{% endif %}</div>
+      </details>{% endif %}
+      <p class="src">Sources: {% for n, l in lead.sources %}<a href="{{ l }}" target="_blank" rel="noopener">{{ n }}</a>{% if not loop.last %}, {% endif %}{% endfor %}</p>
+    </div>
+  </article>
+  {% endif %}
+
+  <div class="stories">
+  {% for s in stories %}
+    <article class="story story-item" data-sector="{{ s.sector }}" data-region="{{ s.region_str }}" data-imp="{{ s.importance }}">
+      <span class="kick blue">{{ s.kicker }}</span>
+      {% if s.stat %}<span class="s num {{ s.stat_cls }}">{{ s.stat }}</span><span class="sl">{{ s.label }}</span>{% endif %}
+      <h3 class="en">{{ s.t_en }}</h3><h3 class="ar">{{ s.t_ar }}</h3>
+      <ul class="lines en">{% if s.what_en %}<li><b>What</b> {{ s.what_en }}</li>{% endif %}{% if s.why_en %}<li><b>Why</b> {{ s.why_en }}</li>{% endif %}{% if s.egypt_en %}<li><b>For Egypt</b> {{ s.egypt_en }}</li>{% endif %}</ul>
+      <ul class="lines ar">{% if s.what_ar %}<li><b>ماذا</b> {{ s.what_ar }}</li>{% endif %}{% if s.why_ar %}<li><b>لماذا</b> {{ s.why_ar }}</li>{% endif %}{% if s.egypt_ar %}<li><b>لمصر</b> {{ s.egypt_ar }}</li>{% endif %}</ul>
+      {% if s.full_en or s.chart_html %}<details class="more"><summary><span class="en">Read the full analysis</span><span class="ar">اقرأ التحليل الكامل</span></summary>
+        <div class="full en">{% for p in s.full_en %}<p>{{ p }}</p>{% endfor %}{% if s.chain_en %}<p class="chainline">{{ s.chain_en }}</p>{% endif %}</div>
+        <div class="full ar">{% for p in s.full_ar %}<p>{{ p }}</p>{% endfor %}{% if s.chain_ar %}<p class="chainline">{{ s.chain_ar }}</p>{% endif %}</div>
+        {% if s.chart_html %}<div class="chart" style="margin-top:14px"><h3 class="en">{{ s.chart_title_en }}</h3><h3 class="ar">{{ s.chart_title_ar }}</h3>{{ s.chart_html|safe }}<p class="cap en">{{ s.chart_cap_en }}</p></div>{% endif %}
+      </details>{% endif %}
+      <p class="src">Sources: {% for n, l in s.sources %}<a href="{{ l }}" target="_blank" rel="noopener">{{ n }}</a>{% if not loop.last %}, {% endif %}{% endfor %}</p>
+    </article>
+  {% endfor %}
+  </div>
+
+  {% if quick %}
+  <div class="block" data-quick>
+    <h2 class="en">In brief</h2><h2 class="ar" style="font-family:var(--sans)">باختصار</h2>
+    <ul class="quick">{% for s in quick %}<li class="story-item" data-sector="{{ s.sector }}" data-region="{{ s.region_str }}" data-imp="LOW"><span class="tag">{{ s.sector_name }}</span><span class="en">{{ s.t_en }}</span><span class="ar">{{ s.t_ar }}</span>{% if s.sources %} <a class="src" href="{{ s.sources[0][1] }}" target="_blank" rel="noopener">{{ s.sources[0][0] }}</a>{% endif %}</li>{% endfor %}</ul>
+  </div>
+  {% endif %}
+  <p class="empty" id="empty">Nothing matches these filters today. Try another region, or switch off “Top stories only.”</p>
+</section>
+
+<section class="block" data-block="charts">
+  <h2 class="en">Charts</h2><h2 class="ar" style="font-family:var(--sans)">الرسوم البيانية</h2>
+  <p class="note en">Every bar is a sourced number.</p>
+  <div class="charts">{% for c in charts %}<figure class="chart" data-region="{{ c.region }}" style="margin:0"><h3 class="en">{{ c.title_en }}</h3>{% if c.title_ar %}<h3 class="ar" style="font-family:var(--sans)">{{ c.title_ar }}</h3>{% endif %}{{ c.html|safe }}<p class="cap en">{{ c.cap_en }}</p>{% if c.cap_ar %}<p class="cap ar">{{ c.cap_ar }}</p>{% endif %}</figure>{% endfor %}</div>
+</section>
+
+<section class="block" data-block="board">
+  <h2 class="en">Markets board</h2><h2 class="ar" style="font-family:var(--sans)">لوحة الأسواق</h2>
+  <p class="note en">{{ board_note }}</p>
+  <div class="board">{% for g in board %}<div data-region="{{ g.region }}"><h3>{{ g.group }}</h3>{% for r in g.rows %}<div class="row"><span>{{ r.name }}</span><b class="num {{ '' if (r.chg is none or r.name == 'VIX') else ('up' if r.chg >= 0 else 'down') }}">{{ r.display or (r.last|num) }}{% if r.chg is not none %} {{ r.chg|pct }}{% endif %}</b></div>{% endfor %}</div>{% endfor %}</div>
+</section>
+
+<section class="block" data-block="risk">
+  <h2 class="en">Risk radar</h2><h2 class="ar" style="font-family:var(--sans)">رادار المخاطر</h2>
+  <p class="note en">The situations most likely to move markets next.</p>
+  <div class="risk">{% for r in summary.risk_watch %}<div data-region="{{ r.regions|join(' ') }}">
+    <span class="lvl {{ r.level }}">{{ r.level_label }}</span>
+    <h3 class="en">{{ r.situation_en }}</h3><h3 class="ar" style="font-family:var(--sans)">{{ r.situation_ar }}</h3>
+    <dl class="en"><dt>Now</dt><dd>{{ r.status_en }}</dd><dt>Next</dt><dd>{{ r.next_en }}</dd><dt>Watch</dt><dd>{{ r.watch_en }}</dd></dl>
+    <dl class="ar"><dt>الآن</dt><dd>{{ r.status_ar }}</dd><dt>التالي</dt><dd>{{ r.next_ar }}</dd><dt>تابع</dt><dd>{{ r.watch_ar }}</dd></dl>
+  </div>{% endfor %}</div>
+</section>
+
+<section class="block" data-block="next">
+  <h2 class="en">Coming up</h2><h2 class="ar" style="font-family:var(--sans)">الأحداث القادمة</h2>
+  <ul class="cal">{% for c in summary.calendar %}<li data-region="{{ c.regions|join(' ') }}"><b>{{ c.when }}</b><div><span class="en">{{ c.en }}</span><span class="ar">{{ c.ar }}</span></div></li>{% endfor %}</ul>
+</section>
+
+<section class="block" data-block="learn">
+  <h2 class="en">Learn the language of markets</h2><h2 class="ar" style="font-family:var(--sans)">تعلّم لغة الأسواق</h2>
+  <div class="learn">{% for t in summary.terms %}<div data-region="all">
+    <div class="en"><h3>{{ t.term_en }}</h3><p>{{ t.explain_en }}</p><p class="ex">{{ t.example_en }}</p></div>
+    <div class="ar"><h3 style="font-family:var(--sans)">{{ t.term_ar }}</h3><p>{{ t.explain_ar }}</p><p class="ex">{{ t.example_ar }}</p></div>
+  </div>{% endfor %}</div>
+</section>
+</main>
+</div>
+
+<footer class="foot"><div class="wrap">
+  <p class="q en">“The world moves every morning. By eight, I know why.”</p>
+  <p class="q-ar ar">«العالم يتحرك كل صباح. وبحلول الثامنة، أعرف السبب.»</p>
+  <p class="made">Made by Youssef Hegazy in Cairo.</p>
+  <p class="fine">{{ fine_print }}</p>
+</div></footer>
+
+<div id="term-pop" class="hidden" role="dialog" aria-label="Term explanation"></div>
+<button id="ask-open" type="button" class="hidden" aria-haspopup="dialog"><span class="en">Ask Hegazy Brief</span><span class="ar">اسأل</span></button>
+<section id="ask-panel" class="hidden" role="dialog" aria-label="Ask Hegazy Brief">
+  <header><div><b>Ask Hegazy Brief</b><span class="en">Any question about today’s news, explained simply</span><span class="ar">أي سؤال عن أخبار اليوم بشرح بسيط</span></div><button id="ask-close" type="button" aria-label="Close">×</button></header>
+  <div id="ask-log" aria-live="polite"></div>
+  <div id="ask-sugg">
+    <button type="button" class="en">Explain today in simple words</button>
+    <button type="button" class="en">Why does oil matter for Egypt?</button>
+    <button type="button" class="en">What is a bond yield?</button>
+    <button type="button" class="ar">اشرح لي أخبار اليوم ببساطة</button>
+    <button type="button" class="ar">لماذا يتراجع الجنيه؟</button>
+  </div>
+  <form id="ask-form"><label for="ask-input" class="hidden">Your question</label><input id="ask-input" autocomplete="off" placeholder="Ask anything… اسأل أي سؤال"><button id="ask-send" type="submit">Send</button></form>
+  <p class="fine2">Answers are AI-generated from today’s brief and general knowledge. Not investment advice.</p>
+</section>
+<script type="application/json" id="glossary">{{ glossary_json|safe }}</script>
+<script type="application/json" id="brief-data">{{ brief_json|safe }}</script>
+<script>
+(function () {
+  var body = document.body, st = { sector: "all", region: "all", top: false };
+  function save(k, v) { try { localStorage.setItem(k, v); } catch (e) {} }
+  function load(k) { try { return localStorage.getItem(k); } catch (e) { return null; } }
+  function setLang(l) {
+    body.dataset.lang = l;
+    document.documentElement.lang = l === "ar" ? "ar" : "en";
+    document.querySelectorAll(".lang button").forEach(function (b) { b.setAttribute("aria-pressed", String(b.dataset.lang === l)); });
+    save("hb-lang", l);
+  }
+  document.querySelectorAll(".lang button").forEach(function (b) { b.addEventListener("click", function () { setLang(b.dataset.lang); }); });
+  setLang(load("hb-lang") || "en");
+
+  function regOk(el) {
+    var r = (el.getAttribute("data-region") || "all").split(" ");
+    return st.region === "all" || r.indexOf("all") > -1 || r.indexOf("global") > -1 || r.indexOf(st.region) > -1;
+  }
+  var blocks = ["charts", "board", "risk", "next", "learn"];
+  function apply() {
+    var storiesOn = blocks.indexOf(st.sector) === -1, shown = 0;
+    document.querySelectorAll(".story-item").forEach(function (el) {
+      var imp = el.getAttribute("data-imp");
+      var ok = storiesOn && (st.sector === "all" || el.dataset.sector === st.sector) && regOk(el) && (!st.top || imp === "HIGH");
+      el.classList.toggle("hidden", !ok); if (ok) shown++;
+    });
+    var q = document.querySelector("[data-quick]");
+    if (q) q.classList.toggle("hidden", !q.querySelector(".story-item:not(.hidden)"));
+    var st2 = document.querySelector(".stories");
+    if (st2) st2.classList.toggle("hidden", !st2.querySelector(".story-item:not(.hidden)"));
+    document.querySelector('[data-block="stories"]').classList.toggle("hidden", !storiesOn);
+    document.getElementById("empty").style.display = storiesOn && !shown ? "block" : "none";
+    blocks.forEach(function (k) {
+      var b = document.querySelector('[data-block="' + k + '"]');
+      if (!b) return;
+      b.classList.toggle("hidden", !(st.sector === "all" || st.sector === k));
+      b.querySelectorAll("[data-region]").forEach(function (el) { el.classList.toggle("hidden", !regOk(el)); });
+    });
+    document.querySelectorAll(".stop").forEach(function (el) { el.style.opacity = regOk(el) ? "1" : ".35"; });
+  }
+  document.querySelectorAll(".tabs button").forEach(function (b) {
+    b.addEventListener("click", function () {
+      st.sector = b.dataset.sector;
+      document.querySelectorAll(".tabs button").forEach(function (x) { x.setAttribute("aria-pressed", String(x === b)); });
+      apply();
+      var n = document.querySelector(".controls"); if (n.getBoundingClientRect().top < 0) n.scrollIntoView({ behavior: "smooth" });
+    });
+  });
+  document.getElementById("region").addEventListener("change", function (e) { st.region = e.target.value; apply(); });
+  document.getElementById("important").addEventListener("change", function (e) { st.top = e.target.checked; apply(); });
+  apply();
+
+  /* ---------- Tap-to-explain ---------- */
+  var GL = JSON.parse(document.getElementById("glossary").textContent || "[]");
+  function esc(t) { return t.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"); }
+  function matchers(lang) {
+    var list = [];
+    GL.forEach(function (g, i) {
+      (lang === "ar" ? (g.ar_match || []) : (g.match || [])).forEach(function (m) {
+        var cs = lang !== "ar" && /[A-Z]/.test(m) && m.replace(/[^A-Za-z]/g, "").length <= 4;
+        var re = lang === "ar" ? new RegExp(esc(m)) : new RegExp("\\b" + esc(m) + "\\b", cs ? "" : "i");
+        list.push({ re: re, i: i, len: m.length });
+      });
+    });
+    return list.sort(function (a, b) { return b.len - a.len; });
+  }
+  var M = { en: matchers("en"), ar: matchers("ar") };
+  function wrapTerms(root, lang) {
+    var used = {}, walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, {
+      acceptNode: function (n) {
+        return n.parentElement.closest("a,button,h1,h2,h3,summary,.src,.kick,.s,.sl,.bigstat,.v,.t,.p") ? NodeFilter.FILTER_REJECT : NodeFilter.FILTER_ACCEPT;
+      }
+    });
+    var nodes = []; while (walker.nextNode()) nodes.push(walker.currentNode);
+    nodes.forEach(function (node) {
+      var cur = node;
+      while (cur) {
+        var best = null;
+        M[lang].forEach(function (m) {
+          if (used[m.i]) return;
+          var r = m.re.exec(cur.nodeValue);
+          if (r && (!best || r.index < best.idx || (r.index === best.idx && r[0].length > best.text.length))) best = { idx: r.index, text: r[0], i: m.i };
+        });
+        if (!best) break;
+        used[best.i] = true;
+        var after = cur.splitText(best.idx);
+        var rest = after.splitText(best.text.length);
+        var b = document.createElement("button");
+        b.type = "button"; b.className = "term"; b.dataset.g = best.i; b.textContent = after.nodeValue;
+        after.parentNode.replaceChild(b, after);
+        cur = rest;
+      }
+    });
+  }
+  document.querySelectorAll(".story-item .en, .lead .txt .en, .quick .en, .chain.en, .stop .d.en").forEach(function (el) { wrapTerms(el, "en"); });
+  document.querySelectorAll(".story-item .ar, .lead .txt .ar, .quick .ar, .chain.ar, .stop .d.ar").forEach(function (el) { wrapTerms(el, "ar"); });
+
+  var pop = document.getElementById("term-pop"), popFor = null;
+  function closePop() { pop.classList.add("hidden"); popFor = null; }
+  function openPop(btn) {
+    var g = GL[+btn.dataset.g]; if (!g) return;
+    var lang = body.dataset.lang;
+    pop.innerHTML = "";
+    var h = document.createElement("h4"); h.textContent = g.term; pop.appendChild(h);
+    if (lang !== "ar") { var p1 = document.createElement("p"); p1.style.margin = "0"; p1.textContent = g.en; pop.appendChild(p1); }
+    if (lang !== "en" && g.ar) { var p2 = document.createElement("p"); p2.className = "ar"; p2.setAttribute("dir", "rtl"); p2.style.margin = "6px 0 0"; p2.textContent = g.ar; pop.appendChild(p2); }
+    var row = document.createElement("div"); row.className = "row2";
+    var ask = document.createElement("button"); ask.type = "button"; ask.className = "ask"; ask.textContent = lang === "ar" ? "اسأل المساعد عن هذا" : "Ask the assistant about this";
+    ask.addEventListener("click", function () { closePop(); openAsk(lang === "ar" ? ("اشرح لي ببساطة: " + g.term + " ولماذا يهم مصر اليوم؟") : ("Explain " + g.term + " simply, and why it matters for Egypt today.")); });
+    var cl = document.createElement("button"); cl.type = "button"; cl.textContent = lang === "ar" ? "إغلاق" : "Close"; cl.addEventListener("click", closePop);
+    if (askReady) row.appendChild(ask); row.appendChild(cl); pop.appendChild(row);
+    pop.classList.remove("hidden");
+    var r = btn.getBoundingClientRect(), w = pop.offsetWidth;
+    var left = Math.max(12, Math.min(window.scrollX + r.left, window.scrollX + document.documentElement.clientWidth - w - 12));
+    pop.style.left = left + "px"; pop.style.top = (window.scrollY + r.bottom + 8) + "px";
+    popFor = btn; cl.focus();
+  }
+  document.addEventListener("click", function (e) {
+    var t = e.target.closest && e.target.closest("button.term");
+    if (t) { if (popFor === t) closePop(); else openPop(t); return; }
+    if (!pop.contains(e.target)) closePop();
+  });
+  document.addEventListener("keydown", function (e) { if (e.key === "Escape") { closePop(); if (!panel.classList.contains("hidden")) closeAsk(); } });
+
+  /* ---------- Assistant ---------- */
+  var BRIEF = JSON.parse(document.getElementById("brief-data").textContent || "{}");
+  var panel = document.getElementById("ask-panel"), openBtn = document.getElementById("ask-open");
+  var log = document.getElementById("ask-log"), input = document.getElementById("ask-input");
+  var history = [], busy = false, askReady = false, backend = null;
+  var ENDPOINT = body.getAttribute("data-chat-endpoint") || "";
+  var INSTR = "You are the assistant inside Hegazy Brief, a daily briefing on world markets, the economy, finance, accounting, business and politics, explained for Egyptians. " +
+    "The reader may know nothing about finance, or may be an expert. Answer in the same language as the question (Arabic or English). " +
+    "Start with a direct answer in plain words, explain every technical term you use, and connect the answer to Egypt when it is relevant. " +
+    "For anything about today's news, use the search_brief tool and repeat its numbers exactly. If the brief does not cover the question, say so, then answer from general knowledge, clearly marked as not from today's brief and possibly out of date. " +
+    "Never give personal investment advice and never tell anyone to buy or sell; you may explain how things work. Politics: neutral facts only, no opinions about politicians or parties. " +
+    "Keep answers under 170 words unless the reader asks for more. Plain text only: no markdown, no headings, no tables.";
+  function searchBrief(q) {
+    var words = String(q || "").toLowerCase().split(/[^\p{L}\p{N}$%.]+/u).filter(function (w) { return w.length > 2; });
+    var scored = (BRIEF.stories || []).map(function (s) {
+      var hay = (s.text || "").toLowerCase(), sc = 0;
+      words.forEach(function (w) { if (hay.indexOf(w) > -1) sc++; });
+      return { s: s, sc: sc };
+    }).filter(function (x) { return x.sc > 0; }).sort(function (a, b) { return b.sc - a.sc; }).slice(0, 4);
+    return { date: BRIEF.date, markets: BRIEF.markets, stories: scored.map(function (x) { return x.s.text; }) };
+  }
+  function bubble(cls, text) { var d = document.createElement("div"); d.className = "msg " + cls; d.textContent = text; log.appendChild(d); log.scrollTop = log.scrollHeight; return d; }
+  function openAsk(q) {
+    panel.classList.remove("hidden"); openBtn.classList.add("hidden");
+    if (!log.children.length) bubble("bot", body.dataset.lang === "ar" ? "أهلًا! اسألني عن أي خبر أو مصطلح في موجز اليوم، وسأشرحه ببساطة." : "Hi! Ask me about any story or word in today’s brief, and I’ll explain it simply.");
+    if (q) { send(q); } else { input.focus(); }
+  }
+  function closeAsk() { panel.classList.add("hidden"); openBtn.classList.remove("hidden"); openBtn.focus(); }
+  async function send(q) {
+    q = String(q || "").trim(); if (!q || busy) return;
+    busy = true; input.value = ""; bubble("user", q);
+    var out = bubble("bot", "…");
+    var convo = history.slice(-6).map(function (m) { return (m.role === "user" ? "Reader: " : "Assistant: ") + m.content; }).join("\n");
+    var titles = (BRIEF.stories || []).map(function (s) { return "- " + s.title; }).join("\n");
+    var prompt = INSTR + "\n\nToday's edition: " + BRIEF.date + "\nStory titles:\n" + titles + (convo ? "\n\nConversation so far:\n" + convo : "") + "\n\nReader's question: " + q;
+    try {
+      var answer = "";
+      if (backend === "endpoint") {
+        var ctx = searchBrief(q);
+        var r = await fetch(ENDPOINT, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ question: q, history: history.slice(-6), context: ctx, titles: titles }) });
+        if (!r.ok) throw { code: r.status === 429 ? "rate_limited" : "error" };
+        answer = (await r.json()).answer || "";
+        out.textContent = answer;
+      } else {
+        var sample = await claude.use("sample");
+        if (!sample) throw { code: "not_granted" };
+        var res = await sample(prompt, {
+          cache: false,
+          tools: [{ name: "search_brief", description: "Search today's Hegazy Brief stories and market numbers by keywords. Returns the matching stories in full and the market board.",
+                    inputSchema: { type: "object", properties: { query: { type: "string" } }, required: ["query"] },
+                    execute: function (i) { return searchBrief(i.query); } }],
+          onText: function (e) { out.textContent = e.text || "…"; log.scrollTop = log.scrollHeight; }
+        });
+        answer = res.text || out.textContent;
+        out.textContent = answer;
+      }
+      history.push({ role: "user", content: q }, { role: "assistant", content: answer });
+    } catch (err) {
+      var code = err && err.code;
+      out.className = "msg note";
+      out.textContent = code === "rate_limited" ? "Too many questions right now. Please try again in a minute."
+        : code === "not_granted" ? "The assistant needs your permission to answer. You can allow it from this page’s permissions."
+        : "Sorry, the assistant couldn’t answer just now. Please try again.";
+    }
+    busy = false; log.scrollTop = log.scrollHeight;
+  }
+  openBtn.addEventListener("click", function () { openAsk(); });
+  document.getElementById("ask-close").addEventListener("click", closeAsk);
+  document.getElementById("ask-form").addEventListener("submit", function (e) { e.preventDefault(); send(input.value); });
+  document.querySelectorAll("#ask-sugg button").forEach(function (b) { b.addEventListener("click", function () { send(b.textContent); }); });
+  if (ENDPOINT) { backend = "endpoint"; askReady = true; openBtn.classList.remove("hidden"); }
+  else if (window.claude && claude.use) {
+    claude.use("sample").then(function (s) { if (s) { backend = "sample"; askReady = true; openBtn.classList.remove("hidden"); } });
+  }
+})();
+</script>
+</body>
+</html>
