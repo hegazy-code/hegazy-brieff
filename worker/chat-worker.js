@@ -5,7 +5,7 @@
  * Settings (Cloudflare dashboard > your worker > Settings > Variables):
  *   GEMINI_API_KEY  (secret)  your Gemini key
  *   ALLOWED_ORIGIN            your site's address, e.g. https://your-username.github.io
- *   GEMINI_MODEL   (optional) a current Gemini model name, default gemini-2.5-flash
+ *   GEMINI_MODEL   (optional) a current Gemini model name, default gemini-3.5-flash
  */
 const INSTR = "You are the assistant inside Hegazy Brief, a daily briefing on world markets, the economy, finance, accounting, business and politics, explained for Egyptians. " +
   "The reader may know nothing about finance, or may be an expert. Answer in the same language as the question (Arabic or English). " +
@@ -49,7 +49,7 @@ export default {
       "All story titles:\n" + String(body.titles || "").slice(0, 4000)].join("\n\n");
     const prompt = INSTR + "\n\nTODAY'S BRIEF\n" + material + (history ? "\n\nConversation so far:\n" + history : "") + "\n\nReader's question: " + question;
 
-    const model = env.GEMINI_MODEL || "gemini-2.5-flash";
+    const model = env.GEMINI_MODEL || "gemini-3.5-flash";
     const r = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${env.GEMINI_API_KEY}`, {
       method: "POST", headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ contents: [{ parts: [{ text: prompt }] }], generationConfig: { temperature: 0.3, maxOutputTokens: 700 } })
