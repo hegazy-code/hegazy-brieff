@@ -78,24 +78,35 @@ SECTOR_TASK = {
 }
 
 
+FALLBACK_MODELS = ["gemini-3.5-flash", "gemini-flash-latest", "gemini-3.1-flash-lite"]
+
+
 def gemini(prompt):
+    """Call Gemini. Google retires model names over time, so if one is gone (404) the next one is tried."""
     key = os.environ.get("GEMINI_API_KEY")
     if not key:
         return None
-    model = os.environ.get("GEMINI_MODEL") or "gemini-2.5-flash"
+    models = [m for m in [os.environ.get("GEMINI_MODEL")] + FALLBACK_MODELS if m]
+    models = list(dict.fromkeys(models))
     body = {"contents": [{"parts": [{"text": prompt}]}],
             "generationConfig": {"responseMimeType": "application/json", "temperature": 0.2}}
-    for attempt in range(4):
-        try:
-            r = requests.post(API.format(model=model), params={"key": key}, json=body, timeout=180)
-            if r.status_code == 429:
-                time.sleep(30 * (attempt + 1))
-                continue
-            r.raise_for_status()
-            return json.loads(r.json()["candidates"][0]["content"]["parts"][0]["text"])
-        except Exception as exc:
-            log.warning("Gemini call failed (attempt %d): %s", attempt + 1, exc)
-            time.sleep(8)
+    for model in models:
+        for attempt in range(4):
+            try:
+                r = requests.post(API.format(model=model), params={"key": key}, json=body, timeout=180)
+                if r.status_code == 404:
+                    log.warning("Gemini model %s not available, trying the next one", model)
+                    break
+                if r.status_code == 429:
+                    time.sleep(30 * (attempt + 1))
+                    continue
+                r.raise_for_status()
+                if os.environ.get("GEMINI_MODEL") != model:
+                    os.environ["GEMINI_MODEL"] = model  # remember the working model for the rest of the run
+                return json.loads(r.json()["candidates"][0]["content"]["parts"][0]["text"])
+            except Exception as exc:
+                log.warning("Gemini call failed (%s, attempt %d): %s", model, attempt + 1, exc)
+                time.sleep(8)
     return None
 
 
