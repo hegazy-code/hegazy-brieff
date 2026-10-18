@@ -75,10 +75,22 @@ SECTOR_TASK = {
     "politics": "Politics and geopolitics in every region, especially the USA, Egypt, the Gulf and the wider Middle East. Publish only events with real consequences; the rest stays out.",
     "business": "Business and technology across every industry: tech and AI, banks, energy, healthcare, real estate, autos, consumer, defense, shipping, travel, telecom, food, mining.",
     "wsj": "Wall Street Journal stories. You only see headlines and snippets: summarize in your own words, never copy, and say 'headline only' if the snippet is too thin to explain the story.",
+    "energy": "Energy: oil, natural gas, electricity, renewables, nuclear, OPEC decisions, IEA reports, energy security, and Egypt's energy imports and fuel costs.",
+    "technology": "Technology and AI: AI model launches, semiconductor chips and export controls, big-tech earnings and strategy, AI regulation, data centers, robotics, and autonomous systems.",
+    "cyber": "Cybersecurity: data breaches, ransomware, CISA advisories, state-sponsored attacks, vulnerabilities, and threats to financial or critical infrastructure.",
+    "health": "Health and medicine: disease outbreaks, WHO alerts, vaccine and drug approvals, pandemic risk, public health emergencies, and Egypt health ministry developments.",
+    "climate": "Environment and climate: extreme weather events, climate policy and COP summits, natural disasters, carbon and emissions commitments, and environmental regulations.",
+    "science": "Science and research: significant scientific discoveries, NASA and space missions, research publications with real-world implications, and major technology breakthroughs.",
+    "trade": "Trade and supply chains: tariffs, WTO rulings, trade agreements, shipping disruptions, Red Sea and Suez Canal traffic, freight rates, and global supply chain developments.",
+    "infrastructure": "Infrastructure and transportation: major port, airport, rail, and road projects; shipping and logistics; and Egypt's infrastructure investments and megaprojects.",
+    "law": "Law and regulation: court rulings, antitrust and competition enforcement, financial regulation penalties, GDPR and data law, and Egyptian legislation and decrees.",
+    "labor": "Education and labor: jobs reports, unemployment, wages, strikes, labor law, workforce trends, and Egyptian youth unemployment and education policy.",
+    "sports": "Sports: major competition results, transfers, governance, and sports business including Egyptian national teams, African competitions, and global events with Egypt relevance.",
+    "society": "Society, culture, and demographics: migration, population data, cost-of-living pressures, social media policy, Egyptian census and social developments, and major cultural events.",
 }
 
 
-FALLBACK_MODELS = ["gemini-3.5-flash", "gemini-flash-latest", "gemini-3.1-flash-lite"]
+FALLBACK_MODELS = ["gemini-2.5-flash", "gemini-2.0-flash", "gemini-1.5-flash"]
 
 
 def gemini(prompt):
