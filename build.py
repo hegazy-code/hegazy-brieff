@@ -33,6 +33,7 @@ DATA = ROOT / "data"
 
 CAIRO = ZoneInfo("Africa/Cairo")
 
+log = logging.getLogger("build")
 logging.basicConfig(
     level=logging.INFO,
     format="%(levelname)s %(message)s",
@@ -371,6 +372,79 @@ def chart_cards(cfg, series, board):
     return cards
 
 
+
+def _title_key(title):
+    return re.sub(r"\W+", " ", (title or "").lower()).strip()[:90]
+
+
+def collect_sources(cfg):
+    """Collect headlines in priority order: official primary sources, then GDELT, then Google News RSS.
+
+    Earlier stages win duplicates, so a CBE press release beats a journalist's write-up of it.
+    Every stage is gated by the health registry (data/source_state.json, written by health.yml)
+    and isolated, so a dead source costs a log line, never the build.
+    Returns (headlines, per_check) with ids renumbered h0..hN, the format the AI prompt expects.
+    """
+    from hb import gdelt, primary, sources
+    from hb.news import collect
+
+    state = sources._load_state()
+
+    def allow(source_id):
+        s = state.get(source_id, {})
+        if s.get("status") != "down":      # up, unknown or degraded: still try
+            return True
+        return "429" in (s.get("last_msg") or "")   # rate-limited is not down
+
+    stages = []
+    try:
+        stages.append(("primary", primary.collect_all(allow=allow), {}))
+    except Exception as exc:
+        log.warning("Primary stage failed: %s", exc)
+    if allow("gdelt"):
+        try:
+            stages.append(("gdelt", gdelt.collect_all(cfg), {}))
+        except Exception as exc:
+            log.warning("GDELT stage failed: %s", exc)
+    else:
+        log.info("GDELT skipped: marked down in source registry")
+    rss, rss_checks = collect(cfg)
+    stages.append(("rss", rss, rss_checks))
+
+    headlines, by_key, remap, per_check = [], {}, {}, {}
+    counts = {}
+    for name, items, checks in stages:
+        kept = 0
+        for h in items:
+            key = _title_key(h.get("title"))
+            if not key:
+                continue
+            old = h.get("id")
+            if key in by_key:
+                remap[(name, old)] = by_key[key]
+                continue
+            new = f"h{len(headlines)}"
+            by_key[key] = remap[(name, old)] = new
+            h = {**h, "id": new}
+            h.setdefault("summary", "")
+            h.setdefault("regions", ["global"])
+            h.setdefault("sector", "economy")
+            h.setdefault("check", name.upper())
+            headlines.append(h)
+            kept += 1
+            if name != "rss":
+                per_check.setdefault(h["check"], []).append(new)
+        counts[name] = (len(items), kept)
+        for check, ids in checks.items():
+            merged = per_check.setdefault(check, [])
+            for old in ids:
+                new = remap.get((name, old))
+                if new and new not in merged:
+                    merged.append(new)
+    log.info("Sources: %s", ", ".join(f"{n} {raw} raw / {kept} kept" for n, (raw, kept) in counts.items()))
+    return headlines, per_check
+
+
 def build(mock=False):
     cfg = yaml.safe_load(
         (ROOT / "config.yaml").read_text(encoding="utf-8")
@@ -418,10 +492,9 @@ def build(mock=False):
     else:
         from hb.ai import write
         from hb.markets import big_moves, fetch
-        from hb.news import collect
 
         board, series = fetch(cfg)
-        headlines, per_check = collect(cfg)
+        headlines, per_check = collect_sources(cfg)
 
         sectors, summary = write(
             cfg,
