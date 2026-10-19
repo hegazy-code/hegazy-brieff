@@ -58,6 +58,18 @@ SECTORS = [
     ("politics", "Politics", "السياسة"),
     ("business", "Business & tech", "الأعمال والتكنولوجيا"),
     ("wsj", "Wall Street Journal", "وول ستريت جورنال"),
+    ("energy", "Energy", "الطاقة"),
+    ("technology", "Technology & AI", "التكنولوجيا والذكاء الاصطناعي"),
+    ("cyber", "Cybersecurity", "الأمن السيبراني"),
+    ("health", "Health & medicine", "الصحة والطب"),
+    ("climate", "Environment & climate", "البيئة والمناخ"),
+    ("science", "Science & research", "العلوم والبحث"),
+    ("trade", "Trade & supply chains", "التجارة وسلاسل التوريد"),
+    ("infrastructure", "Infrastructure", "البنية التحتية"),
+    ("law", "Law & regulation", "القانون والتنظيم"),
+    ("labor", "Education & labor", "التعليم والعمل"),
+    ("sports", "Sports", "الرياضة"),
+    ("society", "Society & culture", "المجتمع والثقافة"),
 ]
 
 REGIONS = [
