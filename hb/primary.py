@@ -10,6 +10,7 @@ Failed parsers log a warning and return [] — they never crash the build.
 from __future__ import annotations
 import logging
 import re
+from html import unescape as html_unescape
 import time
 from datetime import datetime, timezone
 from typing import Optional
@@ -93,47 +94,30 @@ def parse_cbe() -> list[dict]:
 
 # ── EGX — Egyptian Exchange ───────────────────────────────────────────────────
 
-EGX_DISCLOSURES_URL = "https://www.egx.com.eg/en/Disclosure.aspx"
-EGX_BASE = "https://www.egx.com.eg"
+EGX_HOME_URL = "https://www.egx.com.eg/en/homepage.aspx"   # verified live 2026-10-20
+EGX_BASE = "https://www.egx.com.eg/en/"
+EGX_LINK = re.compile(r'<a[^>]+href="([^"]*NewsDetails\.aspx\?NewsID=\d+[^"]*)"[^>]*>(.*?)</a>', re.S | re.I)
+
 
 def parse_egx() -> list[dict]:
-    """
-    Parse EGX market disclosures. These are company announcements
-    that bypass the press entirely — earnings, dividends, board decisions.
-    """
-    r = _get(EGX_DISCLOSURES_URL)
+    """Latest EGX company disclosures and exchange news, from the homepage news tabs."""
+    from urllib.parse import urljoin
+    r = _get(EGX_HOME_URL)
     if not r:
         return []
-    html = r.text
-    headlines = []
-
-    # EGX disclosures are typically in table rows
-    row_pattern = r'<tr[^>]*>.*?<td[^>]*>(.*?)</td>.*?<td[^>]*>(.*?)</td>.*?</tr>'
-    for row_match in list(re.finditer(row_pattern, html, re.DOTALL))[:20]:
-        cell1 = re.sub(r'<[^>]+>', '', row_match.group(1)).strip()
-        cell2 = re.sub(r'<[^>]+>', '', row_match.group(2)).strip()
-        if len(cell1) > 5 and len(cell2) > 5:
-            title = f"{cell1} — {cell2}" if cell2 != cell1 else cell1
-            if len(title) > 15:
-                headlines.append(_headline(
-                    title=title, url=EGX_DISCLOSURES_URL,
-                    source="Egyptian Exchange",
-                    sector="markets", regions=["egypt"], check="A2.5"
-                ))
-
-    # Also look for anchor links with disclosure titles
-    link_pattern = r'<a[^>]+href="([^"]*(?:Disclosure|disclosure|company|Company)[^"]*)"[^>]*>([^<]{10,150})</a>'
-    for href, title in re.findall(link_pattern, html, re.IGNORECASE):
-        title = re.sub(r'\s+', ' ', title).strip()
-        if len(title) > 10:
-            url = EGX_BASE + href if href.startswith("/") else href
-            if not any(h["link"] == url for h in headlines):
-                headlines.append(_headline(
-                    title=title, url=url, source="Egyptian Exchange",
-                    sector="markets", regions=["egypt"], check="A2.5"
-                ))
-
-    log.info("EGX: %d disclosures", len(headlines))
+    seen, headlines = set(), []
+    for href, inner in EGX_LINK.findall(r.text):
+        title = re.sub(r"\s+", " ", re.sub(r"<[^>]+>", " ", inner)).strip()
+        url = urljoin(EGX_BASE, html_unescape(href))
+        if len(title) < 15 or url in seen:
+            continue
+        seen.add(url)
+        exchange_news = title.startswith(("EGX", "The Egyptian Exchange"))
+        headlines.append(_headline(
+            title=title, url=url, source="Egyptian Exchange",
+            sector="markets" if exchange_news else "finance", regions=["egypt"],
+            check="A2.5" if exchange_news else "A10"))
+    log.info("EGX: %d headlines", len(headlines))
     return headlines[:10]
 
 
@@ -216,40 +200,32 @@ def parse_mof() -> list[dict]:
 
 # ── SCA — Suez Canal Authority ────────────────────────────────────────────────
 
-SCA_URL = "https://www.sca.gov.eg/en/news"
-SCA_BASE = "https://www.sca.gov.eg"
+SCA_URL = "https://www.suezcanal.gov.eg/English/MediaCenter/News/Pages/default.aspx"   # verified live 2026-10-20
+SCA_BASE = "https://www.suezcanal.gov.eg"
+SCA_LINK = re.compile(r'<a[^>]+href="([^"]*/MediaCenter/News/Pages/([^"/]+)\.aspx)"[^>]*>(.*?)</a>', re.S | re.I)
+SCA_DATE = re.compile(r"(\d{1,2})-(\d{1,2})-(\d{4})")
+
 
 def parse_sca() -> list[dict]:
-    """Parse Suez Canal Authority news — transit stats, revenue, incidents."""
+    """Suez Canal Authority news: traffic, revenue, tolls, agreements."""
     r = _get(SCA_URL)
     if not r:
         return []
-    html = r.text
-
-    headlines = []
-    patterns = [
-        r'<a[^>]+href="(/en/news/[^"]+)"[^>]*>([^<]{15,200})</a>',
-        r'<h[2-4][^>]*>([^<]{20,200})</h[2-4]>',
-    ]
-    for pattern in patterns:
-        for match in re.findall(pattern, html, re.IGNORECASE)[:8]:
-            if isinstance(match, tuple):
-                href, title = match
-            else:
-                href, title = SCA_URL, match
-            title = re.sub(r'\s+', ' ', title).strip()
-            if len(title) > 15:
-                url = SCA_BASE + href if href.startswith("/") else href
-                headlines.append(_headline(
-                    title=title, url=url, source="Suez Canal Authority",
-                    sector="trade", regions=["egypt"], check="A13"
-                ))
-
+    seen, headlines = set(), []
+    for href, slug, inner in SCA_LINK.findall(r.text):
+        title = re.sub(r"\s+", " ", re.sub(r"<[^>]+>", " ", inner)).strip()
+        if len(title) < 15 or slug.lower() == "default" or href in seen:
+            continue
+        seen.add(href)
+        m = SCA_DATE.search(slug)
+        when = f"{m[3]}-{int(m[2]):02d}-{int(m[1]):02d}T00:00:00+02:00" if m else None
+        headlines.append(_headline(
+            title=title, url=href if href.startswith("http") else SCA_BASE + href,
+            source="Suez Canal Authority", when=when, sector="trade",
+            regions=["egypt"], check="B7"))
     log.info("SCA: %d headlines", len(headlines))
     return headlines[:8]
 
-
-# ── Main collector ────────────────────────────────────────────────────────────
 
 def collect_all(allow=None) -> list[dict]:
     """
@@ -263,7 +239,7 @@ def collect_all(allow=None) -> list[dict]:
         ("EGX",    parse_egx),
         ("CAPMAS", parse_capmas),
         ("MOF",    parse_mof),
-        # ("SCA", parse_sca),  disabled: www.sca.gov.eg does not resolve; real site suezcanal.gov.eg unverified
+        ("SCA",    parse_sca),
     ]
     registry_ids = {"CBE": "cbe", "EGX": "egx", "CAPMAS": "capmas", "MOF": "mof_egypt", "SCA": "sca"}
 
