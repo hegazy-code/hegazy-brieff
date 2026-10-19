@@ -38,6 +38,14 @@ feeds:
   bls: https://www.bls.gov/feed/bls_latest.rss
   eia: https://www.eia.gov/rss/todayinenergy.xml
   un: https://news.un.org/feed/subscribe/en/news/all/rss.xml
+  who: https://www.who.int/feeds/entity/csr/don/en/rss.xml
+  nasa: https://www.nasa.gov/news-release/feed/
+  cisa: https://www.cisa.gov/uscert/ncas/alerts.xml
+  dw_world: https://rss.dw.com/rdf/rss-en-all
+  france24: https://www.france24.com/en/rss
+  guardian_world: https://www.theguardian.com/world/rss
+  guardian_env: https://www.theguardian.com/environment/rss
+  iea_news: https://www.iea.org/news/feed
 checklist:
 - id: A1
   title: My watchlist
@@ -489,6 +497,190 @@ checklist:
   - week ahead markets
   - earnings next week
   - central bank meeting next week
+- id: B1
+  title: Energy
+  sector: energy
+  regions: [global, mena, egypt]
+  queries:
+    - site:iea.org OR site:opec.org oil gas energy
+    - oil gas energy security supply
+    - OPEC production cut OR increase
+    - LNG natural gas supply Europe Asia
+    - renewable energy solar wind investment
+    - nuclear energy policy
+    - Egypt energy gas imports electricity
+    - Red Sea oil tanker disruption
+  ar_queries:
+    - أوبك النفط الغاز الطاقة
+    - مصر واردات الطاقة الكهرباء
+  feeds:
+    - eia
+    - bbc_world
+
+- id: B2
+  title: Technology and AI
+  sector: technology
+  regions: [usa, europe, asia, global]
+  queries:
+    - artificial intelligence AI model launch
+    - semiconductor chips export control
+    - Apple Microsoft Google Meta Amazon earnings quarterly
+    - AI regulation EU act
+    - data center investment GPU Nvidia
+    - autonomous vehicles robotics breakthrough
+    - quantum computing breakthrough
+    - China tech AI restrictions
+  feeds:
+    - cnbc_tech
+    - bbc_tech
+
+- id: B3
+  title: Cybersecurity
+  sector: cyber
+  regions: [global, usa]
+  queries:
+    - site:cisa.gov advisory vulnerability
+    - cyberattack data breach hack government
+    - ransomware critical infrastructure
+    - cybersecurity threat actor state-sponsored
+    - zero-day vulnerability patch
+    - financial institution cyber attack
+  feeds:
+    - cisa
+
+- id: B4
+  title: Health and medicine
+  sector: health
+  regions: [global, egypt]
+  queries:
+    - site:who.int outbreak alert disease
+    - pandemic epidemic outbreak spread
+    - vaccine drug approval FDA EMA
+    - public health emergency WHO
+    - mpox OR cholera OR measles OR dengue outbreak
+    - Egypt health ministry disease
+  ar_queries:
+    - منظمة الصحة العالمية تحذير وباء
+    - وزارة الصحة مصر
+  feeds:
+    - who
+
+- id: B5
+  title: Environment and climate
+  sector: climate
+  regions: [global, mena, egypt]
+  queries:
+    - climate change extreme weather event
+    - COP climate summit agreement
+    - flood earthquake drought disaster
+    - carbon emissions net zero policy
+    - deforestation biodiversity loss
+    - Egypt Nile water climate agriculture
+    - pollution environment regulation fine
+  ar_queries:
+    - التغير المناخي مصر البيئة
+  feeds:
+    - guardian_env
+    - bbc_world
+
+- id: B6
+  title: Science and research
+  sector: science
+  regions: [global]
+  queries:
+    - scientific discovery breakthrough research published
+    - space exploration launch mission
+    - physics chemistry biology discovery
+    - Nobel prize science
+    - NASA SpaceX Mars Moon mission
+  feeds:
+    - nasa
+
+- id: B7
+  title: Trade and supply chains
+  sector: trade
+  regions: [global, usa, asia, egypt]
+  queries:
+    - site:wto.org ruling dispute
+    - tariffs trade agreement WTO
+    - supply chain disruption shortage
+    - Red Sea shipping container freight rates
+    - Suez Canal traffic trade volume
+    - China trade exports imports data
+    - US trade deficit surplus
+  ar_queries:
+    - قناة السويس الشحن التجارة الدولية
+
+- id: B8
+  title: Infrastructure and transportation
+  sector: infrastructure
+  regions: [global, egypt, mena]
+  queries:
+    - port airport railway infrastructure project
+    - Egypt infrastructure megaproject investment
+    - shipping container ports congestion delay
+    - aviation airline route expansion
+    - logistics freight transport disruption
+  ar_queries:
+    - مصر مشاريع البنية التحتية والطرق
+
+- id: B9
+  title: Law and regulation
+  sector: law
+  regions: [global, usa, europe, egypt]
+  queries:
+    - site:sec.gov enforcement action fine
+    - court ruling antitrust EU competition
+    - GDPR privacy fine regulation penalty
+    - Supreme Court ruling
+    - Egypt law decree parliament legislation
+    - financial regulation enforcement
+  ar_queries:
+    - قانون مصر برلمان مجلس النواب تشريع
+  feeds:
+    - sec
+
+- id: B10
+  title: Education and labor
+  sector: labor
+  regions: [global, usa, egypt]
+  queries:
+    - jobs report labor market wages unemployment
+    - workers strike labor union
+    - minimum wage labor law
+    - Egypt unemployment youth jobs
+    - university tuition education policy
+  ar_queries:
+    - البطالة مصر سوق العمل الشباب
+
+- id: B11
+  title: Sports
+  sector: sports
+  regions: [global, egypt, mena]
+  queries:
+    - World Cup Olympics Champions League result
+    - Premier League transfer result weekend
+    - Formula 1 race result grand prix
+    - Egypt football national team
+    - African Cup of Nations AFCON
+    - sports business rights deal investment
+  ar_queries:
+    - منتخب مصر كرة القدم
+    - دوري أبطال أفريقيا
+
+- id: B12
+  title: Society culture demographics
+  sector: society
+  regions: [global, egypt, mena]
+  queries:
+    - migration refugee population demographics
+    - cost of living household poverty
+    - social media policy content moderation
+    - Egypt population social development
+    - cultural event film award entertainment
+  ar_queries:
+    - المجتمع المصري الديموغرافيا
+
 markets:
 - group: USA
   region: usa
@@ -739,6 +931,9 @@ curriculum:
 - recession
 - hedging
 official_feeds:
+- who
+- nasa
+- cisa
 - fed
 - ecb
 - boe
@@ -772,3 +967,8 @@ official_domains:
 - treasury.gov
 - eia.gov
 - europa.eu
+- who.int
+- nasa.gov
+- cisa.gov
+- iea.org
+- opec.org
