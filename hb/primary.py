@@ -18,7 +18,8 @@ import requests
 
 log = logging.getLogger(__name__)
 TIMEOUT = 25
-UA = "HegazyBrief/2.0 primary-source-parser"
+UA = ("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
+      "(KHTML, like Gecko) Chrome/130.0 Safari/537.36 HegazyBrief/2.0")
 
 
 def _get(url: str) -> Optional[requests.Response]:
@@ -57,58 +58,35 @@ def _headline(title: str, url: str, source: str,
 
 # ── CBE — Central Bank of Egypt ──────────────────────────────────────────────
 
-CBE_PRESS_URL = "https://www.cbe.org.eg/en/EconomicResearch/Publications/Pages/Pressrelease.aspx"
+CBE_PRESS_URL = "https://www.cbe.org.eg/en/news-publications/news"   # verified live 2026-10-20
 CBE_BASE = "https://www.cbe.org.eg"
+CBE_LINK = re.compile(r'href="(/en/news-publications/news/(\d{4})/(\d{2})/(\d{2})/[^"?#]+)"[^>]*>(.*?)</a>', re.S)
+
+
+def _cbe_check(title: str) -> str:
+    t = title.lower()
+    if "mpc" in t or "monetary policy" in t or "interest rate" in t:
+        return "A7"      # central banks
+    if any(k in t for k in ("cpi", "inflation", "reserves", "balance of payments", "remittances", "external debt")):
+        return "A8"      # economic data
+    return "A13"         # Egypt deep check
+
 
 def parse_cbe() -> list[dict]:
-    """
-    Parse CBE press releases page. Returns latest press releases.
-    The page is ASP.NET so we look for the list items with release titles.
-    """
+    """CBE news & press releases. Links carry their date in the path: /news/YYYY/MM/DD/..."""
     r = _get(CBE_PRESS_URL)
     if not r:
         return []
-    html = r.text
-
-    # CBE press releases appear in divs with class containing "ms-rtestate-field"
-    # or in table cells. Try multiple patterns.
-    headlines = []
-
-    # Pattern 1: links with /en/ in the href pointing to press releases
-    pattern = r'<a[^>]+href="(/en/[^"]*(?:press|release|decision|rate|inflation)[^"]*)"[^>]*>([^<]{20,200})</a>'
-    for href, title in re.findall(pattern, html, re.IGNORECASE):
-        title = re.sub(r'\s+', ' ', title).strip()
-        if len(title) > 15:
-            url = CBE_BASE + href if href.startswith("/") else href
-            headlines.append(_headline(
-                title=title, url=url, source="Central Bank of Egypt",
-                sector="economy", regions=["egypt"], check="A7"
-            ))
-
-    # Pattern 2: anchor tags with Arabic press release content
-    ar_pattern = r'<a[^>]+href="(/ar/[^"]*)"[^>]*>([\u0600-\u06FF\s،,.-]{15,200})</a>'
-    for href, title in re.findall(ar_pattern, html):
-        title = re.sub(r'\s+', ' ', title).strip()
-        if len(title) > 10:
-            url = CBE_BASE + href if href.startswith("/") else href
-            headlines.append(_headline(
-                title=f"[CBE Arabic] {title}", url=url,
-                source="البنك المركزي المصري",
-                sector="economy", regions=["egypt"], check="A7"
-            ))
-
-    if not headlines:
-        # Fallback: look for any substantial links on the page
-        fallback = r'<a[^>]+href="([^"]+)"[^>]*>([^<]{30,150})</a>'
-        for href, title in re.findall(fallback, html)[:5]:
-            title = re.sub(r'\s+', ' ', title).strip()
-            if len(title) > 20 and "cbe.org.eg" in href or href.startswith("/"):
-                url = CBE_BASE + href if href.startswith("/") else href
-                headlines.append(_headline(
-                    title=title, url=url, source="Central Bank of Egypt",
-                    sector="economy", regions=["egypt"], check="A7"
-                ))
-
+    seen, headlines = set(), []
+    for href, y, m, d, inner in CBE_LINK.findall(r.text):
+        title = re.sub(r"\s+", " ", re.sub(r"<[^>]+>", " ", inner)).strip()
+        if len(title) < 15 or href in seen:      # image links repeat the URL with no text
+            continue
+        seen.add(href)
+        headlines.append(_headline(
+            title=title, url=CBE_BASE + href, source="Central Bank of Egypt",
+            when=f"{y}-{m}-{d}T00:00:00+02:00", sector="economy", regions=["egypt"],
+            check=_cbe_check(title)))
     log.info("CBE: %d headlines", len(headlines))
     return headlines[:10]
 
@@ -131,7 +109,7 @@ def parse_egx() -> list[dict]:
 
     # EGX disclosures are typically in table rows
     row_pattern = r'<tr[^>]*>.*?<td[^>]*>(.*?)</td>.*?<td[^>]*>(.*?)</td>.*?</tr>'
-    for row_match in re.finditer(row_pattern, html, re.DOTALL)[:20]:
+    for row_match in list(re.finditer(row_pattern, html, re.DOTALL))[:20]:
         cell1 = re.sub(r'<[^>]+>', '', row_match.group(1)).strip()
         cell2 = re.sub(r'<[^>]+>', '', row_match.group(2)).strip()
         if len(cell1) > 5 and len(cell2) > 5:
@@ -285,7 +263,7 @@ def collect_all(allow=None) -> list[dict]:
         ("EGX",    parse_egx),
         ("CAPMAS", parse_capmas),
         ("MOF",    parse_mof),
-        ("SCA",    parse_sca),
+        # ("SCA", parse_sca),  disabled: www.sca.gov.eg does not resolve; real site suezcanal.gov.eg unverified
     ]
     registry_ids = {"CBE": "cbe", "EGX": "egx", "CAPMAS": "capmas", "MOF": "mof_egypt", "SCA": "sca"}
 
