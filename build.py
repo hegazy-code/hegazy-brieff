@@ -377,6 +377,19 @@ def _title_key(title):
     return re.sub(r"\W+", " ", (title or "").lower()).strip()[:90]
 
 
+
+def _checks_for(cfg, h):
+    """Checklist items a non-RSS headline counts toward: its own check id if it is one,
+    otherwise every item with the same sector and an overlapping region."""
+    ids = {item["id"] for item in cfg.get("checklist", [])}
+    if h.get("check") in ids:
+        return [h["check"]]
+    regions = set(h.get("regions") or [])
+    hits = [item["id"] for item in cfg.get("checklist", [])
+            if item["sector"] == h.get("sector") and regions & set(item["regions"])]
+    return hits or [h.get("check")]
+
+
 def collect_sources(cfg):
     """Collect headlines in priority order: official primary sources, then GDELT, then Google News RSS.
 
@@ -393,6 +406,13 @@ def collect_sources(cfg):
     def allow(source_id):
         s = state.get(source_id, {})
         if s.get("status") != "down":      # up, unknown or degraded: still try
+            return True
+        stamps = [t for t in (s.get("last_ok"), s.get("last_fail")) if t]
+        try:
+            age = datetime.now(ZoneInfo("UTC")) - datetime.fromisoformat(max(stamps))
+            if age.total_seconds() > 12 * 3600:   # stale verdict: health.yml hasn't run, so try anyway
+                return True
+        except ValueError:
             return True
         return "429" in (s.get("last_msg") or "")   # rate-limited is not down
 
@@ -433,7 +453,8 @@ def collect_sources(cfg):
             headlines.append(h)
             kept += 1
             if name != "rss":
-                per_check.setdefault(h["check"], []).append(new)
+                for check in _checks_for(cfg, h):
+                    per_check.setdefault(check, []).append(new)
         counts[name] = (len(items), kept)
         for check, ids in checks.items():
             merged = per_check.setdefault(check, [])
