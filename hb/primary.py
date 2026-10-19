@@ -273,7 +273,7 @@ def parse_sca() -> list[dict]:
 
 # ── Main collector ────────────────────────────────────────────────────────────
 
-def collect_all() -> list[dict]:
+def collect_all(allow=None) -> list[dict]:
     """
     Run all primary source parsers and return combined headlines.
     Each parser is isolated — one failure doesn't stop the others.
@@ -287,8 +287,12 @@ def collect_all() -> list[dict]:
         ("MOF",    parse_mof),
         ("SCA",    parse_sca),
     ]
+    registry_ids = {"CBE": "cbe", "EGX": "egx", "CAPMAS": "capmas", "MOF": "mof_egypt", "SCA": "sca"}
 
     for name, fn in parsers:
+        if allow and not allow(registry_ids[name]):
+            log.info("Primary %s skipped: marked down in source registry", name)
+            continue
         try:
             items = fn()
             for i, h in enumerate(items):
