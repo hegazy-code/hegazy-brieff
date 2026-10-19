@@ -123,77 +123,72 @@ def parse_egx() -> list[dict]:
 
 # ── CAPMAS — Central Agency for Public Mobilization and Statistics ────────────
 
-CAPMAS_NEWS_URL = "https://www.capmas.gov.eg/Pages/pressreleases.aspx"
-CAPMAS_BASE = "https://www.capmas.gov.eg"
+CAPMAS_API = "https://www.capmas.gov.eg:8080/api/News/GetLatestNews"   # React site's own API, verified 2026-10-20
+CAPMAS_STORY = "https://www.capmas.gov.eg/mediaLanding/news/{id}"
+
+
+def _capmas_check(title: str) -> str:
+    if any(k in title for k in ("التضخم", "الأسعار", "البطالة", "التجارة الخارجية", "الصادرات", "الواردات")):
+        return "A8"      # economic data: inflation, prices, unemployment, trade
+    return "A13"
+
 
 def parse_capmas() -> list[dict]:
-    """
-    Parse CAPMAS press releases: CPI, unemployment, population, trade stats.
-    CAPMAS is the primary source for Egypt inflation data — more authoritative
-    than any news article.
-    """
-    r = _get(CAPMAS_NEWS_URL)
+    """CAPMAS latest news (Arabic): CPI, unemployment, trade and population statistics.
+    The site is a JavaScript app, so HTML scraping returns nothing; this reads its JSON API."""
+    r = _get(CAPMAS_API)
     if not r:
         return []
-    html = r.text
+    try:
+        items = (r.json() or {}).get("data") or []
+    except ValueError:
+        log.warning("CAPMAS API did not return JSON")
+        return []
     headlines = []
-
-    # CAPMAS pages have SharePoint-style structure
-    patterns = [
-        r'<a[^>]+href="(/Pages/[^"]+\.aspx[^"]*)"[^>]*>([^<]{15,200})</a>',
-        r'<a[^>]+href="(/en/[^"]+)"[^>]*>([^<]{15,200})</a>',
-        r'class="ms-rtestate-field"[^>]*>(.*?)</div>',
-    ]
-
-    for pattern in patterns:
-        for match in re.findall(pattern, html, re.IGNORECASE | re.DOTALL)[:10]:
-            if isinstance(match, tuple):
-                href, title = match
-                title = re.sub(r'<[^>]+>', '', title).strip()
-                title = re.sub(r'\s+', ' ', title)
-                if len(title) > 15:
-                    url = CAPMAS_BASE + href if href.startswith("/") else href
-                    headlines.append(_headline(
-                        title=title, url=url,
-                        source="CAPMAS",
-                        sector="economy", regions=["egypt"], check="A8"
-                    ))
-            else:
-                text = re.sub(r'<[^>]+>', '', match).strip()
-                if len(text) > 20:
-                    headlines.append(_headline(
-                        title=text[:200], url=CAPMAS_NEWS_URL,
-                        source="CAPMAS",
-                        sector="economy", regions=["egypt"], check="A8"
-                    ))
-
+    for it in items:
+        title = re.sub(r"\s+", " ", it.get("title") or "").strip()
+        if len(title) < 10 or not it.get("id"):
+            continue
+        h = _headline(title=title, url=CAPMAS_STORY.format(id=it["id"]), source="CAPMAS",
+                      when=it.get("publishDate"), sector="economy", regions=["egypt"],
+                      check=_capmas_check(title))
+        h["summary"] = re.sub(r"\s+", " ", re.sub(r"<[^>]+>", " ", it.get("brief") or "")).strip()[:300]
+        headlines.append(h)
     log.info("CAPMAS: %d headlines", len(headlines))
     return headlines[:8]
 
 
 # ── MOF — Ministry of Finance ────────────────────────────────────────────────
 
-MOF_URL = "https://www.mof.gov.eg/en/Pages/latestnews.aspx"
-MOF_BASE = "https://www.mof.gov.eg"
+MOF_API = "https://api.mof.gov.eg/api/posts"   # React site's own API, verified 2026-10-20
+MOF_STORY = "https://mof.gov.eg/en/posts/{type}/{id}/{slug}"
+MOF_FILTER = ('{"where":{"or":[{"postType":"media"},{"postType":"releases"},'
+              '{"postType":"monthlyFinancialReport"},{"postType":"stateGeneralBudget"},{"postType":"publicDept"}]},'
+              '"order":"publishedAt DESC","limit":10}')
+
 
 def parse_mof() -> list[dict]:
-    """Parse Egypt Ministry of Finance news — budget, debt, fiscal policy."""
-    r = _get(MOF_URL)
-    if not r:
+    """Egypt Ministry of Finance: news, releases, monthly reports, budget, public debt.
+    The API returns an empty list unless Accept-Language is exactly 'en' or 'ar'."""
+    from urllib.parse import quote
+    try:
+        r = requests.get(MOF_API, params={"filter": MOF_FILTER}, timeout=TIMEOUT,
+                         headers={"User-Agent": UA, "Accept-Language": "en", "Accept": "application/json"})
+        r.raise_for_status()
+        items = r.json()
+    except Exception as e:
+        log.warning("MOF API failed: %s", e)
         return []
-    html = r.text
-
     headlines = []
-    pattern = r'<a[^>]+href="(/en/Pages/[^"]+)"[^>]*>([^<]{15,200})</a>'
-    for href, title in re.findall(pattern, html, re.IGNORECASE)[:10]:
-        title = re.sub(r'\s+', ' ', title).strip()
-        if len(title) > 15:
-            url = MOF_BASE + href
-            headlines.append(_headline(
-                title=title, url=url, source="Egyptian Ministry of Finance",
-                sector="economy", regions=["egypt"], check="A13"
-            ))
-
+    for it in items if isinstance(items, list) else []:
+        title = re.sub(r"\s+", " ", it.get("title") or "").strip()
+        if len(title) < 15 or not it.get("id"):
+            continue
+        slug = quote(re.sub(r"\s+", "-", title), safe="-")
+        headlines.append(_headline(
+            title=title, url=MOF_STORY.format(type=it.get("postType", "media"), id=it["id"], slug=slug),
+            source="Egyptian Ministry of Finance", when=it.get("publishedAt"),
+            sector="economy", regions=["egypt"], check="A13"))
     log.info("MOF: %d headlines", len(headlines))
     return headlines[:8]
 
