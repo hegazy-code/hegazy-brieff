@@ -24,6 +24,7 @@ log = logging.getLogger(__name__)
 BASE = "https://api.gdeltproject.org/api/v2/doc/doc"
 TIMEOUT = 30
 RETRY_WAIT = 10
+MIN_GAP = 5.5          # GDELT DOC API limit is one request every 5 seconds
 
 # Sector → GDELT themes (from GDELT's official theme taxonomy)
 SECTOR_THEMES: dict[str, list[str]] = {
@@ -150,7 +151,7 @@ def collect_egypt(max_per_query: int = 5, timespan: str = "24h") -> list[dict]:
                 item["regions"] = ["egypt"]
                 item["check"] = "GDELT_EG"
                 results.append(item)
-        time.sleep(0.5)
+        time.sleep(MIN_GAP)
     log.info("GDELT Egypt: %d headlines from %d queries", len(results), len(EGYPT_QUERIES))
     return results
 
@@ -177,7 +178,7 @@ def collect_by_sector(sector: str, max_per_query: int = 5,
                 item["regions"] = ["global"]
                 item["check"] = f"GDELT_{sector.upper()}"
                 results.append(item)
-        time.sleep(0.5)
+        time.sleep(MIN_GAP)
     log.info("GDELT %s: %d headlines from %d theme queries", sector, len(results), len(themes[:4]))
     return results
 
@@ -199,7 +200,7 @@ def collect_region_gaps(max_per_query: int = 5, timespan: str = "24h") -> list[d
                     item["regions"] = [region]
                     item["check"] = f"GDELT_{region.upper()}"
                     results.append(item)
-            time.sleep(0.5)
+            time.sleep(MIN_GAP)
     log.info("GDELT region gaps: %d headlines", len(results))
     return results
 
