@@ -183,6 +183,20 @@ def collect_by_sector(sector: str, max_per_query: int = 5,
     return results
 
 
+
+_ECON_WORDS = ("economy", "peso", "rupee", "imf", "exports", "inflation", "currency")
+_ENERGY_WORDS = ("oil", "gas", "opec", "energy")
+
+
+def _region_sector(query: str) -> str:
+    q = query.lower()
+    if any(w in q for w in _ENERGY_WORDS):
+        return "energy"
+    if any(w in q for w in _ECON_WORDS):
+        return "economy"
+    return "politics"
+
+
 def collect_region_gaps(max_per_query: int = 5, timespan: str = "24h") -> list[dict]:
     """
     Collect GDELT headlines for regions that English RSS feeds under-cover:
@@ -196,7 +210,7 @@ def collect_region_gaps(max_per_query: int = 5, timespan: str = "24h") -> list[d
             for item in items:
                 if item["link"] not in seen_urls and item["title"]:
                     seen_urls.add(item["link"])
-                    item["sector"] = "politics"
+                    item["sector"] = _region_sector(query)
                     item["regions"] = [region]
                     item["check"] = f"GDELT_{region.upper()}"
                     results.append(item)
