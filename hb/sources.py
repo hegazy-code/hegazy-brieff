@@ -39,7 +39,7 @@ SOURCES: list[dict] = [
         "id": "cbe",
         "name": "Central Bank of Egypt",
         "url": "https://www.cbe.org.eg",
-        "feed_url": "https://www.cbe.org.eg/en/EconomicResearch/Publications/Pages/Pressrelease.aspx",
+        "feed_url": "https://www.cbe.org.eg/en/news-publications/news",
         "type": "official",
         "retrieval": "web",
         "sectors": ["economy", "finance", "markets"],
@@ -56,7 +56,7 @@ SOURCES: list[dict] = [
         "id": "egx",
         "name": "Egyptian Exchange",
         "url": "https://www.egx.com.eg",
-        "feed_url": "https://www.egx.com.eg/en/ListedSecurities.aspx",
+        "feed_url": "https://www.egx.com.eg/en/homepage.aspx",
         "type": "official",
         "retrieval": "web",
         "sectors": ["markets", "finance"],
@@ -106,8 +106,8 @@ SOURCES: list[dict] = [
     {
         "id": "sca",
         "name": "Suez Canal Authority",
-        "url": "https://www.sca.gov.eg",
-        "feed_url": None,
+        "url": "https://www.suezcanal.gov.eg",
+        "feed_url": "https://www.suezcanal.gov.eg/English/MediaCenter/News/Pages/default.aspx",
         "type": "official",
         "retrieval": "web",
         "sectors": ["trade", "infrastructure"],
@@ -118,7 +118,7 @@ SOURCES: list[dict] = [
         "api_key_env": None,
         "official": True,
         "notes": "Canal revenue, traffic, toll changes.",
-        "domain": "sca.gov.eg",
+        "domain": "suezcanal.gov.eg",
     },
     {
         "id": "cabinet_egypt",
@@ -947,8 +947,12 @@ def _ping(source: dict) -> tuple[bool, str]:
         if not os.environ.get(source["api_key_env"]):
             return False, f"missing env var {source['api_key_env']}"
     try:
-        r = requests.head(url, timeout=TIMEOUT, allow_redirects=True,
-                          headers={"User-Agent": "HegazyBrief/2.0 health-check"})
+        headers = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
+                                 "(KHTML, like Gecko) Chrome/130.0 Safari/537.36 HegazyBrief/2.0"}
+        r = requests.head(url, timeout=TIMEOUT, allow_redirects=True, headers=headers)
+        if r.status_code in (403, 405, 501):   # many servers refuse HEAD but serve GET
+            r = requests.get(url, timeout=TIMEOUT, allow_redirects=True, headers=headers, stream=True)
+            r.close()
         if r.status_code < 400:
             return True, f"HTTP {r.status_code}"
         return False, f"HTTP {r.status_code}"
