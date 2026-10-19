@@ -31,4 +31,5 @@ jobs:
           git config user.email "hegazy-brief-bot@users.noreply.github.com"
           git add data/source_state.json
           git commit -m "Source health check $(date -u +%FT%H:%MZ)" || echo "No changes"
+          git pull --rebase origin main
           git push
