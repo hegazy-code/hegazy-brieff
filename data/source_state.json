@@ -1,62 +1,62 @@
 {
   "cbe": {
-    "last_ok": null,
+    "last_ok": "2026-10-19T22:07:54+00:00",
     "last_fail": "2026-10-19T21:47:23+00:00",
-    "fail_count": 2,
-    "status": "degraded",
-    "last_msg": "HTTP 403"
+    "fail_count": 0,
+    "status": "up",
+    "last_msg": "HTTP 200"
   },
   "egx": {
-    "last_ok": null,
+    "last_ok": "2026-10-19T22:07:55+00:00",
     "last_fail": "2026-10-19T21:47:25+00:00",
-    "fail_count": 2,
-    "status": "degraded",
-    "last_msg": "connection error: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))"
+    "fail_count": 0,
+    "status": "up",
+    "last_msg": "HTTP 200"
   },
   "capmas": {
-    "last_ok": "2026-10-19T21:47:27+00:00",
+    "last_ok": "2026-10-19T22:07:58+00:00",
     "last_fail": null,
     "fail_count": 0,
     "status": "up",
     "last_msg": "HTTP 200"
   },
   "mof_egypt": {
-    "last_ok": "2026-10-19T21:47:28+00:00",
+    "last_ok": "2026-10-19T22:08:01+00:00",
     "last_fail": null,
     "fail_count": 0,
     "status": "up",
     "last_msg": "HTTP 200"
   },
   "sca": {
-    "last_ok": null,
+    "last_ok": "2026-10-19T22:08:03+00:00",
     "last_fail": "2026-10-19T21:47:28+00:00",
-    "fail_count": 2,
-    "status": "degraded",
-    "last_msg": "connection error: HTTPSConnectionPool(host='www.sca.gov.eg', port=443): Max retries exceeded with url: / (Caused by NameResolutionError(\"HTTPSConnection(host='www.sca.gov.eg', port=443): Failed to resolve 'www.sca.gov.eg' ([Errno -2] Name or service not known)\"))"
+    "fail_count": 0,
+    "status": "up",
+    "last_msg": "HTTP 200"
   },
   "cabinet_egypt": {
-    "last_ok": "2026-10-19T21:47:45+00:00",
+    "last_ok": "2026-10-19T22:08:15+00:00",
     "last_fail": null,
     "fail_count": 0,
     "status": "up",
     "last_msg": "HTTP 200"
   },
   "fra_egypt": {
-    "last_ok": "2026-10-19T21:47:48+00:00",
+    "last_ok": "2026-10-19T22:08:17+00:00",
     "last_fail": null,
     "fail_count": 0,
     "status": "up",
     "last_msg": "HTTP 200"
   },
   "alborsaanews": {
-    "last_ok": "2026-10-19T21:47:49+00:00",
+    "last_ok": "2026-10-19T22:08:18+00:00",
     "last_fail": null,
     "fail_count": 0,
     "status": "up",
     "last_msg": "HTTP 200"
   },
   "amwalalghad": {
-    "last_ok": "2026-10-19T21:47:50+00:00",
+    "last_ok": "2026-10-19T22:08:19+00:00",
     "last_fail": null,
     "fail_count": 0,
     "status": "up",
@@ -64,48 +64,48 @@
   },
   "almalnews": {
     "last_ok": null,
-    "last_fail": "2026-10-19T21:47:51+00:00",
-    "fail_count": 2,
-    "status": "degraded",
+    "last_fail": "2026-10-19T22:08:20+00:00",
+    "fail_count": 3,
+    "status": "down",
     "last_msg": "HTTP 404"
   },
   "fed": {
-    "last_ok": "2026-10-19T21:47:51+00:00",
+    "last_ok": "2026-10-19T22:08:20+00:00",
     "last_fail": null,
     "fail_count": 0,
     "status": "up",
     "last_msg": "HTTP 200"
   },
   "ecb": {
-    "last_ok": "2026-10-19T21:47:52+00:00",
+    "last_ok": "2026-10-19T22:08:21+00:00",
     "last_fail": null,
     "fail_count": 0,
     "status": "up",
     "last_msg": "HTTP 200"
   },
   "boe": {
-    "last_ok": "2026-10-19T21:47:53+00:00",
+    "last_ok": "2026-10-19T22:08:21+00:00",
     "last_fail": null,
     "fail_count": 0,
     "status": "up",
     "last_msg": "HTTP 200"
   },
   "boj": {
-    "last_ok": "2026-10-19T21:47:54+00:00",
+    "last_ok": "2026-10-19T22:08:22+00:00",
     "last_fail": null,
     "fail_count": 0,
     "status": "up",
     "last_msg": "HTTP 200"
   },
   "pboc": {
-    "last_ok": "2026-10-19T21:47:56+00:00",
+    "last_ok": "2026-10-19T22:08:25+00:00",
     "last_fail": null,
     "fail_count": 0,
     "status": "up",
     "last_msg": "HTTP 200"
   },
   "sec": {
-    "last_ok": "2026-10-19T21:47:56+00:00",
+    "last_ok": "2026-10-19T22:08:25+00:00",
     "last_fail": null,
     "fail_count": 0,
     "status": "up",
@@ -113,20 +113,20 @@
   },
   "bls": {
     "last_ok": null,
-    "last_fail": "2026-10-19T21:47:57+00:00",
-    "fail_count": 2,
-    "status": "degraded",
+    "last_fail": "2026-10-19T22:08:26+00:00",
+    "fail_count": 3,
+    "status": "down",
     "last_msg": "HTTP 403"
   },
   "eia": {
     "last_ok": null,
-    "last_fail": "2026-10-19T21:48:07+00:00",
-    "fail_count": 2,
-    "status": "degraded",
+    "last_fail": "2026-10-19T22:08:34+00:00",
+    "fail_count": 3,
+    "status": "down",
     "last_msg": "HTTP 503"
   },
   "treasury_us": {
-    "last_ok": "2026-10-19T21:48:08+00:00",
+    "last_ok": "2026-10-19T22:08:35+00:00",
     "last_fail": null,
     "fail_count": 0,
     "status": "up",
@@ -134,27 +134,27 @@
   },
   "imf": {
     "last_ok": null,
-    "last_fail": "2026-10-19T21:48:08+00:00",
-    "fail_count": 2,
-    "status": "degraded",
+    "last_fail": "2026-10-19T22:08:36+00:00",
+    "fail_count": 3,
+    "status": "down",
     "last_msg": "HTTP 403"
   },
   "worldbank": {
     "last_ok": null,
-    "last_fail": "2026-10-19T21:48:09+00:00",
-    "fail_count": 2,
-    "status": "degraded",
+    "last_fail": "2026-10-19T22:08:36+00:00",
+    "fail_count": 3,
+    "status": "down",
     "last_msg": "HTTP 404"
   },
   "wto": {
-    "last_ok": "2026-10-19T21:48:10+00:00",
+    "last_ok": "2026-10-19T22:08:37+00:00",
     "last_fail": null,
     "fail_count": 0,
     "status": "up",
     "last_msg": "HTTP 200"
   },
   "un": {
-    "last_ok": "2026-10-19T21:48:10+00:00",
+    "last_ok": "2026-10-19T22:08:37+00:00",
     "last_fail": null,
     "fail_count": 0,
     "status": "up",
@@ -162,20 +162,20 @@
   },
   "who": {
     "last_ok": null,
-    "last_fail": "2026-10-19T21:48:11+00:00",
-    "fail_count": 2,
-    "status": "degraded",
+    "last_fail": "2026-10-19T22:08:38+00:00",
+    "fail_count": 3,
+    "status": "down",
     "last_msg": "HTTP 404"
   },
   "cisa": {
     "last_ok": null,
-    "last_fail": "2026-10-19T21:48:12+00:00",
-    "fail_count": 2,
-    "status": "degraded",
+    "last_fail": "2026-10-19T22:08:38+00:00",
+    "fail_count": 3,
+    "status": "down",
     "last_msg": "HTTP 403"
   },
   "nasa": {
-    "last_ok": "2026-10-19T21:48:12+00:00",
+    "last_ok": "2026-10-19T22:08:38+00:00",
     "last_fail": null,
     "fail_count": 0,
     "status": "up",
@@ -183,27 +183,27 @@
   },
   "opec": {
     "last_ok": null,
-    "last_fail": "2026-10-19T21:48:13+00:00",
-    "fail_count": 2,
-    "status": "degraded",
+    "last_fail": "2026-10-19T22:08:39+00:00",
+    "fail_count": 3,
+    "status": "down",
     "last_msg": "HTTP 403"
   },
   "iea": {
     "last_ok": null,
-    "last_fail": "2026-10-19T21:48:13+00:00",
-    "fail_count": 2,
-    "status": "degraded",
+    "last_fail": "2026-10-19T22:08:39+00:00",
+    "fail_count": 3,
+    "status": "down",
     "last_msg": "HTTP 403"
   },
   "fred_api": {
     "last_ok": null,
-    "last_fail": "2026-10-19T21:48:13+00:00",
-    "fail_count": 2,
-    "status": "degraded",
+    "last_fail": "2026-10-19T22:08:40+00:00",
+    "fail_count": 3,
+    "status": "down",
     "last_msg": "missing env var FRED_API_KEY"
   },
   "worldbank_api": {
-    "last_ok": "2026-10-19T21:48:14+00:00",
+    "last_ok": "2026-10-19T22:08:40+00:00",
     "last_fail": "2026-10-19T18:01:24+00:00",
     "fail_count": 0,
     "status": "up",
@@ -211,90 +211,90 @@
   },
   "gdelt": {
     "last_ok": null,
-    "last_fail": "2026-10-19T21:48:25+00:00",
-    "fail_count": 2,
-    "status": "degraded",
+    "last_fail": "2026-10-19T22:08:48+00:00",
+    "fail_count": 3,
+    "status": "down",
     "last_msg": "HTTP 429"
   },
   "frankfurter": {
-    "last_ok": "2026-10-19T21:48:26+00:00",
+    "last_ok": "2026-10-19T22:08:48+00:00",
     "last_fail": null,
     "fail_count": 0,
     "status": "up",
     "last_msg": "HTTP 200"
   },
   "coingecko": {
-    "last_ok": "2026-10-19T21:48:26+00:00",
+    "last_ok": "2026-10-19T22:08:49+00:00",
     "last_fail": null,
     "fail_count": 0,
     "status": "up",
     "last_msg": "HTTP 200"
   },
   "yfinance": {
-    "last_ok": "2026-10-19T21:48:27+00:00",
+    "last_ok": "2026-10-19T22:08:49+00:00",
     "last_fail": null,
     "fail_count": 0,
     "status": "up",
     "last_msg": "sdk — not pinged directly"
   },
   "bbc_world": {
-    "last_ok": "2026-10-19T21:48:27+00:00",
+    "last_ok": "2026-10-19T22:08:49+00:00",
     "last_fail": null,
     "fail_count": 0,
     "status": "up",
     "last_msg": "HTTP 200"
   },
   "bbc_business": {
-    "last_ok": "2026-10-19T21:48:28+00:00",
+    "last_ok": "2026-10-19T22:08:50+00:00",
     "last_fail": null,
     "fail_count": 0,
     "status": "up",
     "last_msg": "HTTP 200"
   },
   "bbc_tech": {
-    "last_ok": "2026-10-19T21:48:28+00:00",
+    "last_ok": "2026-10-19T22:08:50+00:00",
     "last_fail": null,
     "fail_count": 0,
     "status": "up",
     "last_msg": "HTTP 200"
   },
   "bbc_mideast": {
-    "last_ok": "2026-10-19T21:48:29+00:00",
+    "last_ok": "2026-10-19T22:08:51+00:00",
     "last_fail": null,
     "fail_count": 0,
     "status": "up",
     "last_msg": "HTTP 200"
   },
   "bbc_africa": {
-    "last_ok": "2026-10-19T21:48:30+00:00",
+    "last_ok": "2026-10-19T22:08:51+00:00",
     "last_fail": null,
     "fail_count": 0,
     "status": "up",
     "last_msg": "HTTP 200"
   },
   "bbc_europe": {
-    "last_ok": "2026-10-19T21:48:30+00:00",
+    "last_ok": "2026-10-19T22:08:52+00:00",
     "last_fail": null,
     "fail_count": 0,
     "status": "up",
     "last_msg": "HTTP 200"
   },
   "bbc_asia": {
-    "last_ok": "2026-10-19T21:48:31+00:00",
+    "last_ok": "2026-10-19T22:08:52+00:00",
     "last_fail": null,
     "fail_count": 0,
     "status": "up",
     "last_msg": "HTTP 200"
   },
   "bbc_latam": {
-    "last_ok": "2026-10-19T21:48:32+00:00",
+    "last_ok": "2026-10-19T22:08:53+00:00",
     "last_fail": null,
     "fail_count": 0,
     "status": "up",
     "last_msg": "HTTP 200"
   },
   "aljazeera": {
-    "last_ok": "2026-10-19T21:48:32+00:00",
+    "last_ok": "2026-10-19T22:08:53+00:00",
     "last_fail": null,
     "fail_count": 0,
     "status": "up",
@@ -302,13 +302,13 @@
   },
   "aljazeera_ar": {
     "last_ok": null,
-    "last_fail": "2026-10-19T21:48:33+00:00",
-    "fail_count": 2,
-    "status": "degraded",
+    "last_fail": "2026-10-19T22:08:54+00:00",
+    "fail_count": 3,
+    "status": "down",
     "last_msg": "HTTP 404"
   },
   "cnbc_top": {
-    "last_ok": "2026-10-19T21:48:33+00:00",
+    "last_ok": "2026-10-19T22:08:54+00:00",
     "last_fail": null,
     "fail_count": 0,
     "status": "up",
@@ -316,34 +316,34 @@
   },
   "cnbc_tech": {
     "last_ok": "2026-10-19T21:48:34+00:00",
-    "last_fail": null,
-    "fail_count": 0,
-    "status": "up",
-    "last_msg": "HTTP 200"
+    "last_fail": "2026-10-19T22:08:55+00:00",
+    "fail_count": 1,
+    "status": "degraded",
+    "last_msg": "HTTP 404"
   },
   "dw_world": {
-    "last_ok": "2026-10-19T21:48:34+00:00",
+    "last_ok": "2026-10-19T22:08:56+00:00",
     "last_fail": null,
     "fail_count": 0,
     "status": "up",
     "last_msg": "HTTP 200"
   },
   "france24": {
-    "last_ok": "2026-10-19T21:48:35+00:00",
+    "last_ok": "2026-10-19T22:08:56+00:00",
     "last_fail": "2026-10-19T18:01:46+00:00",
     "fail_count": 0,
     "status": "up",
     "last_msg": "HTTP 200"
   },
   "guardian_world": {
-    "last_ok": "2026-10-19T21:48:35+00:00",
+    "last_ok": "2026-10-19T22:08:56+00:00",
     "last_fail": null,
     "fail_count": 0,
     "status": "up",
     "last_msg": "HTTP 200"
   },
   "guardian_env": {
-    "last_ok": "2026-10-19T21:48:36+00:00",
+    "last_ok": "2026-10-19T22:08:57+00:00",
     "last_fail": null,
     "fail_count": 0,
     "status": "up",
@@ -351,16 +351,16 @@
   },
   "reuters": {
     "last_ok": null,
-    "last_fail": "2026-10-19T21:48:36+00:00",
-    "fail_count": 2,
-    "status": "degraded",
+    "last_fail": "2026-10-19T22:08:57+00:00",
+    "fail_count": 3,
+    "status": "down",
     "last_msg": "connection error: HTTPSConnectionPool(host='feeds.reuters.com', port=443): Max retries exceeded with url: /reuters/topNews (Caused by NameResolutionError(\"HTTPSConnection(host='feeds.reuters.com', port=443): Failed to resolve 'feeds.reuters.com' ([Errno -2] Name or service not known)\"))"
   },
   "ap_news": {
     "last_ok": null,
-    "last_fail": "2026-10-19T21:48:37+00:00",
-    "fail_count": 2,
-    "status": "degraded",
+    "last_fail": "2026-10-19T22:08:58+00:00",
+    "fail_count": 3,
+    "status": "down",
     "last_msg": "HTTP 403"
   }
 }
