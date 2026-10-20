@@ -963,6 +963,11 @@ def _ping(source: dict) -> tuple[bool, str]:
     except Exception as e:
         return False, str(e)
 
+# Rate-limited APIs are not pinged: a health ping spends the same quota the build needs,
+# and the build already treats a 429 as "slow down", not "down".
+SKIP_HEALTH_PING = {"gdelt"}
+
+
 def check_all(sources: Optional[list[dict]] = None, save: bool = True) -> dict:
     """
     Ping every source and return updated state dict.
@@ -972,6 +977,8 @@ def check_all(sources: Optional[list[dict]] = None, save: bool = True) -> dict:
     state = _load_state()
     for src in targets:
         sid = src["id"]
+        if sid in SKIP_HEALTH_PING:
+            continue
         s = state.setdefault(sid, {"last_ok": None, "last_fail": None, "fail_count": 0, "status": "unknown"})
         ok, msg = _ping(src)
         ts = now_iso()
