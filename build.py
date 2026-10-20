@@ -791,7 +791,7 @@ def build(mock=False):
     )
 
     days = sorted(
-        (path.stem for path in DATA.glob("*.json")),
+        (path.stem for path in DATA.glob("????-??-??.json")),   # editions only; data/ also holds source_state.json
         reverse=True,
     )
 
