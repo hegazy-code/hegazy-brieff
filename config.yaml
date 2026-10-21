@@ -497,6 +497,18 @@ checklist:
   - week ahead markets
   - earnings next week
   - central bank meeting next week
+- id: A17
+  title: Emerging markets
+  sector: economy
+  regions:
+  - latam
+  - africa
+  - mena
+  queries:
+  - emerging markets currency OR central bank
+  - Brazil OR Mexico OR Argentina economy
+  - Nigeria OR Kenya OR South Africa economy
+  - Turkey OR Pakistan OR Saudi Arabia economy IMF
 - id: B1
   title: Energy
   sector: energy
