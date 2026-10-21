@@ -10,6 +10,7 @@ import json
 import logging
 import os
 import time
+from time import monotonic
 
 import requests
 
@@ -114,7 +115,9 @@ def gemini(prompt):
                     log.warning("Gemini model %s not available, trying the next one", model)
                     break
                 if r.status_code == 429:
-                    time.sleep(30 * (attempt + 1))
+                    wait = 5 * (2 ** attempt)   # 5, 10, 20, 40s — bounded, and visible in the log
+                    log.warning("Gemini %s rate limited (attempt %d), waiting %ds", model, attempt + 1, wait)
+                    time.sleep(wait)
                     continue
                 r.raise_for_status()
                 if os.environ.get("GEMINI_MODEL") != model:
@@ -146,20 +149,33 @@ def fallback_stories(items, limit):
             for h in items[:limit]]
 
 
+# Wall-clock budget for the whole sector-writing loop. 19 sectors at a worst case of
+# ~48 min each (if a model hangs rather than erroring) could otherwise run far past the
+# 60-minute build timeout with nothing to show for it. Past this budget, remaining sectors
+# fall back to raw headlines instead of calling Gemini at all, so the build always finishes
+# and publishes whatever analysis it had time to write.
+AI_BUDGET_SECONDS = 1500   # 25 minutes
+
+
 def write(cfg, board, headlines, big):
     by_id = {h["id"]: h for h in headlines}
     mdata = market_block(board)
     moves = ", ".join(big) or "none"
     sectors = {}
+    deadline = monotonic() + AI_BUDGET_SECONDS
     for sector, task in SECTOR_TASK.items():
         items = sorted([h for h in headlines if h["sector"] == sector], key=lambda h: not h.get("official"))[:120]
         if not items:
             sectors[sector] = []
             continue
-        prompt = (f"{RULES}\n\nSECTOR: {task}\nMoves above the HIGH threshold today: {moves}\n"
-                  f"Schema: {STORY_SCHEMA}\n\nMARKET DATA:\n{mdata}\n\nHEADLINES:\n{headline_block(items)}")
-        res = gemini(prompt)
-        stories = res.get("stories", []) if isinstance(res, dict) else fallback_stories(items, cfg["max_radar"])
+        if monotonic() > deadline:
+            log.warning("AI writing: time budget hit, %s falls back to raw headlines", sector)
+            stories = fallback_stories(items, cfg["max_radar"])
+        else:
+            prompt = (f"{RULES}\n\nSECTOR: {task}\nMoves above the HIGH threshold today: {moves}\n"
+                      f"Schema: {STORY_SCHEMA}\n\nMARKET DATA:\n{mdata}\n\nHEADLINES:\n{headline_block(items)}")
+            res = gemini(prompt)
+            stories = res.get("stories", []) if isinstance(res, dict) else fallback_stories(items, cfg["max_radar"])
         clean_stories = []
         for s in stories:
             uses = [u for u in s.get("uses", []) if u in by_id]
