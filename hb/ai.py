@@ -90,7 +90,11 @@ SECTOR_TASK = {
 }
 
 
-FALLBACK_MODELS = ["gemini-2.5-flash", "gemini-2.0-flash", "gemini-1.5-flash"]
+# gemini-1.5-flash and gemini-2.0-flash are fully retired as of Oct 2026 (confirmed: every
+# call 404s). Current generation is the 3.x line; 3.5-flash has a confirmed free tier
+# (15 req/min, 1,500 req/day), enough for one call per checklist sector per day.
+# 2.5-flash/2.5-flash-lite stay as a safety net in case 3.x is ever unavailable to this key.
+FALLBACK_MODELS = ["gemini-3.5-flash", "gemini-3.8-flash", "gemini-2.5-flash", "gemini-2.5-flash-lite"]
 
 
 def gemini(prompt):
