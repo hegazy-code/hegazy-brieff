@@ -15,6 +15,7 @@ so stories slot into the existing pipeline without changes.
 from __future__ import annotations
 import logging
 import time
+from time import monotonic
 from datetime import datetime, timezone
 from typing import Optional
 import requests
@@ -25,6 +26,12 @@ BASE = "https://api.gdeltproject.org/api/v2/doc/doc"
 TIMEOUT = 30
 RETRY_WAIT = 10
 MIN_GAP = 5.5          # GDELT DOC API limit is one request every 5 seconds
+
+# Hard wall-clock budget for the whole GDELT phase. On a day GDELT rate-limits
+# aggressively, worst case is ~35s/query (3 retries x 10s + the 5.5s pacing gap), and with
+# 34 queries that can run past an hour on its own, starving the AI-writing step of all its
+# time. Past this budget, collect_all() stops issuing new queries and returns what it has.
+BUDGET_SECONDS = 360   # 6 minutes: generous for a good day, bounded for a bad one
 
 # Sector → GDELT themes (from GDELT's official theme taxonomy)
 SECTOR_THEMES: dict[str, list[str]] = {
@@ -134,7 +141,7 @@ def _normalize(article: dict, query: str) -> dict:
     }
 
 
-def collect_egypt(max_per_query: int = 5, timespan: str = "24h") -> list[dict]:
+def collect_egypt(max_per_query: int = 5, timespan: str = "24h", deadline: Optional[float] = None) -> list[dict]:
     """
     Run all Egypt-specific GDELT queries and return deduplicated headlines.
     Called during the daily build to supplement CBE/EGX/CAPMAS direct feeds.
@@ -142,6 +149,10 @@ def collect_egypt(max_per_query: int = 5, timespan: str = "24h") -> list[dict]:
     seen_urls: set[str] = set()
     results: list[dict] = []
     for query in EGYPT_QUERIES:
+        if deadline and monotonic() > deadline:
+            log.warning("GDELT Egypt: time budget hit, stopping early (%d/%d queries done)",
+                        len(results), len(EGYPT_QUERIES))
+            break
         lang = "ara" if any(ord(c) > 127 for c in query) else None
         items = _fetch(query, max_records=max_per_query, timespan=timespan, source_lang=lang)
         for item in items:
@@ -157,7 +168,7 @@ def collect_egypt(max_per_query: int = 5, timespan: str = "24h") -> list[dict]:
 
 
 def collect_by_sector(sector: str, max_per_query: int = 5,
-                      timespan: str = "24h") -> list[dict]:
+                      timespan: str = "24h", deadline: Optional[float] = None) -> list[dict]:
     """
     Collect GDELT headlines for a given sector using theme-based queries.
     Falls back to keyword search if no themes defined for the sector.
@@ -169,6 +180,9 @@ def collect_by_sector(sector: str, max_per_query: int = 5,
     seen_urls: set[str] = set()
     results: list[dict] = []
     for theme in themes[:4]:           # cap at 4 theme queries per sector
+        if deadline and monotonic() > deadline:
+            log.warning("GDELT %s: time budget hit, stopping early", sector)
+            break
         query = f"(sourcecountry:EG OR theme:{theme}) theme:{theme}"
         items = _fetch(query, max_records=max_per_query, timespan=timespan)
         for item in items:
@@ -197,7 +211,7 @@ def _region_sector(query: str) -> str:
     return "politics"
 
 
-def collect_region_gaps(max_per_query: int = 5, timespan: str = "24h") -> list[dict]:
+def collect_region_gaps(max_per_query: int = 5, timespan: str = "24h", deadline: Optional[float] = None) -> list[dict]:
     """
     Collect GDELT headlines for regions that English RSS feeds under-cover:
     Africa, Latin America, MENA (non-Egypt), Southeast Asia.
@@ -205,6 +219,9 @@ def collect_region_gaps(max_per_query: int = 5, timespan: str = "24h") -> list[d
     seen_urls: set[str] = set()
     results: list[dict] = []
     for region, queries in REGION_QUERIES.items():
+        if deadline and monotonic() > deadline:
+            log.warning("GDELT region gaps: time budget hit, stopping early")
+            break
         for query in queries[:2]:       # 2 queries per region max
             items = _fetch(query, max_records=max_per_query, timespan=timespan)
             for item in items:
@@ -231,13 +248,18 @@ def collect_all(cfg: dict) -> list[dict]:
     timespan = cfg.get("gdelt_timespan", "24h")
     max_per = cfg.get("gdelt_per_query", 5)
 
+    deadline = monotonic() + BUDGET_SECONDS
+
     all_headlines: list[dict] = []
-    all_headlines.extend(collect_egypt(max_per, timespan))
-    all_headlines.extend(collect_region_gaps(max_per, timespan))
+    all_headlines.extend(collect_egypt(max_per, timespan, deadline))
+    all_headlines.extend(collect_region_gaps(max_per, timespan, deadline))
 
     # Sector-level GDELT for gaps not covered by RSS
     for sector in ["health", "climate", "cyber", "trade"]:
-        all_headlines.extend(collect_by_sector(sector, max_per, timespan))
+        if monotonic() > deadline:
+            log.warning("GDELT: time budget hit before sector pass, skipping health/climate/cyber/trade")
+            break
+        all_headlines.extend(collect_by_sector(sector, max_per, timespan, deadline))
 
     # Assign sequential IDs (will be re-numbered in the main pipeline)
     for i, h in enumerate(all_headlines):
