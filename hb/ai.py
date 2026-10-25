@@ -10,7 +10,6 @@ import json
 import logging
 import os
 import time
-from time import monotonic
 
 import requests
 
@@ -76,26 +75,10 @@ SECTOR_TASK = {
     "politics": "Politics and geopolitics in every region, especially the USA, Egypt, the Gulf and the wider Middle East. Publish only events with real consequences; the rest stays out.",
     "business": "Business and technology across every industry: tech and AI, banks, energy, healthcare, real estate, autos, consumer, defense, shipping, travel, telecom, food, mining.",
     "wsj": "Wall Street Journal stories. You only see headlines and snippets: summarize in your own words, never copy, and say 'headline only' if the snippet is too thin to explain the story.",
-    "energy": "Energy: oil, natural gas, electricity, renewables, nuclear, OPEC decisions, IEA reports, energy security, and Egypt's energy imports and fuel costs.",
-    "technology": "Technology and AI: AI model launches, semiconductor chips and export controls, big-tech earnings and strategy, AI regulation, data centers, robotics, and autonomous systems.",
-    "cyber": "Cybersecurity: data breaches, ransomware, CISA advisories, state-sponsored attacks, vulnerabilities, and threats to financial or critical infrastructure.",
-    "health": "Health and medicine: disease outbreaks, WHO alerts, vaccine and drug approvals, pandemic risk, public health emergencies, and Egypt health ministry developments.",
-    "climate": "Environment and climate: extreme weather events, climate policy and COP summits, natural disasters, carbon and emissions commitments, and environmental regulations.",
-    "science": "Science and research: significant scientific discoveries, NASA and space missions, research publications with real-world implications, and major technology breakthroughs.",
-    "trade": "Trade and supply chains: tariffs, WTO rulings, trade agreements, shipping disruptions, Red Sea and Suez Canal traffic, freight rates, and global supply chain developments.",
-    "infrastructure": "Infrastructure and transportation: major port, airport, rail, and road projects; shipping and logistics; and Egypt's infrastructure investments and megaprojects.",
-    "law": "Law and regulation: court rulings, antitrust and competition enforcement, financial regulation penalties, GDPR and data law, and Egyptian legislation and decrees.",
-    "labor": "Education and labor: jobs reports, unemployment, wages, strikes, labor law, workforce trends, and Egyptian youth unemployment and education policy.",
-    "sports": "Sports: major competition results, transfers, governance, and sports business including Egyptian national teams, African competitions, and global events with Egypt relevance.",
-    "society": "Society, culture, and demographics: migration, population data, cost-of-living pressures, social media policy, Egyptian census and social developments, and major cultural events.",
 }
 
 
-# gemini-1.5-flash and gemini-2.0-flash are fully retired as of Oct 2026 (confirmed: every
-# call 404s). Current generation is the 3.x line; 3.5-flash has a confirmed free tier
-# (15 req/min, 1,500 req/day), enough for one call per checklist sector per day.
-# 2.5-flash/2.5-flash-lite stay as a safety net in case 3.x is ever unavailable to this key.
-FALLBACK_MODELS = ["gemini-3.5-flash", "gemini-3.8-flash", "gemini-2.5-flash", "gemini-2.5-flash-lite"]
+FALLBACK_MODELS = ["gemini-3.5-flash", "gemini-flash-latest", "gemini-3.1-flash-lite"]
 
 
 def gemini(prompt):
@@ -115,9 +98,7 @@ def gemini(prompt):
                     log.warning("Gemini model %s not available, trying the next one", model)
                     break
                 if r.status_code == 429:
-                    wait = 5 * (2 ** attempt)   # 5, 10, 20, 40s — bounded, and visible in the log
-                    log.warning("Gemini %s rate limited (attempt %d), waiting %ds", model, attempt + 1, wait)
-                    time.sleep(wait)
+                    time.sleep(30 * (attempt + 1))
                     continue
                 r.raise_for_status()
                 if os.environ.get("GEMINI_MODEL") != model:
@@ -149,33 +130,20 @@ def fallback_stories(items, limit):
             for h in items[:limit]]
 
 
-# Wall-clock budget for the whole sector-writing loop. 19 sectors at a worst case of
-# ~48 min each (if a model hangs rather than erroring) could otherwise run far past the
-# 60-minute build timeout with nothing to show for it. Past this budget, remaining sectors
-# fall back to raw headlines instead of calling Gemini at all, so the build always finishes
-# and publishes whatever analysis it had time to write.
-AI_BUDGET_SECONDS = 1500   # 25 minutes
-
-
 def write(cfg, board, headlines, big):
     by_id = {h["id"]: h for h in headlines}
     mdata = market_block(board)
     moves = ", ".join(big) or "none"
     sectors = {}
-    deadline = monotonic() + AI_BUDGET_SECONDS
     for sector, task in SECTOR_TASK.items():
         items = sorted([h for h in headlines if h["sector"] == sector], key=lambda h: not h.get("official"))[:120]
         if not items:
             sectors[sector] = []
             continue
-        if monotonic() > deadline:
-            log.warning("AI writing: time budget hit, %s falls back to raw headlines", sector)
-            stories = fallback_stories(items, cfg["max_radar"])
-        else:
-            prompt = (f"{RULES}\n\nSECTOR: {task}\nMoves above the HIGH threshold today: {moves}\n"
-                      f"Schema: {STORY_SCHEMA}\n\nMARKET DATA:\n{mdata}\n\nHEADLINES:\n{headline_block(items)}")
-            res = gemini(prompt)
-            stories = res.get("stories", []) if isinstance(res, dict) else fallback_stories(items, cfg["max_radar"])
+        prompt = (f"{RULES}\n\nSECTOR: {task}\nMoves above the HIGH threshold today: {moves}\n"
+                  f"Schema: {STORY_SCHEMA}\n\nMARKET DATA:\n{mdata}\n\nHEADLINES:\n{headline_block(items)}")
+        res = gemini(prompt)
+        stories = res.get("stories", []) if isinstance(res, dict) else fallback_stories(items, cfg["max_radar"])
         clean_stories = []
         for s in stories:
             uses = [u for u in s.get("uses", []) if u in by_id]
